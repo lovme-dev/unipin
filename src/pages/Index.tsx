@@ -113,7 +113,7 @@ const Index = () => {
           <div className="flex items-center gap-3">
             <Search className="w-5 h-5 text-foreground" />
             <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded text-sm font-semibold">
-              LOGIN
+              SIGN IN
             </button>
           </div>
         </div>
