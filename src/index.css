@@ -13,7 +13,7 @@
     --popover: 220 35% 13%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 28 92% 53%;
+    --primary: 31 92% 53%;
     --primary-foreground: 0 0% 0%;
 
     --secondary: 220 30% 16%;
@@ -22,7 +22,7 @@
     --muted: 220 25% 20%;
     --muted-foreground: 215 15% 60%;
 
-    --accent: 28 92% 53%;
+    --accent: 31 92% 53%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -30,17 +30,17 @@
 
     --border: 220 25% 18%;
     --input: 220 30% 16%;
-    --ring: 28 92% 53%;
+    --ring: 31 92% 53%;
 
     --radius: 0.5rem;
 
     --topbar-bg: 215 50% 12%;
     --section-bg: 220 35% 14%;
-    --price-color: 28 92% 53%;
+    --price-color: 31 92% 53%;
     --badge-green: 145 63% 42%;
     --badge-orange: 30 50% 35%;
     --badge-blue: 210 70% 50%;
-    --step-bg: 28 92% 53%;
+    --step-bg: 31 92% 53%;
     --header-glass: 32 12% 62%;
     --header-glow: 31 78% 38%;
 
