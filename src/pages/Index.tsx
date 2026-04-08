@@ -66,26 +66,32 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground pb-24">
       {/* Sticky Header */}
       <div className="sticky top-0 z-40" style={{
-        background: scrolled
-          ? 'hsla(220, 40%, 13%, 0.85)'
-          : 'transparent',
-        backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-        transition: 'background 0.3s, backdrop-filter 0.3s',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
+        background: scrolled ? 'hsla(220, 40%, 10%, 0.6)' : 'transparent',
+        transition: 'all 0.3s ease',
       }}>
-        {/* Top Banner */}
-        <div className="py-2 px-4 flex items-center justify-between text-xs" style={{
-          background: 'linear-gradient(180deg, hsla(30, 80%, 38%, 0.85) 0%, hsla(25, 75%, 28%, 0.65) 100%)',
-        }}>
-          <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
-          <div className="flex items-center gap-2">
-            <span className="text-lg">🇮🇩</span>
-            <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">ID</span>
+        {/* Top Banner with orange glow that bleeds down */}
+        <div className="relative">
+          <div className="py-2 px-4 flex items-center justify-between text-xs" style={{
+            background: 'linear-gradient(180deg, hsla(30, 80%, 38%, 0.85) 0%, hsla(25, 75%, 28%, 0.65) 100%)',
+          }}>
+            <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
+            <div className="flex items-center gap-2">
+              <span className="text-lg">🇮🇩</span>
+              <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">ID</span>
+            </div>
           </div>
+          {/* Orange glow bleeding into logo bar */}
+          <div className="absolute bottom-0 left-0 right-0 h-12 pointer-events-none" style={{
+            background: 'linear-gradient(180deg, hsla(30, 75%, 35%, 0.3) 0%, hsla(30, 75%, 35%, 0.08) 60%, transparent 100%)',
+            transform: 'translateY(100%)',
+            zIndex: 0,
+          }} />
         </div>
 
         {/* Logo Bar */}
-        <div className="relative px-4 py-3 flex items-center justify-between">
+        <div className="relative px-4 py-3 flex items-center justify-between" style={{ zIndex: 1 }}>
           <div className="flex items-center gap-3">
             <button onClick={() => setMenuOpen(!menuOpen)}>
               <Menu className="w-6 h-6 text-foreground" />
