@@ -57,37 +57,44 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-24">
-      {/* Top Banner */}
-      <div className="bg-topbar py-2 px-4 flex items-center justify-between text-xs">
-        <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
-        <div className="flex items-center gap-2">
-          <span className="text-lg">🇮🇩</span>
-          <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">EN</span>
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-40">
+        {/* Top Banner */}
+        <div className="py-2 px-4 flex items-center justify-between text-xs" style={{
+          background: 'linear-gradient(180deg, hsla(22, 83%, 40%, 0.9) 0%, hsla(22, 83%, 30%, 0.7) 100%)',
+        }}>
+          <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
+          <div className="flex items-center gap-2">
+            <span className="text-lg">🇮🇩</span>
+            <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">ID</span>
+          </div>
         </div>
-      </div>
 
-      {/* Header */}
-      <div className="relative px-4 py-3 flex items-center justify-between" style={{
-        background: 'linear-gradient(180deg, hsla(220, 50%, 15%, 0.85) 0%, hsla(220, 50%, 12%, 0.95) 100%)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        boxShadow: '0 4px 30px hsla(22, 83%, 52%, 0.15), 0 8px 40px hsla(22, 83%, 52%, 0.08)',
-      }}>
-        <div className="absolute bottom-0 left-0 right-0 h-1" style={{
-          background: 'linear-gradient(180deg, hsla(22, 83%, 50%, 0.3) 0%, transparent 100%)',
+        {/* Logo Bar */}
+        <div className="relative px-4 py-3 flex items-center justify-between" style={{
+          background: 'hsla(220, 40%, 13%, 0.95)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+        }}>
+          <div className="flex items-center gap-3">
+            <button onClick={() => setMenuOpen(!menuOpen)}>
+              <Menu className="w-6 h-6 text-foreground" />
+            </button>
+            <img src={unipinLogo} alt="UniPin" className="h-6" />
+          </div>
+          <div className="flex items-center gap-3">
+            <Search className="w-5 h-5 text-foreground" />
+            <button className="bg-primary text-black px-4 py-1.5 rounded text-sm font-semibold">
+              MASUK
+            </button>
+          </div>
+        </div>
+
+        {/* Orange glow below header */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{
+          background: 'linear-gradient(180deg, hsla(22, 83%, 40%, 0.25) 0%, hsla(22, 83%, 40%, 0.08) 40%, transparent 100%)',
+          transform: 'translateY(100%)',
         }} />
-        <div className="flex items-center gap-3">
-          <button onClick={() => setMenuOpen(!menuOpen)}>
-            <Menu className="w-6 h-6 text-foreground" />
-          </button>
-          <img src={unipinLogo} alt="UniPin" className="h-8" />
-        </div>
-        <div className="flex items-center gap-3">
-          <Search className="w-5 h-5 text-foreground" />
-          <button className="bg-primary text-black px-4 py-1.5 rounded text-sm font-semibold">
-            LOGIN
-          </button>
-        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -143,9 +150,8 @@ const Index = () => {
             <img src={freefireIcon} alt="Free Fire" className="w-16 h-16 rounded-lg" />
             <div>
               <div className="flex flex-wrap gap-2 mb-1">
-                <span className="bg-badge-green text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">✅ Official Distributor</span>
-                <span className="bg-badge-orange text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">⏰ Instant Top Up</span>
-                <span className="bg-badge-blue text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">🔒 Secure Payment</span>
+                <span className="bg-badge-orange text-foreground text-[10px] px-2 py-0.5 rounded font-medium">✅ Distributor Resmi</span>
+                <span className="bg-badge-orange text-foreground text-[10px] px-2 py-0.5 rounded font-medium">⏰ Isi Ulang Instan</span>
               </div>
               <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
               <p className="text-sm text-muted-foreground">Garena</p>
