@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Menu, Search, ChevronDown, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
+import { useGeo } from "@/hooks/use-geo";
 import unipinLogo from "@/assets/unipin-logo.svg";
 import freefireIcon from "@/assets/freefire-icon.jpg";
 import aovImg from "@/assets/aov.jpg";
@@ -53,6 +55,7 @@ const Index = () => {
   const [descExpanded, setDescExpanded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const geo = useGeo();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -83,8 +86,14 @@ const Index = () => {
         <div className="relative z-10 py-2 px-4 flex items-center justify-between text-xs">
           <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
           <div className="flex items-center gap-2">
-            <span className="text-lg">🇮🇩</span>
-            <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">ID</span>
+            {geo.flagUrl ? (
+              <img src={geo.flagUrl} alt={geo.countryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
+            ) : (
+              <div className="w-7 h-7 rounded-full bg-muted border border-white/20" />
+            )}
+            <button className="bg-[hsl(220,20%,22%)] text-foreground rounded-lg px-3 py-1 text-xs font-semibold border border-white/10">
+              {geo.languageCode}
+            </button>
           </div>
         </div>
 
@@ -98,7 +107,7 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-3">
             <Search className="w-5 h-5 text-foreground" />
-            <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded text-sm font-semibold">
+            <button className="bg-primary text-primary-foreground px-5 py-1.5 rounded-lg text-sm font-bold tracking-wide">
               SIGN IN
             </button>
           </div>
