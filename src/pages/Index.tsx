@@ -70,19 +70,11 @@ const Index = () => {
         WebkitBackdropFilter: scrolled ? 'blur(30px) saturate(120%)' : 'none',
         background: scrolled
           ? 'hsla(220, 30%, 10%, 0.55)'
-          : 'transparent',
+          : 'linear-gradient(180deg, hsla(30, 78%, 36%, 0.82) 0%, hsla(25, 72%, 26%, 0.45) 45%, transparent 100%)',
         transition: 'all 0.3s ease',
       }}>
         {/* Top Banner */}
-        <div
-          className="py-2 px-4 flex items-center justify-between text-xs"
-          style={{
-            background: scrolled
-              ? 'linear-gradient(180deg, hsla(30, 78%, 36%, 0.35) 0%, hsla(25, 72%, 26%, 0.12) 100%)'
-              : 'linear-gradient(180deg, hsla(30, 78%, 36%, 0.82) 0%, hsla(25, 72%, 26%, 0.58) 100%)',
-            transition: 'background 0.3s ease',
-          }}
-        >
+        <div className="py-2 px-4 flex items-center justify-between text-xs">
           <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
           <div className="flex items-center gap-2">
             <span className="text-lg">🇮🇩</span>
@@ -181,7 +173,7 @@ const Index = () => {
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-light">1</span>
+              <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>1</span>
               <h2 className="text-lg font-bold text-foreground">Enter User ID</h2>
             </div>
             <button className="flex items-center gap-1 text-primary text-sm">
@@ -211,7 +203,7 @@ const Index = () => {
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-4">
-            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-light">2</span>
+            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>2</span>
             <h2 className="text-lg font-bold text-foreground">Select Amount</h2>
           </div>
 
@@ -236,7 +228,7 @@ const Index = () => {
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-light">3</span>
+            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>3</span>
             <h2 className="text-lg font-bold text-foreground">Select Payment Channel</h2>
           </div>
           <p className="text-sm text-primary mb-4 cursor-pointer">All Payment Channels</p>
