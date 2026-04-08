@@ -1,16 +1,390 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Menu, Search, ChevronDown, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
+import unipinLogo from "@/assets/unipin-logo.svg";
+import freefireIcon from "@/assets/freefire-icon.jpg";
+import aovImg from "@/assets/aov.jpg";
+import codmImg from "@/assets/codm.jpg";
+import ffmaxImg from "@/assets/ffmax.jpg";
+import speedDriftersImg from "@/assets/speed-drifters.jpg";
+import undawnImg from "@/assets/undawn.jpg";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const diamondPackages = [
+  { diamonds: 5, price: "1.000" },
+  { diamonds: 12, price: "2.000" },
+  { diamonds: 50, price: "8.000" },
+  { diamonds: 70, price: "10.000" },
+  { diamonds: 140, price: "20.000" },
+  { diamonds: 355, price: "50.000" },
+  { diamonds: 720, price: "100.000" },
+  { diamonds: 1450, price: "200.000" },
+  { diamonds: 2180, price: "300.000" },
+  { diamonds: 3640, price: "500.000" },
+  { diamonds: 7290, price: "1.000.000" },
+  { diamonds: 36500, price: "5.000.000" },
+  { diamonds: 73100, price: "10.000.000" },
+];
+
+const paymentMethods = [
+  {
+    category: "Voucher Fisik",
+    methods: ["UniPin Voucher ID", "UP Gift Card"],
+  },
+  {
+    category: "E-wallet",
+    methods: ["UniPin Credits (IDR)", "DANA", "UP Points", "ShopeePay"],
+  },
+  {
+    category: "Debit / Credit Card",
+    methods: ["Debit / Credit Card"],
+  },
+];
+
+const moreGames = [
+  { name: "Arena of Valor", publisher: "Garena", price: "1,000", img: aovImg },
+  { name: "Call of Duty Mobile", publisher: "Garena", price: "1,000", img: codmImg },
+  { name: "Free Fire Max", publisher: "Garena", price: "1,000", img: ffmaxImg },
+  { name: "Speed Drifters", publisher: "Garena", price: "1,000", img: speedDriftersImg },
+  { name: "Undawn", publisher: "Garena", price: "1,000", img: undawnImg },
+];
+
+const Index = () => {
+  const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
+  const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
+  const [descExpanded, setDescExpanded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const selectedDiamond = selectedPackage !== null ? diamondPackages[selectedPackage] : null;
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background text-foreground pb-24">
+      {/* Top Banner */}
+      <div className="bg-topbar py-2 px-4 flex items-center justify-between text-xs">
+        <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
+        <div className="flex items-center gap-2">
+          <span className="text-lg">🇮🇩</span>
+          <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">ID</span>
+        </div>
+      </div>
+
+      {/* Header */}
+      <div className="bg-topbar px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <button onClick={() => setMenuOpen(!menuOpen)}>
+            <Menu className="w-6 h-6 text-foreground" />
+          </button>
+          <img src={unipinLogo} alt="UniPin" className="h-8" />
+        </div>
+        <div className="flex items-center gap-3">
+          <Search className="w-5 h-5 text-foreground" />
+          <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded text-sm font-semibold">
+            MASUK
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          <div className="w-72 bg-topbar h-full overflow-y-auto p-4">
+            <div className="flex items-center justify-between mb-8">
+              <img src={unipinLogo} alt="UniPin" className="h-8" />
+              <button onClick={() => setMenuOpen(false)} className="text-foreground text-2xl font-bold">✕</button>
+            </div>
+            {[
+              { icon: "🎮", label: "Game" },
+              { icon: "🎉", label: "Promotions and Events" },
+              { icon: "🏪", label: "Points Exchange" },
+              { icon: "👑", label: "Membership" },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-3 py-3 text-foreground">
+                <span>{item.icon}</span>
+                <span>{item.label}</span>
+              </div>
+            ))}
+            <div className="border-t border-border my-4" />
+            {[
+              { icon: "❓", label: "FAQ" },
+              { icon: "🎧", label: "Customer Support" },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-3 py-3 text-foreground">
+                <span>{item.icon}</span>
+                <span>{item.label}</span>
+              </div>
+            ))}
+            <div className="border-t border-border my-4" />
+            {[
+              { icon: "🤝", label: "Partnership Program" },
+              { icon: "👥", label: "Reseller Program" },
+              { icon: "🏆", label: "SEACA eSports & Community" },
+              { icon: "🏷️", label: "#ProudToPlayLocal" },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-3 py-3 text-foreground">
+                <span>{item.icon}</span>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex-1 bg-background/50" onClick={() => setMenuOpen(false)} />
+        </div>
+      )}
+
+      {/* Game Info Section */}
+      <div className="mx-3 mt-4">
+        <div className="bg-card rounded-lg p-4">
+          <div className="flex gap-3 mb-3">
+            <img src={freefireIcon} alt="Free Fire" className="w-16 h-16 rounded-lg" />
+            <div>
+              <div className="flex flex-wrap gap-2 mb-1">
+                <span className="bg-badge-green text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">✅ Distributor Resmi</span>
+                <span className="bg-badge-orange text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">⏰ Isi Ulang Instan</span>
+                <span className="bg-badge-blue text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">🔒 Pembayaran Aman</span>
+              </div>
+              <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
+              <p className="text-sm text-muted-foreground">Garena</p>
+            </div>
+          </div>
+          <p className={`text-sm text-muted-foreground ${!descExpanded ? "line-clamp-3" : ""}`}>
+            Jangan biarkan permainan kamu terganggu karena kekurangan diamond! Sekarang kamu bisa <strong className="text-foreground">top up diamond FF</strong> dengan mudah dan cepat melalui UniPin. Bagaimana caranya? Kamu tinggal masukkan ID kamu lalu pilih nominal yang diinginkan. UniPin menyediakan pilihan mulai dari 5 hingga 73.100 Free Fire Diamonds. Kamu bisa menggunakannya untuk membeli karakter, <em>skins</em>, dan bahkan mendapatkan item eksklusif untuk meningkatkan gameplay kamu.
+          </p>
+          <button onClick={() => setDescExpanded(!descExpanded)} className="w-full flex justify-center mt-2">
+            <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${descExpanded ? "rotate-180" : ""}`} />
+          </button>
+        </div>
+      </div>
+
+      {/* Step 1: Masukkan ID Pengguna */}
+      <div className="mx-3 mt-4">
+        <div className="bg-card rounded-lg p-4">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+              <h2 className="text-lg font-bold text-foreground">Masukkan ID Pengguna</h2>
+            </div>
+            <button className="flex items-center gap-1 text-primary text-sm">
+              <Info className="w-4 h-4" />
+              <span>Where To Find?</span>
+            </button>
+          </div>
+
+          <div className="bg-secondary rounded-lg p-3 mb-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-foreground font-medium">ID Pengguna</span>
+              <span className="text-sm text-muted-foreground">ID Pengguna</span>
+            </div>
+          </div>
+
+          <div className="bg-secondary rounded-lg p-3 mb-3">
+            <span className="text-sm text-foreground font-medium">Email</span>
+          </div>
+
+          <p className="text-xs text-muted-foreground">
+            Untuk menemukan ID Pemain Anda, klik gambar avatar Anda di pojok kiri atas layar Anda. ID Pemain Anda akan ditampilkan di bawah nama pengguna Anda.
+          </p>
+        </div>
+      </div>
+
+      {/* Step 2: Pilih Jumlah */}
+      <div className="mx-3 mt-4">
+        <div className="bg-card rounded-lg p-4">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+            <h2 className="text-lg font-bold text-foreground">Pilih Jumlah</h2>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {diamondPackages.map((pkg, i) => (
+              <button
+                key={i}
+                onClick={() => setSelectedPackage(i)}
+                className={`bg-secondary rounded-lg p-3 text-left border transition-colors ${
+                  selectedPackage === i ? "border-primary" : "border-transparent"
+                }`}
+              >
+                <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} Free Fire Diamonds</p>
+                <p className="text-sm font-bold text-price mt-1">IDR {pkg.price}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Step 3: Pilih Saluran Pembayaran */}
+      <div className="mx-3 mt-4">
+        <div className="bg-card rounded-lg p-4">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+            <h2 className="text-lg font-bold text-foreground">Pilih Saluran Pembayaran</h2>
+          </div>
+          <p className="text-sm text-primary mb-4 cursor-pointer">Semua Saluran Pembayaran</p>
+
+          {paymentMethods.map((group) => (
+            <div key={group.category} className="mb-4">
+              <h3 className="text-sm font-semibold text-foreground mb-2">{group.category}</h3>
+              {group.methods.map((method) => (
+                <button
+                  key={method}
+                  onClick={() => setSelectedPayment(method)}
+                  className={`w-full bg-secondary rounded-lg p-3 mb-2 flex items-center gap-3 text-left border transition-colors ${
+                    selectedPayment === method ? "border-primary" : "border-transparent"
+                  }`}
+                >
+                  <div className="w-12 h-8 bg-muted rounded flex items-center justify-center">
+                    <img src={unipinLogo} alt={method} className="h-4" />
+                  </div>
+                  <span className="text-sm text-foreground">{method}</span>
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* More Garena Games */}
+      <div className="mx-3 mt-4">
+        <div className="bg-card rounded-lg p-4">
+          <h2 className="text-xl font-bold text-foreground mb-4">More Garena games.</h2>
+          <div className="grid grid-cols-3 gap-3">
+            {moreGames.map((game) => (
+              <div key={game.name}>
+                <img
+                  src={game.img}
+                  alt={game.name}
+                  className="w-full aspect-square rounded-lg object-cover"
+                  loading="lazy"
+                />
+                <p className="text-xs font-semibold text-foreground mt-1">{game.name}</p>
+                <p className="text-[10px] text-muted-foreground">{game.publisher}</p>
+                <p className="text-xs text-muted-foreground">
+                  <span className="text-[10px]">IDR</span> <span className="font-bold text-foreground">{game.price}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Customer Support */}
+      <div className="mx-3 mt-6">
+        <h2 className="text-xl font-bold text-foreground mb-1">Customer Support</h2>
+        <p className="text-sm text-muted-foreground mb-4">contact us</p>
+        <div className="flex gap-2 flex-wrap">
+          {[
+            { icon: <MessageCircle className="w-6 h-6" />, label: "Messenger" },
+            { icon: <span className="text-2xl">💬</span>, label: "Whatsapp" },
+            { icon: <Mail className="w-6 h-6" />, label: "E-mail" },
+            { icon: <HelpCircle className="w-6 h-6" />, label: "FAQ" },
+            { icon: <MessageSquare className="w-6 h-6" />, label: "Provide feedback" },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="border border-primary rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1"
+            >
+              <span className="text-primary mb-1">{item.icon}</span>
+              <span className="text-xs text-foreground text-center">{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Subscribe */}
+      <div className="mx-3 mt-6">
+        <div className="bg-section rounded-lg p-4">
+          <h2 className="text-lg font-bold text-foreground">SUBSCRIBE</h2>
+          <p className="text-sm text-muted-foreground mb-4">Get the Best Deals Now!</p>
+          <div className="flex gap-4">
+            {["📘", "📷", "▶️", "🐦"].map((icon, i) => (
+              <span key={i} className="text-2xl text-foreground">{icon}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-6 bg-topbar px-4 py-8">
+        <div className="flex justify-center mb-4">
+          <img src={unipinLogo} alt="UniPin" className="h-10" />
+        </div>
+        <p className="text-center text-sm text-muted-foreground mb-6">
+          Universal Pin is a leading payment service provider (PSP) that focuses its services on online games and other digital products spread throughout the world.
+        </p>
+
+        <h3 className="text-center font-bold text-foreground mb-3">Products and Services</h3>
+        <div className="flex flex-col items-center gap-1 text-sm text-muted-foreground mb-6">
+          <span>Game</span>
+          <span>Voucher</span>
+          <span>SEACA eSports & Community</span>
+          <span>Payment Channels</span>
+        </div>
+
+        <h3 className="text-center font-bold text-foreground mb-3">Information and Support</h3>
+        <div className="flex flex-col items-center gap-1 text-sm text-muted-foreground mb-6">
+          <span>UP Station Media</span>
+          <span>Promotions and Events</span>
+          <span>FAQ</span>
+          <span>Customer Support</span>
+        </div>
+
+        <h3 className="text-center font-bold text-foreground mb-3">Corporate and Partnership</h3>
+        <div className="flex flex-col items-center gap-1 text-sm text-muted-foreground mb-6">
+          <span>About UniPin</span>
+          <span>Partnership Program</span>
+          <span>UniPin Affiliates Program</span>
+          <span>Career</span>
+        </div>
+
+        <div className="border-t border-border pt-4 mt-4">
+          <p className="text-center text-xs text-muted-foreground mb-2">
+            Directorate General of Consumer Protection and Trade Order,
+          </p>
+          <p className="text-center text-xs text-muted-foreground mb-2">
+            Ministry of Trade of the Republic of Indonesia
+          </p>
+          <p className="text-center text-xs text-muted-foreground mb-2">
+            WhatsApp: <span className="text-primary">0853-1111-1010</span>
+          </p>
+          <p className="text-center text-xs text-muted-foreground mb-4">
+            To submit suggestions, complaints or grievances, consumers can contact: <span className="text-primary">+62 859-5959-3535</span>
+          </p>
+          <p className="text-center text-xs text-muted-foreground mb-2">© 2026 UniPin. All Rights Reserved</p>
+          <div className="flex justify-center gap-4 text-xs text-primary">
+            <span>Website Terms and Conditions</span>
+            <span>User Terms & Conditions</span>
+            <span>Privacy Policy</span>
+          </div>
+          <div className="flex justify-center mt-3">
+            <span className="text-2xl">🇮🇩</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Sticky Bottom Bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-topbar border-t border-border z-40">
+        <div className="flex text-xs border-b border-border">
+          <div className="flex-1 p-2">
+            <span className="text-muted-foreground">User ID</span>
+            <p className="text-primary">-</p>
+          </div>
+          <div className="flex-1 p-2 border-l border-border">
+            <span className="text-muted-foreground">Item</span>
+            <p className="text-primary">{selectedDiamond ? `${selectedDiamond.diamonds} Diamonds` : "-"}</p>
+          </div>
+          <div className="flex-1 p-2 border-l border-border">
+            <span className="text-muted-foreground">Payment</span>
+            <p className="text-primary">{selectedPayment || "-"}</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-between px-4 py-3">
+          <p className="text-foreground font-bold">
+            <span className="text-sm text-price">IDR</span>{" "}
+            <span className="text-lg text-price">{selectedDiamond ? selectedDiamond.price : "0"}</span>
+          </p>
+          <button className="bg-primary/80 text-primary-foreground px-6 py-2 rounded font-bold text-sm">
+            Buy Now
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
