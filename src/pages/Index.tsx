@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, Search, ChevronDown, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
 import unipinLogo from "@/assets/unipin-logo.svg";
 import freefireIcon from "@/assets/freefire-icon.jpg";
@@ -52,13 +52,27 @@ const Index = () => {
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [descExpanded, setDescExpanded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const selectedDiamond = selectedPackage !== null ? diamondPackages[selectedPackage] : null;
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-24">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-40">
+      <div className="sticky top-0 z-40" style={{
+        background: scrolled
+          ? 'hsla(220, 40%, 13%, 0.85)'
+          : 'transparent',
+        backdropFilter: scrolled ? 'blur(16px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
+        transition: 'background 0.3s, backdrop-filter 0.3s',
+      }}>
         {/* Top Banner */}
         <div className="py-2 px-4 flex items-center justify-between text-xs" style={{
           background: 'linear-gradient(180deg, hsla(30, 80%, 38%, 0.85) 0%, hsla(25, 75%, 28%, 0.65) 100%)',
@@ -71,9 +85,7 @@ const Index = () => {
         </div>
 
         {/* Logo Bar */}
-        <div className="relative px-4 py-3 flex items-center justify-between" style={{
-          background: 'transparent',
-        }}>
+        <div className="relative px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button onClick={() => setMenuOpen(!menuOpen)}>
               <Menu className="w-6 h-6 text-foreground" />
@@ -87,12 +99,6 @@ const Index = () => {
             </button>
           </div>
         </div>
-
-        {/* Orange glow below header */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{
-          background: 'linear-gradient(180deg, hsla(30, 70%, 40%, 0.15) 0%, hsla(30, 70%, 40%, 0.05) 40%, transparent 100%)',
-          transform: 'translateY(100%)',
-        }} />
       </div>
 
       {/* Mobile Menu Overlay */}
