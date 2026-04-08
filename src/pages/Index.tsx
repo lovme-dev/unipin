@@ -66,10 +66,10 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground pb-24">
       {/* Sticky Header */}
       <div className="sticky top-0 z-40 overflow-hidden" style={{
-        backdropFilter: scrolled ? 'blur(28px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(28px)' : 'none',
+        backdropFilter: scrolled ? 'blur(30px) saturate(120%)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(30px) saturate(120%)' : 'none',
         background: scrolled
-          ? 'linear-gradient(180deg, hsl(var(--header-glass) / 0.26) 0%, hsl(var(--header-glass) / 0.18) 100%)'
+          ? 'linear-gradient(180deg, hsla(28, 16%, 7%, 0.18) 0%, hsla(28, 16%, 7%, 0.1) 100%)'
           : 'transparent',
         transition: 'all 0.3s ease',
       }}>
@@ -88,9 +88,9 @@ const Index = () => {
             </div>
           </div>
           <div
-            className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
+            className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none"
             style={{
-              background: 'linear-gradient(180deg, hsl(var(--primary) / 0.14) 0%, hsl(var(--primary) / 0.04) 55%, transparent 100%)',
+              background: 'linear-gradient(180deg, hsl(var(--primary) / 0.11) 0%, hsl(var(--primary) / 0.03) 62%, transparent 100%)',
               transform: 'translateY(100%)',
               zIndex: 0,
             }}
@@ -98,7 +98,12 @@ const Index = () => {
         </div>
 
         {/* Logo Bar */}
-        <div className="relative z-10 px-4 py-3 flex items-center justify-between">
+        <div
+          className="relative z-10 px-4 py-3 flex items-center justify-between"
+          style={{
+            background: scrolled ? 'hsla(28, 16%, 7%, 0.08)' : 'transparent',
+          }}
+        >
           <div className="flex items-center gap-3">
             <button onClick={() => setMenuOpen(!menuOpen)}>
               <Menu className="w-6 h-6 text-foreground" />
