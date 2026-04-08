@@ -65,45 +65,33 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground pb-24">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-40 overflow-hidden" style={{
+      <div className="sticky top-0 z-40" style={{
         backdropFilter: scrolled ? 'blur(30px) saturate(120%)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(30px) saturate(120%)' : 'none',
         background: scrolled
-          ? 'linear-gradient(180deg, hsla(28, 16%, 7%, 0.18) 0%, hsla(28, 16%, 7%, 0.1) 100%)'
+          ? 'hsla(220, 30%, 10%, 0.55)'
           : 'transparent',
         transition: 'all 0.3s ease',
       }}>
-        {/* Top Banner with softer glow into the lower header */}
-        <div className="relative">
-          <div
-            className="relative z-10 py-2 px-4 flex items-center justify-between text-xs"
-            style={{
-              background: 'linear-gradient(180deg, hsla(30, 78%, 36%, 0.82) 0%, hsla(25, 72%, 26%, 0.58) 100%)',
-            }}
-          >
-            <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
-            <div className="flex items-center gap-2">
-              <span className="text-lg">🇮🇩</span>
-              <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">ID</span>
-            </div>
+        {/* Top Banner */}
+        <div
+          className="py-2 px-4 flex items-center justify-between text-xs"
+          style={{
+            background: scrolled
+              ? 'linear-gradient(180deg, hsla(30, 78%, 36%, 0.35) 0%, hsla(25, 72%, 26%, 0.12) 100%)'
+              : 'linear-gradient(180deg, hsla(30, 78%, 36%, 0.82) 0%, hsla(25, 72%, 26%, 0.58) 100%)',
+            transition: 'background 0.3s ease',
+          }}
+        >
+          <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
+          <div className="flex items-center gap-2">
+            <span className="text-lg">🇮🇩</span>
+            <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">ID</span>
           </div>
-          <div
-            className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none"
-            style={{
-              background: 'linear-gradient(180deg, hsl(var(--primary) / 0.11) 0%, hsl(var(--primary) / 0.03) 62%, transparent 100%)',
-              transform: 'translateY(100%)',
-              zIndex: 0,
-            }}
-          />
         </div>
 
         {/* Logo Bar */}
-        <div
-          className="relative z-10 px-4 py-3 flex items-center justify-between"
-          style={{
-            background: scrolled ? 'hsla(28, 16%, 7%, 0.08)' : 'transparent',
-          }}
-        >
+        <div className="px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button onClick={() => setMenuOpen(!menuOpen)}>
               <Menu className="w-6 h-6 text-foreground" />
