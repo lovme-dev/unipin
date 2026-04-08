@@ -377,13 +377,17 @@ const Index = () => {
             To submit suggestions, complaints or grievances, consumers can contact: <span className="text-primary">+62 859-5959-3535</span>
           </p>
           <p className="text-center text-xs text-muted-foreground mb-2">© 2026 UniPin. All Rights Reserved</p>
-          <div className="flex justify-center gap-4 text-xs text-primary">
-            <span>Website Terms and Conditions</span>
-            <span>User Terms & Conditions</span>
-            <span>Privacy Policy</span>
+          <div className="flex justify-center gap-4 text-xs text-primary flex-wrap">
+            <Link to="/terms-and-conditions" className="hover:underline">Website Terms and Conditions</Link>
+            <Link to="/user-terms" className="hover:underline">User Terms & Conditions</Link>
+            <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
           </div>
           <div className="flex justify-center mt-3">
-            <span className="text-2xl">🇮🇩</span>
+            {geo.flagUrl ? (
+              <img src={geo.flagUrl} alt={geo.countryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
+            ) : (
+              <div className="w-7 h-7 rounded-full bg-muted" />
+            )}
           </div>
         </div>
       </div>
