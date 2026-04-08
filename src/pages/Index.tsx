@@ -62,12 +62,20 @@ const Index = () => {
         <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
         <div className="flex items-center gap-2">
           <span className="text-lg">🇮🇩</span>
-          <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">ID</span>
+          <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">EN</span>
         </div>
       </div>
 
       {/* Header */}
-      <div className="bg-topbar px-4 py-3 flex items-center justify-between">
+      <div className="relative px-4 py-3 flex items-center justify-between" style={{
+        background: 'linear-gradient(180deg, hsla(220, 50%, 15%, 0.85) 0%, hsla(220, 50%, 12%, 0.95) 100%)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        boxShadow: '0 4px 30px hsla(22, 83%, 52%, 0.15), 0 8px 40px hsla(22, 83%, 52%, 0.08)',
+      }}>
+        <div className="absolute bottom-0 left-0 right-0 h-1" style={{
+          background: 'linear-gradient(180deg, hsla(22, 83%, 50%, 0.3) 0%, transparent 100%)',
+        }} />
         <div className="flex items-center gap-3">
           <button onClick={() => setMenuOpen(!menuOpen)}>
             <Menu className="w-6 h-6 text-foreground" />
@@ -76,8 +84,8 @@ const Index = () => {
         </div>
         <div className="flex items-center gap-3">
           <Search className="w-5 h-5 text-foreground" />
-          <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded text-sm font-semibold">
-            MASUK
+          <button className="bg-primary text-black px-4 py-1.5 rounded text-sm font-semibold">
+            LOGIN
           </button>
         </div>
       </div>
