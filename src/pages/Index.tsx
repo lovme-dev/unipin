@@ -61,7 +61,7 @@ const Index = () => {
       <div className="sticky top-0 z-40">
         {/* Top Banner */}
         <div className="py-2 px-4 flex items-center justify-between text-xs" style={{
-          background: 'linear-gradient(180deg, hsla(22, 83%, 40%, 0.9) 0%, hsla(22, 83%, 30%, 0.7) 100%)',
+          background: 'linear-gradient(180deg, hsla(30, 80%, 38%, 0.85) 0%, hsla(25, 75%, 28%, 0.65) 100%)',
         }}>
           <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
           <div className="flex items-center gap-2">
@@ -72,9 +72,7 @@ const Index = () => {
 
         {/* Logo Bar */}
         <div className="relative px-4 py-3 flex items-center justify-between" style={{
-          background: 'hsla(220, 40%, 13%, 0.95)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
+          background: 'transparent',
         }}>
           <div className="flex items-center gap-3">
             <button onClick={() => setMenuOpen(!menuOpen)}>
@@ -84,15 +82,15 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-3">
             <Search className="w-5 h-5 text-foreground" />
-            <button className="bg-primary text-black px-4 py-1.5 rounded text-sm font-semibold">
-              MASUK
+            <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded text-sm font-semibold">
+              LOGIN
             </button>
           </div>
         </div>
 
         {/* Orange glow below header */}
         <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{
-          background: 'linear-gradient(180deg, hsla(22, 83%, 40%, 0.25) 0%, hsla(22, 83%, 40%, 0.08) 40%, transparent 100%)',
+          background: 'linear-gradient(180deg, hsla(30, 70%, 40%, 0.15) 0%, hsla(30, 70%, 40%, 0.05) 40%, transparent 100%)',
           transform: 'translateY(100%)',
         }} />
       </div>
@@ -145,7 +143,7 @@ const Index = () => {
 
       {/* Game Info Section */}
       <div className="mx-3 mt-4">
-        <div className="bg-card rounded-lg p-4">
+        <div className="rounded-lg p-4" style={{ background: 'hsl(220, 30%, 8%)' }}>
           <div className="flex gap-3 mb-3">
             <img src={freefireIcon} alt="Free Fire" className="w-16 h-16 rounded-lg" />
             <div>
@@ -171,7 +169,7 @@ const Index = () => {
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <span className="bg-step-bg text-black w-7 h-7 rounded-full flex items-center justify-center text-sm font-normal">1</span>
+              <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-light">1</span>
               <h2 className="text-lg font-bold text-foreground">Enter User ID</h2>
             </div>
             <button className="flex items-center gap-1 text-primary text-sm">
@@ -392,7 +390,7 @@ const Index = () => {
             <span className="text-sm text-price">IDR</span>{" "}
             <span className="text-lg text-price">{selectedDiamond ? selectedDiamond.price : "0"}</span>
           </p>
-          <button className="bg-primary/80 text-primary-foreground px-6 py-2 rounded font-bold text-sm">
+          <button className="bg-primary text-primary-foreground px-6 py-2 rounded font-bold text-sm">
             Buy Now
           </button>
         </div>
