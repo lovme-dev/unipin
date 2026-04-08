@@ -26,7 +26,7 @@ const diamondPackages = [
 
 const paymentMethods = [
   {
-    category: "Voucher Fisik",
+    category: "Physical Voucher",
     methods: ["UniPin Voucher ID", "UP Gift Card"],
   },
   {
@@ -62,12 +62,20 @@ const Index = () => {
         <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
         <div className="flex items-center gap-2">
           <span className="text-lg">🇮🇩</span>
-          <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">ID</span>
+          <span className="border border-muted-foreground rounded px-2 py-0.5 text-muted-foreground">EN</span>
         </div>
       </div>
 
       {/* Header */}
-      <div className="bg-topbar px-4 py-3 flex items-center justify-between">
+      <div className="relative px-4 py-3 flex items-center justify-between" style={{
+        background: 'linear-gradient(180deg, hsla(220, 50%, 15%, 0.85) 0%, hsla(220, 50%, 12%, 0.95) 100%)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        boxShadow: '0 4px 30px hsla(22, 83%, 52%, 0.15), 0 8px 40px hsla(22, 83%, 52%, 0.08)',
+      }}>
+        <div className="absolute bottom-0 left-0 right-0 h-1" style={{
+          background: 'linear-gradient(180deg, hsla(22, 83%, 50%, 0.3) 0%, transparent 100%)',
+        }} />
         <div className="flex items-center gap-3">
           <button onClick={() => setMenuOpen(!menuOpen)}>
             <Menu className="w-6 h-6 text-foreground" />
@@ -76,8 +84,8 @@ const Index = () => {
         </div>
         <div className="flex items-center gap-3">
           <Search className="w-5 h-5 text-foreground" />
-          <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded text-sm font-semibold">
-            MASUK
+          <button className="bg-primary text-black px-4 py-1.5 rounded text-sm font-semibold">
+            LOGIN
           </button>
         </div>
       </div>
@@ -135,16 +143,16 @@ const Index = () => {
             <img src={freefireIcon} alt="Free Fire" className="w-16 h-16 rounded-lg" />
             <div>
               <div className="flex flex-wrap gap-2 mb-1">
-                <span className="bg-badge-green text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">✅ Distributor Resmi</span>
-                <span className="bg-badge-orange text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">⏰ Isi Ulang Instan</span>
-                <span className="bg-badge-blue text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">🔒 Pembayaran Aman</span>
+                <span className="bg-badge-green text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">✅ Official Distributor</span>
+                <span className="bg-badge-orange text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">⏰ Instant Top Up</span>
+                <span className="bg-badge-blue text-primary-foreground text-[10px] px-2 py-0.5 rounded-full font-medium">🔒 Secure Payment</span>
               </div>
               <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
               <p className="text-sm text-muted-foreground">Garena</p>
             </div>
           </div>
           <p className={`text-sm text-muted-foreground ${!descExpanded ? "line-clamp-3" : ""}`}>
-            Jangan biarkan permainan kamu terganggu karena kekurangan diamond! Sekarang kamu bisa <strong className="text-foreground">top up diamond FF</strong> dengan mudah dan cepat melalui UniPin. Bagaimana caranya? Kamu tinggal masukkan ID kamu lalu pilih nominal yang diinginkan. UniPin menyediakan pilihan mulai dari 5 hingga 73.100 Free Fire Diamonds. Kamu bisa menggunakannya untuk membeli karakter, <em>skins</em>, dan bahkan mendapatkan item eksklusif untuk meningkatkan gameplay kamu.
+            Don't let your game be interrupted by a lack of diamonds! Now you can <strong className="text-foreground">top up FF diamonds</strong> easily and quickly through UniPin. How? Just enter your ID and choose the desired amount. UniPin provides options from 5 to 73,100 Free Fire Diamonds. You can use them to buy characters, <em>skins</em>, and even get exclusive items to enhance your gameplay.
           </p>
           <button onClick={() => setDescExpanded(!descExpanded)} className="w-full flex justify-center mt-2">
             <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${descExpanded ? "rotate-180" : ""}`} />
@@ -157,8 +165,8 @@ const Index = () => {
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">1</span>
-              <h2 className="text-lg font-bold text-foreground">Masukkan ID Pengguna</h2>
+              <span className="bg-step-bg text-black w-7 h-7 rounded-full flex items-center justify-center text-sm font-normal">1</span>
+              <h2 className="text-lg font-bold text-foreground">Enter User ID</h2>
             </div>
             <button className="flex items-center gap-1 text-primary text-sm">
               <Info className="w-4 h-4" />
@@ -168,8 +176,8 @@ const Index = () => {
 
           <div className="bg-secondary rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground font-medium">ID Pengguna</span>
-              <span className="text-sm text-muted-foreground">ID Pengguna</span>
+              <span className="text-sm text-foreground font-medium">User ID</span>
+              <span className="text-sm text-muted-foreground">User ID</span>
             </div>
           </div>
 
@@ -178,7 +186,7 @@ const Index = () => {
           </div>
 
           <p className="text-xs text-muted-foreground">
-            Untuk menemukan ID Pemain Anda, klik gambar avatar Anda di pojok kiri atas layar Anda. ID Pemain Anda akan ditampilkan di bawah nama pengguna Anda.
+            To find your Player ID, tap your avatar in the top left corner of your screen. Your Player ID will be displayed below your username.
           </p>
         </div>
       </div>
@@ -187,8 +195,8 @@ const Index = () => {
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-4">
-            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">2</span>
-            <h2 className="text-lg font-bold text-foreground">Pilih Jumlah</h2>
+            <span className="bg-step-bg text-black w-7 h-7 rounded-full flex items-center justify-center text-sm font-normal">2</span>
+            <h2 className="text-lg font-bold text-foreground">Select Amount</h2>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -212,10 +220,10 @@ const Index = () => {
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold">3</span>
-            <h2 className="text-lg font-bold text-foreground">Pilih Saluran Pembayaran</h2>
+            <span className="bg-step-bg text-black w-7 h-7 rounded-full flex items-center justify-center text-sm font-normal">3</span>
+            <h2 className="text-lg font-bold text-foreground">Select Payment Channel</h2>
           </div>
-          <p className="text-sm text-primary mb-4 cursor-pointer">Semua Saluran Pembayaran</p>
+          <p className="text-sm text-primary mb-4 cursor-pointer">All Payment Channels</p>
 
           {paymentMethods.map((group) => (
             <div key={group.category} className="mb-4">

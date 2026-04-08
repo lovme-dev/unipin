@@ -53,6 +53,7 @@ export default {
         "badge-green": "hsl(var(--badge-green))",
         "badge-orange": "hsl(var(--badge-orange))",
         "badge-blue": "hsl(var(--badge-blue))",
+        "step-bg": "hsl(var(--step-bg))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
