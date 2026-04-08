@@ -199,7 +199,7 @@ const Index = () => {
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-4">
-            <span className="bg-step-bg text-black w-7 h-7 rounded-full flex items-center justify-center text-sm font-normal">2</span>
+            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-light">2</span>
             <h2 className="text-lg font-bold text-foreground">Select Amount</h2>
           </div>
 
@@ -224,7 +224,7 @@ const Index = () => {
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className="bg-step-bg text-black w-7 h-7 rounded-full flex items-center justify-center text-sm font-normal">3</span>
+            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-sm font-light">3</span>
             <h2 className="text-lg font-bold text-foreground">Select Payment Channel</h2>
           </div>
           <p className="text-sm text-primary mb-4 cursor-pointer">All Payment Channels</p>
