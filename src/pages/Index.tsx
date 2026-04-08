@@ -26,7 +26,7 @@ const diamondPackages = [
 
 const paymentMethods = [
   {
-    category: "Voucher Fisik",
+    category: "Physical Voucher",
     methods: ["UniPin Voucher ID", "UP Gift Card"],
   },
   {
