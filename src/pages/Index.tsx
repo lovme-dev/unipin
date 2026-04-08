@@ -73,8 +73,8 @@ const Index = () => {
             backdropFilter: scrolled ? 'blur(24px) saturate(140%) brightness(1.08)' : 'none',
             WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(140%) brightness(1.08)' : 'none',
             background: scrolled
-              ? 'linear-gradient(180deg, hsl(var(--header-glow) / 0.24) 0%, hsl(var(--header-glow) / 0.12) 36%, hsl(var(--header-glass) / 0.16) 100%)'
-              : 'linear-gradient(180deg, hsl(var(--header-glow) / 0.84) 0%, hsl(var(--header-glow) / 0.46) 42%, hsl(var(--header-glass) / 0.08) 100%)',
+              ? 'linear-gradient(180deg, hsl(var(--header-glow) / 0.14) 0%, hsl(var(--header-glow) / 0.06) 40%, transparent 100%)'
+              : 'linear-gradient(180deg, hsl(var(--header-glow) / 0.67) 0%, hsl(var(--header-glow) / 0.32) 45%, transparent 100%)',
             transition: 'all 0.3s ease',
           }}
         />
