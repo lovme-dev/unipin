@@ -436,19 +436,32 @@ const Index = () => {
         <p className="text-sm text-muted-foreground mb-4">{t.contactUs}</p>
         <div className="flex gap-2 flex-wrap">
           {[
-            { icon: <MessageCircle className="w-6 h-6" />, label: t.messenger },
+            { icon: <MessageCircle className="w-6 h-6" />, label: t.messenger, href: undefined as string | undefined },
             { icon: <span className="text-2xl">💬</span>, label: t.whatsapp, href: "https://wa.me/447476966269" },
-            { icon: <Mail className="w-6 h-6" />, label: t.emailLabel },
-            { icon: <HelpCircle className="w-6 h-6" />, label: t.faq },
-            { icon: <MessageSquare className="w-6 h-6" />, label: t.provideFeedback },
+            { icon: <Mail className="w-6 h-6" />, label: t.emailLabel, href: undefined as string | undefined },
+            { icon: <HelpCircle className="w-6 h-6" />, label: t.faq, href: undefined as string | undefined },
+            { icon: <MessageSquare className="w-6 h-6" />, label: t.provideFeedback, href: undefined as string | undefined },
           ].map((item) => (
-            <div
-              key={item.label}
-              className="border border-primary rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1"
-            >
-              <span className="text-primary mb-1">{item.icon}</span>
-              <span className="text-xs text-foreground text-center">{item.label}</span>
-            </div>
+            item.href ? (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-primary rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1"
+              >
+                <span className="text-primary mb-1">{item.icon}</span>
+                <span className="text-xs text-foreground text-center">{item.label}</span>
+              </a>
+            ) : (
+              <div
+                key={item.label}
+                className="border border-primary rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1"
+              >
+                <span className="text-primary mb-1">{item.icon}</span>
+                <span className="text-xs text-foreground text-center">{item.label}</span>
+              </div>
+            )
           ))}
         </div>
       </div>
