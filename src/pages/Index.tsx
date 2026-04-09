@@ -345,7 +345,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                 <img src={whereToFindImg} alt="Where to find your ID" className="w-full h-auto" />
               </div>
               <p className="text-xs text-muted-foreground mt-2 text-center px-4">
-                {t.whereToFindHint || "Please hit on the refresh button after you're done with the purchase!"}
+                Please hit on the refresh button after you're done with the purchase!
               </p>
             </div>
           )}
