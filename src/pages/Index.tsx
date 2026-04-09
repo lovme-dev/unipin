@@ -345,7 +345,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
               </button>
             </div>
 
-          <div className="rounded-lg p-3 mb-3 border border-white/[0.06]" style={{ background: 'hsl(220 18% 17% / 0.88)' }}>
+          <div className="rounded-lg p-3 mb-3 border border-white/[0.06]" style={{ background: 'hsl(220 20% 11% / 0.92)' }}>
             <div className="flex items-center justify-between">
               <span className="text-sm text-foreground font-medium">{t.userId}</span>
               <input
@@ -365,7 +365,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
             </div>
           </div>
 
-          <div className="rounded-lg p-3 mb-3 border border-white/[0.06]" style={{ background: 'hsl(220 18% 17% / 0.88)' }}>
+          <div className="rounded-lg p-3 mb-3 border border-white/[0.06]" style={{ background: 'hsl(220 20% 11% / 0.92)' }}>
             <div className="flex items-center justify-between">
               <span className="text-sm text-foreground font-medium">{t.email}</span>
               <input
@@ -412,7 +412,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
 
       {/* Step 3: Pilih Saluran Pembayaran */}
       <div className="mx-3 mt-4">
-        <div className="bg-card rounded-lg p-4">
+        <div className="rounded-lg p-4 border border-white/[0.10]" style={{ background: 'hsl(221 30% 24% / 0.68)', backdropFilter: 'blur(26px) saturate(135%)', WebkitBackdropFilter: 'blur(26px) saturate(135%)' }}>
           <div className="flex items-center gap-2 mb-2 min-w-0">
             <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal flex-shrink-0" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>3</span>
             <h2 className="text-lg font-bold text-foreground truncate">{t.selectPaymentChannel}</h2>
