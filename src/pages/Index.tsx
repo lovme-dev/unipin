@@ -37,20 +37,24 @@ const diamondPackages = [
   { diamonds: 73100, idrPrice: 10000000 },
 ];
 
-const paymentMethods = [
-  {
-    category: "Physical Voucher",
-    methods: ["UniPin Voucher ID", "UP Gift Card"],
-  },
-  {
-    category: "E-wallet",
-    methods: ["UniPin Credits (IDR)", "DANA", "UP Points", "ShopeePay"],
-  },
-  {
+const getPaymentMethods = (countryCode: string) => {
+  const isPK = countryCode === "PK";
+  const methods: { category: string; methods: string[] }[] = [];
+  
+  if (isPK) {
+    methods.push({
+      category: "E-wallet",
+      methods: ["EasyPaisa", "JazzCash", "GoPay Fast - All in One"],
+    });
+  }
+  
+  methods.push({
     category: "Debit / Credit Card",
     methods: ["Debit / Credit Card"],
-  },
-];
+  });
+  
+  return methods;
+};
 
 const moreGames = [
   { name: "Arena of Valor", publisher: "Garena", price: "1,000", img: aovImg },
