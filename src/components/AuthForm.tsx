@@ -21,11 +21,30 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
   const [tab, setTab] = useState<"signin" | "register">("signin");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleTabSwitch = (newTab: "signin" | "register") => {
     setTab(newTab);
     if (newTab === "signin") onSwitchToSignIn?.();
     if (newTab === "register") onSwitchToRegister?.();
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
+      if (result.error) {
+        toast.error("Google sign-in failed. Please try again.");
+        return;
+      }
+      if (result.redirected) return;
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
