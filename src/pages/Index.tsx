@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Check } from "lucide-react";
 import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare, User } from "lucide-react";
+import whereToFindImg from "@/assets/where-to-find-id.jpeg";
 import MobileMenu from "@/components/MobileMenu";
 import { useGeo } from "@/hooks/use-geo";
 import { useCurrency } from "@/hooks/use-currency";
