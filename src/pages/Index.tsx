@@ -561,6 +561,18 @@ const Index = () => {
         localLangCode={localLangCode}
       />
       <AuthDialog open={authOpen} onOpenChange={setAuthOpen} />
+      {currentUser && (
+        <ProfileSheet
+          open={profileOpen}
+          onClose={() => setProfileOpen(false)}
+          user={currentUser}
+          onLogout={async () => {
+            await supabase.auth.signOut();
+            setProfileOpen(false);
+            toast.success("Logged out successfully");
+          }}
+        />
+      )}
     </div>
   );
 };
