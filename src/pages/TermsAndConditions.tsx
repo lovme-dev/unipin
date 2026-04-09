@@ -284,7 +284,7 @@ const TermsAndConditions = () => {
 
             {/* Product & Service */}
             <div className="flex flex-col items-center sm:items-start sm:w-1/4">
-              <h3 className="font-bold text-primary mb-3">Product & Service</h3>
+              <h3 className="font-bold text-foreground mb-3">Product & Service</h3>
               <div className="flex flex-col items-center sm:items-start gap-1.5 text-sm text-muted-foreground">
                 <span>Games</span>
                 <span>Voucher Purchase</span>
