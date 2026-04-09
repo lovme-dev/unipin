@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare, ShieldCheck, Clock, BadgeCheck } from "lucide-react";
+import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare, Shield, Clock, CheckCircle } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import unipinLogo from "@/assets/unipin-logo.svg";
