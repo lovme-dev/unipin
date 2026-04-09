@@ -118,7 +118,19 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const selectedDiamond = selectedPackage !== null ? diamondPackages[selectedPackage] : null;
+  const paymentMethods = getPaymentMethods(activeCountryCode);
+  const isFormComplete = userId.trim().length >= 8 && emailInput.trim().length > 0 && selectedPackage !== null && selectedPayment !== null;
+
+  // Shake animation when button becomes enabled
+  useEffect(() => {
+    if (isFormComplete && !prevButtonEnabled) {
+      purchaseBtnRef.current?.classList.add('animate-shake');
+      setTimeout(() => purchaseBtnRef.current?.classList.remove('animate-shake'), 600);
+    }
+    setPrevButtonEnabled(isFormComplete);
+  }, [isFormComplete, prevButtonEnabled]);
+
+
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-24">
