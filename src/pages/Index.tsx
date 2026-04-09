@@ -376,7 +376,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                 }`}
               >
                 <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} {t.freeFireDiamonds}</p>
-                <p className="text-sm font-bold text-price mt-1">IDR {pkg.price}</p>
+                <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.idrPrice).formatted}</p>
               </button>
             ))}
           </div>
@@ -432,7 +432,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                 <p className="text-xs font-semibold text-foreground mt-1">{game.name}</p>
                 <p className="text-[10px] text-muted-foreground">{game.publisher}</p>
                 <p className="text-xs text-muted-foreground">
-                  <span className="text-[10px]">IDR</span> <span className="font-bold text-foreground">{game.price}</span>
+                  <span className="text-[10px]">{activeCurrencySymbol}</span> <span className="font-bold text-foreground">{convert(1000).formatted}</span>
                 </p>
               </div>
             ))}
@@ -565,8 +565,8 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
         </div>
         <div className="flex items-center justify-between px-3 py-2" style={{ background: 'hsl(0,0%,0%)' }}>
           <p className="font-bold">
-            <span className="text-xs text-price">IDR</span>{" "}
-            <span className="text-base text-price">{selectedDiamond ? selectedDiamond.price : "0"}</span>
+            <span className="text-xs text-price">{activeCurrencySymbol}</span>{" "}
+            <span className="text-base text-price">{selectedDiamond ? convert(selectedDiamond.idrPrice).formatted : "0"}</span>
           </p>
           <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded-md font-bold text-xs">
             {t.purchaseNow}
