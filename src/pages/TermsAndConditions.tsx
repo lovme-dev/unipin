@@ -336,10 +336,10 @@ const TermsAndConditions = () => {
               Kementerian Perdagangan Republik Indonesia
             </p>
             <p className="text-xs text-muted-foreground text-center sm:text-left mb-1">
-              WhatsApp: <span className="text-primary">0853-1111-1010</span>
+              WhatsApp: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a>
             </p>
             <p className="text-xs text-muted-foreground text-center sm:text-left mb-4">
-              To submit suggestions, complaints or concerns, consumers can contact: <span className="text-primary">+62 859-5959-3535</span>
+              To submit suggestions, complaints or concerns, consumers can contact: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a>
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <p className="text-xs text-muted-foreground text-center sm:text-left">© 2026 UniPin. All Rights Reserved</p>
