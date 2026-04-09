@@ -284,7 +284,7 @@ const TermsAndConditions = () => {
 
             {/* Product & Service */}
             <div className="flex flex-col items-center sm:items-start sm:w-1/4">
-              <h3 className="font-bold text-primary mb-3">Product & Service</h3>
+              <h3 className="font-bold text-foreground mb-3">Product & Service</h3>
               <div className="flex flex-col items-center sm:items-start gap-1.5 text-sm text-muted-foreground">
                 <span>Games</span>
                 <span>Voucher Purchase</span>
@@ -295,7 +295,7 @@ const TermsAndConditions = () => {
 
             {/* Support & Information */}
             <div className="flex flex-col items-center sm:items-start sm:w-1/4">
-              <h3 className="font-bold text-primary mb-3">Support & Information</h3>
+              <h3 className="font-bold text-foreground mb-3">Support & Information</h3>
               <div className="flex flex-col items-center sm:items-start gap-1.5 text-sm text-muted-foreground">
                 <span>UP Station Media</span>
                 <span>Promo & Events</span>
@@ -306,7 +306,7 @@ const TermsAndConditions = () => {
 
             {/* Corporate & Partnership */}
             <div className="flex flex-col items-center sm:items-start sm:w-1/4">
-              <h3 className="font-bold text-primary mb-3">Corporate & Partnership</h3>
+              <h3 className="font-bold text-foreground mb-3">Corporate & Partnership</h3>
               <div className="flex flex-col items-center sm:items-start gap-1.5 text-sm text-muted-foreground">
                 <span>About Us</span>
                 <span>Partnership Program</span>

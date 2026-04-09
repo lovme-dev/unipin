@@ -286,16 +286,16 @@ const Index = () => {
       {/* Step 1: Masukkan ID Pengguna */}
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>1</span>
-              <h2 className="text-lg font-bold text-foreground">{t.enterUserId}</h2>
+           <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal flex-shrink-0" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>1</span>
+                <h2 className="text-lg font-bold text-foreground truncate">{t.enterUserId}</h2>
+              </div>
+              <button className="game-meta-badge flex items-center gap-1 text-[11px] flex-shrink-0 whitespace-nowrap ml-2">
+                <Info className="w-3.5 h-3.5" />
+                <span>{t.whereToFind}</span>
+              </button>
             </div>
-            <button className="game-meta-badge flex items-center gap-1 text-[11px]">
-              <Info className="w-3.5 h-3.5" />
-              <span>{t.whereToFind}</span>
-            </button>
-          </div>
 
           <div className="bg-secondary rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
@@ -317,9 +317,9 @@ const Index = () => {
       {/* Step 2: Pilih Jumlah */}
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>2</span>
-            <h2 className="text-lg font-bold text-foreground">{t.selectAmount}</h2>
+          <div className="flex items-center gap-2 mb-4 min-w-0">
+            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal flex-shrink-0" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>2</span>
+            <h2 className="text-lg font-bold text-foreground truncate">{t.selectAmount}</h2>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -342,9 +342,9 @@ const Index = () => {
       {/* Step 3: Pilih Saluran Pembayaran */}
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>3</span>
-            <h2 className="text-lg font-bold text-foreground">{t.selectPaymentChannel}</h2>
+          <div className="flex items-center gap-2 mb-2 min-w-0">
+            <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal flex-shrink-0" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>3</span>
+            <h2 className="text-lg font-bold text-foreground truncate">{t.selectPaymentChannel}</h2>
           </div>
           <p className="text-sm text-primary mb-4 cursor-pointer">{t.allPaymentChannels}</p>
 
