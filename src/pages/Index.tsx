@@ -79,7 +79,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground pb-24">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-40 overflow-hidden">
+      <div className="sticky top-0 z-40">
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
