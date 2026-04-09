@@ -71,7 +71,7 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister, onSuccess }: AuthFormP
       } else {
         toast.success("Signed in successfully!");
         onSuccess?.();
-        navigate?.("/");
+        navigate("/");
       }
     } catch {
       toast.error("Something went wrong.");
