@@ -21,6 +21,7 @@ const TermsAndConditions = () => {
   const localLangCode = getLanguageCode(activeCountryCode);
   const activeLangCode = lang === "en" ? "EN" : localLangCode;
   const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
+  const t = getTranslations(activeLangCode);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -55,7 +56,7 @@ const TermsAndConditions = () => {
 
         {/* Top Banner */}
         <div className="relative z-20 py-1.5 px-3 flex items-center justify-between text-[10px]">
-          <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
+          <span className="font-bold tracking-wide">{t.instantTopUp}</span>
           <div className="flex items-center gap-2">
             <button onClick={() => setRegionOpen(true)}>
               <img src={activeFlagUrl} alt={activeCountryName} className="w-5 h-5 rounded-full object-cover border border-white/20" />
@@ -104,7 +105,7 @@ const TermsAndConditions = () => {
           </div>
           <div className="flex items-center gap-2.5">
             <Search className="w-4.5 h-4.5 text-foreground" />
-            <button className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">SIGN IN</button>
+            <button className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">{t.signIn}</button>
           </div>
         </div>
       </div>
