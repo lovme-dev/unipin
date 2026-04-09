@@ -32,7 +32,7 @@ const PrivacyPolicy = () => {
     if (meta) meta.setAttribute("content", "Learn how UniPin collects, uses, and protects your personal data. Our privacy policy covers data security, cookies, your rights, and GDPR compliance.");
   }, []);
 
-  const domainUrl = "garenapk.lovable.app";
+  const domainUrl = "www.unipin.pk";
 
   return (
     <div className="min-h-screen bg-background text-foreground">
