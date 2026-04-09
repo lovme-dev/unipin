@@ -541,8 +541,8 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
       {/* Subscribe */}
       <div className="mx-3 mt-6">
         <div className="rounded-lg p-4 border border-white/[0.10]" style={{ background: 'hsl(221 30% 24% / 0.68)', backdropFilter: 'blur(26px) saturate(135%)', WebkitBackdropFilter: 'blur(26px) saturate(135%)' }}>
-          <h2 className="text-lg font-bold text-foreground">SUBSCRIBE</h2>
-          <p className="text-sm text-muted-foreground mb-4">Get the Best Deals Now!</p>
+          <h2 className="text-lg font-bold text-foreground">{t.subscribe}</h2>
+          <p className="text-sm text-muted-foreground mb-4">{t.getBestDeals}</p>
           <div className="flex gap-4">
             {["📘", "📷", "▶️", "🐦"].map((icon, i) => (
               <span key={i} className="text-2xl text-foreground">{icon}</span>
@@ -557,51 +557,45 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
           <img src={unipinLogo} alt="UniPin" className="h-10" />
         </div>
         <p className="text-center text-sm text-muted-foreground mb-6">
-          Universal Pin is a leading payment service provider (PSP) that focuses its services on online games and other digital products spread throughout the world.
+          {t.footerDescription}
         </p>
 
-        <h3 className="text-center font-bold text-foreground mb-3">Products and Services</h3>
+        <h3 className="text-center font-bold text-foreground mb-3">{t.productsAndServices}</h3>
         <div className="flex flex-col items-center gap-1 text-sm text-muted-foreground mb-6">
-          <span>Game</span>
-          <span>Voucher</span>
-          <span>SEACA eSports & Community</span>
-          <span>Payment Channels</span>
+          <span>{t.game}</span>
+          <span>{t.voucher}</span>
+          <span>{t.seacaEsports}</span>
+          <span>{t.paymentChannels}</span>
         </div>
 
-        <h3 className="text-center font-bold text-foreground mb-3">Information and Support</h3>
+        <h3 className="text-center font-bold text-foreground mb-3">{t.informationAndSupport}</h3>
         <div className="flex flex-col items-center gap-1 text-sm text-muted-foreground mb-6">
-          <span>UP Station Media</span>
-          <span>Promotions and Events</span>
-          <span>FAQ</span>
-          <span>Customer Support</span>
+          <span>{t.upStationMedia}</span>
+          <span>{t.promotionsAndEvents}</span>
+          <span>{t.faq}</span>
+          <span>{t.customerSupport}</span>
         </div>
 
-        <h3 className="text-center font-bold text-foreground mb-3">Corporate and Partnership</h3>
+        <h3 className="text-center font-bold text-foreground mb-3">{t.corporateAndPartnership}</h3>
         <div className="flex flex-col items-center gap-1 text-sm text-muted-foreground mb-6">
-          <span>About UniPin</span>
-          <span>Partnership Program</span>
-          <span>UniPin Affiliates Program</span>
-          <span>Career</span>
+          <span>{t.aboutUniPin}</span>
+          <span>{t.partnershipProgram}</span>
+          <span>{t.affiliatesProgram}</span>
+          <span>{t.career}</span>
         </div>
 
         <div className="border-t border-border pt-4 mt-4">
           <p className="text-center text-xs text-muted-foreground mb-2">
-            Directorate General of Consumer Protection and Trade Order,
-          </p>
-          <p className="text-center text-xs text-muted-foreground mb-2">
-            Ministry of Trade of the Republic of Indonesia
-          </p>
-          <p className="text-center text-xs text-muted-foreground mb-2">
             WhatsApp: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a>
           </p>
           <p className="text-center text-xs text-muted-foreground mb-4">
-            To submit suggestions, complaints or grievances, consumers can contact: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a>
+            {t.suggestionsComplaint} <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a>
           </p>
-          <p className="text-center text-xs text-muted-foreground mb-2">© 2026 UniPin. All Rights Reserved</p>
+          <p className="text-center text-xs text-muted-foreground mb-2">{t.allRightsReserved}</p>
           <div className="flex justify-center gap-4 text-xs text-primary flex-wrap">
-            <Link to="/terms-and-conditions" className="hover:underline">Website Terms and Conditions</Link>
-            <Link to="/user-terms" className="hover:underline">User Terms & Conditions</Link>
-            <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+            <Link to="/terms-and-conditions" className="hover:underline">{t.websiteTerms}</Link>
+            <Link to="/user-terms" className="hover:underline">{t.userTermsConditions}</Link>
+            <Link to="/privacy-policy" className="hover:underline">{t.privacyPolicyLink}</Link>
           </div>
           <div className="flex justify-center mt-3">
             <img src={activeFlagUrl} alt={activeCountryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />

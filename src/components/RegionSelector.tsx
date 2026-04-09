@@ -110,7 +110,7 @@ const REGIONS: Region[] = [
 ];
 
 const LANGUAGE_MAP: Record<string, string> = {
-  ID: "ID", US: "EN", GB: "EN", AU: "EN", IN: "EN", CA: "EN", NG: "EN", PH: "EN", SG: "EN", HK: "EN", ZA: "EN", IE: "EN", MT: "EN", CY: "EN", PK: "EN", BD: "EN", LK: "EN", MM: "EN", BN: "EN", KH: "EN", LA: "EN", MN: "EN",
+  ID: "ID", US: "EN", GB: "EN", AU: "EN", IN: "EN", CA: "EN", NG: "EN", PH: "EN", SG: "EN", HK: "EN", ZA: "EN", IE: "EN", MT: "EN", CY: "EN", PK: "UR", BD: "EN", LK: "EN", MM: "EN", BN: "EN", KH: "EN", LA: "EN", MN: "EN",
   SA: "AR", AE: "AR", EG: "AR", BH: "AR", KW: "AR", OM: "AR", QA: "AR", DZ: "AR", MA: "AR",
   BR: "PT", PT: "PT",
   DE: "DE", AT: "DE", LU: "DE",

@@ -8,7 +8,7 @@ interface GeoData {
 }
 
 const LANGUAGE_MAP: Record<string, string> = {
-  ID: "ID", US: "EN", GB: "EN", AU: "EN", IN: "EN",
+  ID: "ID", US: "EN", GB: "EN", AU: "EN", IN: "EN", PK: "UR",
   SA: "AR", AE: "AR", EG: "AR",
   BR: "PT", PT: "PT",
   DE: "DE", AT: "DE",
