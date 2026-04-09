@@ -45,10 +45,10 @@ const LoginPage = () => {
             <img src={unipinLogo} alt="UniPin" className="h-5" />
           </div>
 
-          <h2 className="text-xl font-bold text-white mb-1 text-center">
+          <h2 className="text-xl font-bold text-white mb-1 text-center" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
             Why Join UniPin?
           </h2>
-          <p className="text-white/90 text-sm text-center mb-5">
+          <p className="text-white/90 text-sm text-center mb-5" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
             Sign up now and unlock insane rewards, epic deals, and non-stop gaming perks!
           </p>
 
