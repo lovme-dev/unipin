@@ -333,7 +333,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
 
       {/* Step 1: Masukkan ID Pengguna */}
       <div className="mx-3 mt-4">
-        <div className="rounded-lg p-4 border border-white/10" style={{ background: 'hsl(220 25% 14% / 0.55)', backdropFilter: 'blur(20px) saturate(140%)', WebkitBackdropFilter: 'blur(20px) saturate(140%)' }}>
+        <div className="rounded-lg p-4 border border-white/[0.07]" style={{ background: 'hsl(220 25% 16% / 0.45)', backdropFilter: 'blur(24px) saturate(130%)', WebkitBackdropFilter: 'blur(24px) saturate(130%)' }}>
            <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2 min-w-0 flex-1">
                 <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal flex-shrink-0" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>1</span>
@@ -345,34 +345,38 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
               </button>
             </div>
 
-          <div className="bg-secondary/60 rounded-lg p-3 mb-3">
-            <label className="text-xs text-muted-foreground mb-1 block">{t.userId}</label>
-            <input
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              minLength={8}
-              maxLength={15}
-              placeholder="Enter 8-15 digit Player ID"
-              value={userId}
-              onChange={(e) => {
-                const val = e.target.value.replace(/\D/g, '').slice(0, 15);
-                setUserId(val);
-              }}
-              className="w-full bg-transparent text-foreground text-sm outline-none placeholder:text-muted-foreground/50"
-            />
+          <div className="rounded-lg p-3 mb-3 border border-white/[0.06]" style={{ background: 'hsl(220 20% 13% / 0.7)' }}>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-foreground font-medium">{t.userId}</span>
+              <input
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                minLength={8}
+                maxLength={15}
+                placeholder={t.userId}
+                value={userId}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, '').slice(0, 15);
+                  setUserId(val);
+                }}
+                className="bg-transparent text-right text-sm text-muted-foreground outline-none placeholder:text-muted-foreground/50 w-1/2"
+              />
+            </div>
           </div>
 
-          <div className="bg-secondary/60 rounded-lg p-3 mb-3">
-            <label className="text-xs text-muted-foreground mb-1 block">{t.email}</label>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={emailInput}
-              onChange={(e) => { if (!currentUser) setEmailInput(e.target.value); }}
-              readOnly={!!currentUser}
-              className={`w-full bg-transparent text-foreground text-sm outline-none placeholder:text-muted-foreground/50 ${currentUser ? 'opacity-70 cursor-default' : ''}`}
-            />
+          <div className="rounded-lg p-3 mb-3 border border-white/[0.06]" style={{ background: 'hsl(220 20% 13% / 0.7)' }}>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-foreground font-medium">{t.email}</span>
+              <input
+                type="email"
+                placeholder={currentUser ? '' : 'Enter your email'}
+                value={emailInput}
+                onChange={(e) => { if (!currentUser) setEmailInput(e.target.value); }}
+                readOnly={!!currentUser}
+                className={`bg-transparent text-right text-sm text-muted-foreground outline-none placeholder:text-muted-foreground/50 w-2/3 ${currentUser ? 'cursor-default' : ''}`}
+              />
+            </div>
           </div>
 
           <p className="text-xs text-muted-foreground">
