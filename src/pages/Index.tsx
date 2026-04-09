@@ -196,20 +196,24 @@ const Index = () => {
             <img src={freefireIcon} alt="Free Fire" className="w-16 h-16 rounded-lg" />
             <div>
               <div className="flex flex-wrap gap-2 mb-1">
-                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded-full font-medium border border-primary/40 bg-primary/10">
-                  <BadgeCheck className="w-3.5 h-3.5" /> Official Distributor
+                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded font-medium bg-primary/15">
+                  <CheckCircle className="w-3.5 h-3.5" /> Official Distributor
                 </span>
-                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded-full font-medium border border-primary/40 bg-primary/10">
+                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded font-medium bg-primary/15">
                   <Clock className="w-3.5 h-3.5" /> Instant Top-Up
                 </span>
-                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded-full font-medium border border-primary/40 bg-primary/10">
-                  <ShieldCheck className="w-3.5 h-3.5" /> Secure Payment
+                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded font-medium bg-primary/15">
+                  <Shield className="w-3.5 h-3.5" /> Secure Payment
                 </span>
               </div>
               <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
               <p className="text-sm text-muted-foreground">Garena</p>
             </div>
           </div>
+
+          <p className={`text-sm text-muted-foreground mt-2 ${!descExpanded ? "line-clamp-2" : "hidden"}`}>
+            Jangan biarkan permainan kamu terganggu karena kekurangan diamond! Sekarang kamu bisa <strong className="text-foreground">top up diamond FF</strong> dengan mudah dan cepat melalui UniPin. Bagaimana caranya? Kamu tinggal masukkan ID kamu lalu pilih nominal yang diinginkan. UniPin menyediakan pilihan mulai 5 sampai 73.100 Free Fire Diamonds. Kamu bisa menggunakannya untuk membeli karakter, <em>skin</em> hingga mendapatkan item eksklusif untuk mendukung permainanmu.
+          </p>
 
           {descExpanded && (
             <div className="text-sm text-muted-foreground space-y-4 mt-2">
