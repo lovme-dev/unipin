@@ -59,7 +59,11 @@ const moreGames = [
   { name: "Undawn", publisher: "Garena", price: "1,000", img: undawnImg },
 ];
 
-const Index = () => {
+interface IndexProps {
+  countryOverride?: { code: string; name: string; currency: string; currencySymbol: string };
+}
+
+const Index = ({ countryOverride }: IndexProps = {}) => {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [descExpanded, setDescExpanded] = useState(false);
@@ -86,12 +90,16 @@ const Index = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const activeCountryCode = manualCountry?.code || geo.countryCode;
-  const activeCountryName = manualCountry?.name || geo.countryName;
+  const activeCountryCode = countryOverride?.code || manualCountry?.code || geo.countryCode;
+  const activeCountryName = countryOverride?.name || manualCountry?.name || geo.countryName;
+  const countryData = getCountryData(activeCountryCode);
+  const activeCurrency = countryOverride?.currency || countryData.currency;
+  const activeCurrencySymbol = countryOverride?.currencySymbol || countryData.currencySymbol;
   const localLangCode = getLanguageCode(activeCountryCode);
   const activeLangCode = lang === "en" ? "EN" : localLangCode;
   const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
   const t = getTranslations(activeLangCode);
+  const { convert } = useCurrency(activeCurrency);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
