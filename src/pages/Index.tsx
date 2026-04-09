@@ -5,6 +5,7 @@ import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import { getTranslations } from "@/i18n/translations";
 import unipinLogo from "@/assets/unipin-logo.svg";
+import AuthDialog from "@/components/AuthDialog";
 import freefireIcon from "@/assets/freefire-icon.jpg";
 import aovImg from "@/assets/aov.jpg";
 import codmImg from "@/assets/codm.jpg";
@@ -61,6 +62,7 @@ const Index = () => {
   const [lang, setLang] = useState<"local" | "en">("local");
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [manualCountry, setManualCountry] = useState<{ code: string; name: string } | null>(null);
+  const [authOpen, setAuthOpen] = useState(false);
   const geo = useGeo();
 
   const activeCountryCode = manualCountry?.code || geo.countryCode;
@@ -169,7 +171,7 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-2.5">
             <Search className="w-4.5 h-4.5 text-foreground" />
-            <button className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
+            <button onClick={() => setAuthOpen(true)} className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
               {t.signIn}
             </button>
           </div>
@@ -526,6 +528,7 @@ const Index = () => {
         onSelectLang={setLang}
         localLangCode={localLangCode}
       />
+      <AuthDialog open={authOpen} onOpenChange={setAuthOpen} />
     </div>
   );
 };
