@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
+import { getTranslations } from "@/i18n/translations";
 import unipinLogo from "@/assets/unipin-logo.svg";
 import freefireIcon from "@/assets/freefire-icon.jpg";
 import aovImg from "@/assets/aov.jpg";
@@ -67,6 +68,7 @@ const Index = () => {
   const localLangCode = getLanguageCode(activeCountryCode);
   const activeLangCode = lang === "en" ? "EN" : localLangCode;
   const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
+  const t = getTranslations(activeLangCode);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -95,7 +97,7 @@ const Index = () => {
 
         {/* Top Banner */}
         <div className="relative z-20 py-1.5 px-3 flex items-center justify-between text-[10px]">
-          <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
+          <span className="font-bold tracking-wide">{t.instantTopUp}</span>
           <div className="flex items-center gap-2">
             <button onClick={() => setRegionOpen(true)}>
               <img src={activeFlagUrl} alt={activeCountryName} className="w-5 h-5 rounded-full object-cover border border-white/20" />
@@ -132,7 +134,7 @@ const Index = () => {
                 className="flex items-center gap-1 px-3 py-1 rounded-md bg-[hsl(220,20%,22%)] text-foreground text-[11px] font-semibold border border-white/10"
               >
                 {activeLangCode}
-                <ChevronDown className="w-3 h-3 text-muted-foreground" />
+                <ChevronDown className={`w-3 h-3 text-muted-foreground transition-transform ${langDropdownOpen ? "rotate-180" : ""}`} />
               </button>
               {langDropdownOpen && (
                 <>
@@ -168,7 +170,7 @@ const Index = () => {
           <div className="flex items-center gap-2.5">
             <Search className="w-4.5 h-4.5 text-foreground" />
             <button className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
-              SIGN IN
+              {t.signIn}
             </button>
           </div>
         </div>
@@ -232,7 +234,7 @@ const Index = () => {
                     <path d="M12 2.75 14.35 5l3.22-.2.98 3.08 2.8 1.6-1.3 2.95 1.3 2.97-2.8 1.58-.98 3.1-3.22-.22L12 21.25l-2.35-2.24-3.22.22-.98-3.1-2.8-1.58 1.3-2.97-1.3-2.95 2.8-1.6.98-3.08 3.22.2L12 2.75Z" />
                     <path d="m8.7 12.2 2.1 2.08 4.55-4.88" />
                   </svg>
-                  Official Distributor
+                  {t.officialDistributor}
                 </span>
                 <span className="game-meta-badge">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="game-meta-badge-icon" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
@@ -242,7 +244,7 @@ const Index = () => {
                     <circle cx="14.25" cy="12" r="6.25" />
                     <path d="M14.25 8.6V12l2.45 2.45" />
                   </svg>
-                  Instant Top-Up
+                  {t.instantTopUpBadge}
                 </span>
                 <span className="game-meta-badge hidden sm:inline-flex">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="game-meta-badge-icon" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
@@ -250,7 +252,7 @@ const Index = () => {
                     <rect x="9.2" y="10.6" width="5.6" height="4.6" rx="1" />
                     <path d="M10.5 10.6V9.4a1.5 1.5 0 0 1 3 0v1.2" />
                   </svg>
-                  Secure Payment
+                  {t.securePayment}
                 </span>
               </div>
               <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
@@ -259,21 +261,15 @@ const Index = () => {
           </div>
 
           <p className={`game-summary-preview ${descExpanded ? "hidden" : ""}`}>
-            Jangan biarkan permainan kamu terganggu karena kekurangan diamond! Sekarang kamu bisa <strong className="text-foreground">top up diamond FF</strong> dengan mudah dan cepat melalui UniPin. Bagaimana caranya? Kamu tinggal masukkan ID kamu lalu pilih nominal yang diinginkan. UniPin menyediakan pilihan mulai 5 sampai 73.100 Free Fire Diamonds. Kamu bisa menggunakannya untuk membeli karakter, <em>skin</em> hingga mendapatkan item eksklusif untuk mendukung permainanmu.
+            {t.gameDescription1}
           </p>
 
           {descExpanded && (
             <div className="text-sm text-muted-foreground space-y-4 mt-2">
-              <p>
-                Jangan biarkan permainan kamu terganggu karena kekurangan diamond! Sekarang kamu bisa <strong className="text-foreground">top up diamond FF</strong> dengan mudah dan cepat melalui UniPin. Bagaimana caranya? Kamu tinggal masukkan ID kamu lalu pilih nominal yang diinginkan. UniPin menyediakan pilihan mulai 5 sampai 73.100 Free Fire Diamonds. Kamu bisa menggunakannya untuk membeli karakter, <em>skin</em> hingga mendapatkan item eksklusif untuk mendukung permainanmu.
-              </p>
-              <p>
-                UniPin menyediakan pilihan opsi pembayaran yang beragam melalui DANA, Go-Pay, SAKUKU, DOKU Wallet, Telkomsel, True Money, AkuLaku, Yap!, BNI, BCA, CIMB Clicks, Permata, Mandiri, Danamon, Maybank BII, Indomaret, Alfamart, pembayaran via kartu kredit sampai pulsa. Tidak mau ribet? <strong className="text-foreground">Top up diamond FF</strong> bisa kamu lakukan tanpa harus registrasi, login dan tanpa kartu kredit. Di UniPin, semuanya transaksi bisa dilakukan tanpa ribet.
-              </p>
-              <h3 className="text-primary font-semibold text-sm">Tentang Free Fire</h3>
-              <p>
-                Dikembangkan oleh Garena, Free Fire adalah game <em>battle royale</em> yang bisa dimainkan via Android dan iOS. Popularitasnya sebagai game yang paling banyak diunduh menempatkan Free Fire sebagai "Best Popular Vote Game" dari Google Playstore tahun 2019 lalu.
-              </p>
+              <p>{t.gameDescription1}</p>
+              <p>{t.gameDescription2}</p>
+              <h3 className="text-primary font-semibold text-sm">{t.aboutFreeFire}</h3>
+              <p>{t.aboutFreeFireText}</p>
             </div>
           )}
 
@@ -293,27 +289,27 @@ const Index = () => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>1</span>
-              <h2 className="text-lg font-bold text-foreground">Enter User ID</h2>
+              <h2 className="text-lg font-bold text-foreground">{t.enterUserId}</h2>
             </div>
             <button className="game-meta-badge flex items-center gap-1 text-[11px]">
               <Info className="w-3.5 h-3.5" />
-              <span>Where To Find?</span>
+              <span>{t.whereToFind}</span>
             </button>
           </div>
 
           <div className="bg-secondary rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground font-medium">User ID</span>
-              <span className="text-sm text-muted-foreground">User ID</span>
+              <span className="text-sm text-foreground font-medium">{t.userId}</span>
+              <span className="text-sm text-muted-foreground">{t.userId}</span>
             </div>
           </div>
 
           <div className="bg-secondary rounded-lg p-3 mb-3">
-            <span className="text-sm text-foreground font-medium">Email</span>
+            <span className="text-sm text-foreground font-medium">{t.email}</span>
           </div>
 
           <p className="text-xs text-muted-foreground">
-            To find your Player ID, tap your avatar in the top left corner of your screen. Your Player ID will be displayed below your username.
+            {t.playerIdHint}
           </p>
         </div>
       </div>
@@ -323,7 +319,7 @@ const Index = () => {
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-4">
             <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>2</span>
-            <h2 className="text-lg font-bold text-foreground">Select Amount</h2>
+            <h2 className="text-lg font-bold text-foreground">{t.selectAmount}</h2>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -335,7 +331,7 @@ const Index = () => {
                   selectedPackage === i ? "border-primary" : "border-transparent"
                 }`}
               >
-                <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} Free Fire Diamonds</p>
+                <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} {t.freeFireDiamonds}</p>
                 <p className="text-sm font-bold text-price mt-1">IDR {pkg.price}</p>
               </button>
             ))}
@@ -348,13 +344,15 @@ const Index = () => {
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
             <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>3</span>
-            <h2 className="text-lg font-bold text-foreground">Select Payment Channel</h2>
+            <h2 className="text-lg font-bold text-foreground">{t.selectPaymentChannel}</h2>
           </div>
-          <p className="text-sm text-primary mb-4 cursor-pointer">All Payment Channels</p>
+          <p className="text-sm text-primary mb-4 cursor-pointer">{t.allPaymentChannels}</p>
 
           {paymentMethods.map((group) => (
             <div key={group.category} className="mb-4">
-              <h3 className="text-sm font-semibold text-foreground mb-2">{group.category}</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-2">
+                {group.category === "Physical Voucher" ? t.physicalVoucher : group.category === "E-wallet" ? t.eWallet : t.debitCreditCard}
+              </h3>
               {group.methods.map((method) => (
                 <button
                   key={method}
@@ -377,7 +375,7 @@ const Index = () => {
       {/* More Garena Games */}
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
-          <h2 className="text-xl font-bold text-foreground mb-4">More Garena games.</h2>
+          <h2 className="text-xl font-bold text-foreground mb-4">{t.moreGarenaGames}</h2>
           <div className="grid grid-cols-3 gap-3">
             {moreGames.map((game) => (
               <div key={game.name}>
@@ -400,15 +398,15 @@ const Index = () => {
 
       {/* Customer Support */}
       <div className="mx-3 mt-6">
-        <h2 className="text-xl font-bold text-foreground mb-1">Customer Support</h2>
-        <p className="text-sm text-muted-foreground mb-4">contact us</p>
+        <h2 className="text-xl font-bold text-foreground mb-1">{t.customerSupport}</h2>
+        <p className="text-sm text-muted-foreground mb-4">{t.contactUs}</p>
         <div className="flex gap-2 flex-wrap">
           {[
-            { icon: <MessageCircle className="w-6 h-6" />, label: "Messenger" },
-            { icon: <span className="text-2xl">💬</span>, label: "Whatsapp" },
-            { icon: <Mail className="w-6 h-6" />, label: "E-mail" },
-            { icon: <HelpCircle className="w-6 h-6" />, label: "FAQ" },
-            { icon: <MessageSquare className="w-6 h-6" />, label: "Provide feedback" },
+            { icon: <MessageCircle className="w-6 h-6" />, label: t.messenger },
+            { icon: <span className="text-2xl">💬</span>, label: t.whatsapp },
+            { icon: <Mail className="w-6 h-6" />, label: t.emailLabel },
+            { icon: <HelpCircle className="w-6 h-6" />, label: t.faq },
+            { icon: <MessageSquare className="w-6 h-6" />, label: t.provideFeedback },
           ].map((item) => (
             <div
               key={item.label}
@@ -494,27 +492,27 @@ const Index = () => {
 
       {/* Sticky Bottom Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-40">
-        <div className="flex text-xs" style={{ background: 'hsl(220,25%,16%)', borderTop: '1px solid hsl(31,92%,53%,0.3)' }}>
-          <div className="flex-1 p-2">
-            <span className="text-muted-foreground text-[11px]">User ID</span>
-            <p className="text-primary text-[11px]">-</p>
+        <div className="flex text-[9px]" style={{ background: 'hsl(220,25%,16%)', borderTop: '1px solid hsl(31,92%,53%,0.3)' }}>
+          <div className="flex-1 px-2 py-1">
+            <span className="text-muted-foreground">{t.userId}</span>
+            <p className="text-primary">-</p>
           </div>
-          <div className="flex-1 p-2 border-l border-[hsl(31,92%,53%,0.2)]">
-            <span className="text-muted-foreground text-[11px]">Item</span>
-            <p className="text-primary text-[11px]">{selectedDiamond ? `${selectedDiamond.diamonds} Diamonds` : "-"}</p>
+          <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
+            <span className="text-muted-foreground">{t.item}</span>
+            <p className="text-primary">{selectedDiamond ? `${selectedDiamond.diamonds} Diamonds` : "-"}</p>
           </div>
-          <div className="flex-1 p-2 border-l border-[hsl(31,92%,53%,0.2)]">
-            <span className="text-muted-foreground text-[11px]">Payment</span>
-            <p className="text-primary text-[11px]">{selectedPayment || "-"}</p>
+          <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
+            <span className="text-muted-foreground">{t.payment}</span>
+            <p className="text-primary">{selectedPayment || "-"}</p>
           </div>
         </div>
-        <div className="flex items-center justify-between px-4 py-3" style={{ background: 'hsl(0,0%,0%)' }}>
+        <div className="flex items-center justify-between px-3 py-2" style={{ background: 'hsl(0,0%,0%)' }}>
           <p className="font-bold">
-            <span className="text-sm text-price">IDR</span>{" "}
-            <span className="text-xl text-price">{selectedDiamond ? selectedDiamond.price : "0"}</span>
+            <span className="text-xs text-price">IDR</span>{" "}
+            <span className="text-base text-price">{selectedDiamond ? selectedDiamond.price : "0"}</span>
           </p>
-          <button className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg font-bold text-sm">
-            Purchase Now
+          <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded-md font-bold text-xs">
+            {t.purchaseNow}
           </button>
         </div>
       </div>
