@@ -67,6 +67,8 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [descExpanded, setDescExpanded] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [emailInput, setEmailInput] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [regionOpen, setRegionOpen] = useState(false);
