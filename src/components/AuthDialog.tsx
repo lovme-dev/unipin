@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 import unipinLogo from "@/assets/unipin-logo.svg";
+import loginHeroBg from "@/assets/login-hero-bg.png";
 import iconInstant from "@/assets/icon-instant-signup.png";
 import iconOffers from "@/assets/icon-exclusive-offers.png";
 import iconPoints from "@/assets/icon-earn-points.png";
