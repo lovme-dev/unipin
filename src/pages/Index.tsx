@@ -447,6 +447,16 @@ const Index = () => {
           </button>
         </div>
       </div>
+
+      <RegionSelector
+        open={regionOpen}
+        onOpenChange={setRegionOpen}
+        selectedCountry={activeCountryCode}
+        selectedLang={lang}
+        onSelectCountry={(code, name) => setManualCountry({ code, name })}
+        onSelectLang={setLang}
+        localLangCode={localLangCode}
+      />
     </div>
   );
 };
