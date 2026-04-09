@@ -71,7 +71,7 @@ const ProfileSheet = ({ open, onClose, user, onLogout }: ProfileSheetProps) => {
               <p className="text-sm text-muted-foreground mb-1">UniPin Credits / UC (PKR)</p>
               <div className="flex items-center justify-between">
                 <span className="text-3xl font-bold text-primary">0</span>
-                <button className="px-6 py-2 rounded-lg bg-primary text-primary-foreground font-bold text-sm">
+                <button onClick={() => { onClose(); navigate("/reload"); }} className="px-6 py-2 rounded-lg bg-primary text-primary-foreground font-bold text-sm">
                   TOP UP
                 </button>
               </div>

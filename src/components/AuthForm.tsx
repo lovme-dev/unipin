@@ -32,8 +32,7 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister, onSuccess }: AuthFormP
   const [username, setUsername] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  let navigate: ReturnType<typeof useNavigate> | null = null;
-  try { navigate = useNavigate(); } catch { /* not in router */ }
+  const navigate = useNavigate();
 
   const handleTabSwitch = (newTab: "signin" | "register") => {
     setTab(newTab);
