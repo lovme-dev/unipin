@@ -74,9 +74,13 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
       </div>
 
       {/* Google Login Button */}
-      <button className="w-full flex items-center justify-center gap-3 py-3 rounded-lg font-semibold text-sm transition-colors bg-white text-gray-700 hover:bg-gray-100 border border-gray-300">
+      <button
+        onClick={handleGoogleSignIn}
+        disabled={loading}
+        className="w-full flex items-center justify-center gap-3 py-3 rounded-lg font-semibold text-sm transition-colors bg-white text-gray-700 hover:bg-gray-100 border border-gray-300 disabled:opacity-50"
+      >
         <GoogleIcon />
-        Sign in with Google
+        {loading ? "Signing in..." : "Sign in with Google"}
       </button>
 
       {/* Divider */}
