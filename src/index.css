@@ -65,3 +65,58 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 }
+
+@layer components {
+  .game-meta-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .game-meta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.425rem;
+    min-height: 2.125rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: 0.55rem;
+    background: hsl(var(--primary) / 0.28);
+    color: hsl(var(--primary) / 0.98);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .game-meta-badge-icon {
+    width: 0.95rem;
+    height: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .game-summary-preview {
+    margin-top: 0.65rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.96rem;
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  @media (min-width: 640px) {
+    .game-meta-badge {
+      padding: 0.55rem 0.95rem;
+      font-size: 0.83rem;
+    }
+
+    .game-meta-badge-icon {
+      width: 1.02rem;
+      height: 1.02rem;
+    }
+  }
+}
