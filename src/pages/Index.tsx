@@ -130,6 +130,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
     setPrevButtonEnabled(isFormComplete);
   }, [isFormComplete, prevButtonEnabled]);
 
+  const selectedDiamond = selectedPackage !== null ? diamondPackages[selectedPackage] : null;
 
 
   return (
