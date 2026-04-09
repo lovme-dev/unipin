@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Search, ChevronDown } from "lucide-react";
+import MobileMenu from "@/components/MobileMenu";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import { getTranslations } from "@/i18n/translations";
@@ -110,18 +111,7 @@ const TermsAndConditions = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-50 flex">
-          <div className="w-72 bg-topbar h-full overflow-y-auto p-4">
-            <div className="flex items-center justify-between mb-8">
-              <img src={unipinLogo} alt="UniPin" className="h-8" />
-              <button onClick={() => setMenuOpen(false)} className="text-foreground text-2xl font-bold">✕</button>
-            </div>
-          </div>
-          <div className="flex-1 bg-black/60" onClick={() => setMenuOpen(false)} />
-        </div>
-      )}
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} t={t} />
 
       {/* Terms Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
