@@ -21,19 +21,19 @@ import speedDriftersImg from "@/assets/speed-drifters.jpg";
 import undawnImg from "@/assets/undawn.jpg";
 
 const diamondPackages = [
-  { diamonds: 5, price: "1.000" },
-  { diamonds: 12, price: "2.000" },
-  { diamonds: 50, price: "8.000" },
-  { diamonds: 70, price: "10.000" },
-  { diamonds: 140, price: "20.000" },
-  { diamonds: 355, price: "50.000" },
-  { diamonds: 720, price: "100.000" },
-  { diamonds: 1450, price: "200.000" },
-  { diamonds: 2180, price: "300.000" },
-  { diamonds: 3640, price: "500.000" },
-  { diamonds: 7290, price: "1.000.000" },
-  { diamonds: 36500, price: "5.000.000" },
-  { diamonds: 73100, price: "10.000.000" },
+  { diamonds: 5, idrPrice: 1000 },
+  { diamonds: 12, idrPrice: 2000 },
+  { diamonds: 50, idrPrice: 8000 },
+  { diamonds: 70, idrPrice: 10000 },
+  { diamonds: 140, idrPrice: 20000 },
+  { diamonds: 355, idrPrice: 50000 },
+  { diamonds: 720, idrPrice: 100000 },
+  { diamonds: 1450, idrPrice: 200000 },
+  { diamonds: 2180, idrPrice: 300000 },
+  { diamonds: 3640, idrPrice: 500000 },
+  { diamonds: 7290, idrPrice: 1000000 },
+  { diamonds: 36500, idrPrice: 5000000 },
+  { diamonds: 73100, idrPrice: 10000000 },
 ];
 
 const paymentMethods = [
