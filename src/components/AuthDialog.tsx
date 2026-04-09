@@ -83,7 +83,7 @@ const AuthDialog = ({ open, onOpenChange }: AuthDialogProps) => {
               <X className="w-5 h-5" />
             </button>
 
-            <AuthForm />
+            <AuthForm onSuccess={() => onOpenChange(false)} />
           </div>
         </div>
       </DialogContent>
