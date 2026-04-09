@@ -44,18 +44,22 @@ const diamondPackages = [
 
 const getPaymentMethods = (countryCode: string) => {
   const isPK = countryCode === "PK";
-  const methods: { category: string; methods: string[] }[] = [];
+  const methods: { category: string; methods: { name: string; logo?: string }[] }[] = [];
   
   if (isPK) {
     methods.push({
       category: "E-wallet",
-      methods: ["EasyPaisa", "JazzCash", "GoPay Fast - All in One"],
+      methods: [
+        { name: "EasyPaisa", logo: easypaisaLogo },
+        { name: "JazzCash", logo: jazzcashLogo },
+        { name: "GoPay Fast - All in One", logo: gopayFastLogo },
+      ],
     });
   }
   
   methods.push({
     category: "Debit / Credit Card",
-    methods: ["Debit / Credit Card"],
+    methods: [{ name: "Debit / Credit Card", logo: visaMastercardImg }],
   });
   
   return methods;
