@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { lovable } from "@/integrations/lovable/index";
+import { toast } from "sonner";
 
 const GoogleIcon = () => (
   <svg viewBox="0 0 48 48" className="w-5 h-5">
@@ -19,11 +21,30 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
   const [tab, setTab] = useState<"signin" | "register">("signin");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleTabSwitch = (newTab: "signin" | "register") => {
     setTab(newTab);
     if (newTab === "signin") onSwitchToSignIn?.();
     if (newTab === "register") onSwitchToRegister?.();
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
+      if (result.error) {
+        toast.error("Google sign-in failed. Please try again.");
+        return;
+      }
+      if (result.redirected) return;
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,9 +74,13 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
       </div>
 
       {/* Google Login Button */}
-      <button className="w-full flex items-center justify-center gap-3 py-3 rounded-lg font-semibold text-sm transition-colors bg-white text-gray-700 hover:bg-gray-100 border border-gray-300">
+      <button
+        onClick={handleGoogleSignIn}
+        disabled={loading}
+        className="w-full flex items-center justify-center gap-3 py-3 rounded-lg font-semibold text-sm transition-colors bg-white text-gray-700 hover:bg-gray-100 border border-gray-300 disabled:opacity-50"
+      >
         <GoogleIcon />
-        Sign in with Google
+        {loading ? "Signing in..." : "Sign in with Google"}
       </button>
 
       {/* Divider */}
