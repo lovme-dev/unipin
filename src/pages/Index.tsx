@@ -412,11 +412,7 @@ const Index = () => {
             <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
           </div>
           <div className="flex justify-center mt-3">
-            {geo.flagUrl ? (
-              <img src={geo.flagUrl} alt={geo.countryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
-            ) : (
-              <div className="w-7 h-7 rounded-full bg-muted" />
-            )}
+            <img src={activeFlagUrl} alt={activeCountryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
           </div>
         </div>
       </div>
