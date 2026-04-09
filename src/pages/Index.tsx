@@ -170,7 +170,7 @@ const Index = () => {
           <div className="flex items-center gap-2.5">
             <Search className="w-4.5 h-4.5 text-foreground" />
             <button className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
-              SIGN IN
+              {t.signIn}
             </button>
           </div>
         </div>
@@ -234,7 +234,7 @@ const Index = () => {
                     <path d="M12 2.75 14.35 5l3.22-.2.98 3.08 2.8 1.6-1.3 2.95 1.3 2.97-2.8 1.58-.98 3.1-3.22-.22L12 21.25l-2.35-2.24-3.22.22-.98-3.1-2.8-1.58 1.3-2.97-1.3-2.95 2.8-1.6.98-3.08 3.22.2L12 2.75Z" />
                     <path d="m8.7 12.2 2.1 2.08 4.55-4.88" />
                   </svg>
-                  Official Distributor
+                  {t.officialDistributor}
                 </span>
                 <span className="game-meta-badge">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="game-meta-badge-icon" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
@@ -244,7 +244,7 @@ const Index = () => {
                     <circle cx="14.25" cy="12" r="6.25" />
                     <path d="M14.25 8.6V12l2.45 2.45" />
                   </svg>
-                  Instant Top-Up
+                  {t.instantTopUpBadge}
                 </span>
                 <span className="game-meta-badge hidden sm:inline-flex">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="game-meta-badge-icon" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
@@ -252,7 +252,7 @@ const Index = () => {
                     <rect x="9.2" y="10.6" width="5.6" height="4.6" rx="1" />
                     <path d="M10.5 10.6V9.4a1.5 1.5 0 0 1 3 0v1.2" />
                   </svg>
-                  Secure Payment
+                  {t.securePayment}
                 </span>
               </div>
               <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
@@ -261,21 +261,15 @@ const Index = () => {
           </div>
 
           <p className={`game-summary-preview ${descExpanded ? "hidden" : ""}`}>
-            Jangan biarkan permainan kamu terganggu karena kekurangan diamond! Sekarang kamu bisa <strong className="text-foreground">top up diamond FF</strong> dengan mudah dan cepat melalui UniPin. Bagaimana caranya? Kamu tinggal masukkan ID kamu lalu pilih nominal yang diinginkan. UniPin menyediakan pilihan mulai 5 sampai 73.100 Free Fire Diamonds. Kamu bisa menggunakannya untuk membeli karakter, <em>skin</em> hingga mendapatkan item eksklusif untuk mendukung permainanmu.
+            {t.gameDescription1}
           </p>
 
           {descExpanded && (
             <div className="text-sm text-muted-foreground space-y-4 mt-2">
-              <p>
-                Jangan biarkan permainan kamu terganggu karena kekurangan diamond! Sekarang kamu bisa <strong className="text-foreground">top up diamond FF</strong> dengan mudah dan cepat melalui UniPin. Bagaimana caranya? Kamu tinggal masukkan ID kamu lalu pilih nominal yang diinginkan. UniPin menyediakan pilihan mulai 5 sampai 73.100 Free Fire Diamonds. Kamu bisa menggunakannya untuk membeli karakter, <em>skin</em> hingga mendapatkan item eksklusif untuk mendukung permainanmu.
-              </p>
-              <p>
-                UniPin menyediakan pilihan opsi pembayaran yang beragam melalui DANA, Go-Pay, SAKUKU, DOKU Wallet, Telkomsel, True Money, AkuLaku, Yap!, BNI, BCA, CIMB Clicks, Permata, Mandiri, Danamon, Maybank BII, Indomaret, Alfamart, pembayaran via kartu kredit sampai pulsa. Tidak mau ribet? <strong className="text-foreground">Top up diamond FF</strong> bisa kamu lakukan tanpa harus registrasi, login dan tanpa kartu kredit. Di UniPin, semuanya transaksi bisa dilakukan tanpa ribet.
-              </p>
-              <h3 className="text-primary font-semibold text-sm">Tentang Free Fire</h3>
-              <p>
-                Dikembangkan oleh Garena, Free Fire adalah game <em>battle royale</em> yang bisa dimainkan via Android dan iOS. Popularitasnya sebagai game yang paling banyak diunduh menempatkan Free Fire sebagai "Best Popular Vote Game" dari Google Playstore tahun 2019 lalu.
-              </p>
+              <p>{t.gameDescription1}</p>
+              <p>{t.gameDescription2}</p>
+              <h3 className="text-primary font-semibold text-sm">{t.aboutFreeFire}</h3>
+              <p>{t.aboutFreeFireText}</p>
             </div>
           )}
 
@@ -295,11 +289,11 @@ const Index = () => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>1</span>
-              <h2 className="text-lg font-bold text-foreground">Enter User ID</h2>
+              <h2 className="text-lg font-bold text-foreground">{t.enterUserId}</h2>
             </div>
             <button className="game-meta-badge flex items-center gap-1 text-[11px]">
               <Info className="w-3.5 h-3.5" />
-              <span>Where To Find?</span>
+              <span>{t.whereToFind}</span>
             </button>
           </div>
 
