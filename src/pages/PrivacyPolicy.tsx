@@ -217,8 +217,8 @@ const PrivacyPolicy = () => {
           <div className="max-w-6xl mx-auto px-4 sm:px-8 py-6">
             <p className="text-xs text-muted-foreground text-center sm:text-left mb-1">Direktorat Jenderal Perlindungan Konsumen dan Tertib Niaga</p>
             <p className="text-xs text-muted-foreground text-center sm:text-left mb-1">Kementerian Perdagangan Republik Indonesia</p>
-            <p className="text-xs text-muted-foreground text-center sm:text-left mb-1">WhatsApp: <span className="text-primary">0853-1111-1010</span></p>
-            <p className="text-xs text-muted-foreground text-center sm:text-left mb-4">To submit suggestions, complaints or concerns, consumers can contact: <span className="text-primary">+62 859-5959-3535</span></p>
+            <p className="text-xs text-muted-foreground text-center sm:text-left mb-1">WhatsApp: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a></p>
+            <p className="text-xs text-muted-foreground text-center sm:text-left mb-4">To submit suggestions, complaints or concerns, consumers can contact: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a></p>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <p className="text-xs text-muted-foreground text-center sm:text-left">© 2026 UniPin. All Rights Reserved</p>
               <div className="flex justify-center sm:justify-start gap-4 text-xs text-primary flex-wrap">

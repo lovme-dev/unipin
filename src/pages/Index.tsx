@@ -437,7 +437,7 @@ const Index = () => {
         <div className="flex gap-2 flex-wrap">
           {[
             { icon: <MessageCircle className="w-6 h-6" />, label: t.messenger },
-            { icon: <span className="text-2xl">💬</span>, label: t.whatsapp },
+            { icon: <span className="text-2xl">💬</span>, label: t.whatsapp, href: "https://wa.me/447476966269" },
             { icon: <Mail className="w-6 h-6" />, label: t.emailLabel },
             { icon: <HelpCircle className="w-6 h-6" />, label: t.faq },
             { icon: <MessageSquare className="w-6 h-6" />, label: t.provideFeedback },
@@ -507,10 +507,10 @@ const Index = () => {
             Ministry of Trade of the Republic of Indonesia
           </p>
           <p className="text-center text-xs text-muted-foreground mb-2">
-            WhatsApp: <span className="text-primary">0853-1111-1010</span>
+            WhatsApp: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a>
           </p>
           <p className="text-center text-xs text-muted-foreground mb-4">
-            To submit suggestions, complaints or grievances, consumers can contact: <span className="text-primary">+62 859-5959-3535</span>
+            To submit suggestions, complaints or grievances, consumers can contact: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a>
           </p>
           <p className="text-center text-xs text-muted-foreground mb-2">© 2026 UniPin. All Rights Reserved</p>
           <div className="flex justify-center gap-4 text-xs text-primary flex-wrap">
