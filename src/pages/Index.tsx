@@ -68,6 +68,7 @@ const Index = () => {
   const localLangCode = getLanguageCode(activeCountryCode);
   const activeLangCode = lang === "en" ? "EN" : localLangCode;
   const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
+  const t = getTranslations(activeLangCode);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
