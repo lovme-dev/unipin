@@ -70,6 +70,8 @@ interface IndexProps {
 
 const Index = ({ countryOverride }: IndexProps = {}) => {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
+  const [prevButtonEnabled, setPrevButtonEnabled] = useState(false);
+  const purchaseBtnRef = useRef<HTMLButtonElement>(null);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [descExpanded, setDescExpanded] = useState(false);
   const [userId, setUserId] = useState("");
