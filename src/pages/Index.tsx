@@ -387,7 +387,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
 
       {/* Step 2: Pilih Jumlah */}
       <div className="mx-3 mt-4">
-        <div className="rounded-lg p-4 border border-white/10" style={{ background: 'hsl(220 25% 14% / 0.55)', backdropFilter: 'blur(20px) saturate(140%)', WebkitBackdropFilter: 'blur(20px) saturate(140%)' }}>
+        <div className="rounded-lg p-4 border border-white/[0.07]" style={{ background: 'hsl(220 25% 16% / 0.45)', backdropFilter: 'blur(24px) saturate(130%)', WebkitBackdropFilter: 'blur(24px) saturate(130%)' }}>
           <div className="flex items-center gap-2 mb-4 min-w-0">
             <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal flex-shrink-0" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>2</span>
             <h2 className="text-lg font-bold text-foreground truncate">{t.selectAmount}</h2>
@@ -445,7 +445,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
 
       {/* More Garena Games */}
       <div className="mx-3 mt-4">
-        <div className="rounded-lg p-4 border border-white/10" style={{ background: 'hsl(220 25% 14% / 0.55)', backdropFilter: 'blur(20px) saturate(140%)', WebkitBackdropFilter: 'blur(20px) saturate(140%)' }}>
+        <div className="rounded-lg p-4 border border-white/[0.07]" style={{ background: 'hsl(220 25% 16% / 0.45)', backdropFilter: 'blur(24px) saturate(130%)', WebkitBackdropFilter: 'blur(24px) saturate(130%)' }}>
           <h2 className="text-xl font-bold text-foreground mb-4">{t.moreGarenaGames}</h2>
           <div className="grid grid-cols-3 gap-3">
             {moreGames.map((game) => (
@@ -505,7 +505,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
 
       {/* Subscribe */}
       <div className="mx-3 mt-6">
-        <div className="rounded-lg p-4 border border-white/10" style={{ background: 'hsl(220 25% 14% / 0.55)', backdropFilter: 'blur(20px) saturate(140%)', WebkitBackdropFilter: 'blur(20px) saturate(140%)' }}>
+        <div className="rounded-lg p-4 border border-white/[0.07]" style={{ background: 'hsl(220 25% 16% / 0.45)', backdropFilter: 'blur(24px) saturate(130%)', WebkitBackdropFilter: 'blur(24px) saturate(130%)' }}>
           <h2 className="text-lg font-bold text-foreground">SUBSCRIBE</h2>
           <p className="text-sm text-muted-foreground mb-4">Get the Best Deals Now!</p>
           <div className="flex gap-4">
