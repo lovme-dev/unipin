@@ -579,7 +579,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
         onOpenChange={setRegionOpen}
         selectedCountry={activeCountryCode}
         selectedLang={lang}
-        onSelectCountry={(code, name) => setManualCountry({ code, name })}
+        onSelectCountry={(code, name) => { setManualCountry({ code, name }); navigate(`/unipin/${code.toLowerCase()}`); }}
         onSelectLang={setLang}
         localLangCode={localLangCode}
       />
