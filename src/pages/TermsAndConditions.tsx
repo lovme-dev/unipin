@@ -26,6 +26,12 @@ const TermsAndConditions = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.title = "Website Terms & Conditions | UniPin - Legal Agreement";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", "Read UniPin website terms and conditions covering usage rules, intellectual property, third-party links, disclaimers, indemnification, and governing law.");
+  }, []);
+
   const domainUrl = "garenapk.lovable.app";
 
   return (
