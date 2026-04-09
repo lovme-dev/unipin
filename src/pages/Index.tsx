@@ -20,6 +20,11 @@ import codmImg from "@/assets/codm.jpg";
 import ffmaxImg from "@/assets/ffmax.jpg";
 import speedDriftersImg from "@/assets/speed-drifters.jpg";
 import undawnImg from "@/assets/undawn.jpg";
+import visaMastercardImg from "@/assets/visa-mastercard.png";
+import easypaisaLogo from "@/assets/easypaisa-logo.png";
+import jazzcashLogo from "@/assets/jazzcash-logo.png";
+import gopayFastLogo from "@/assets/gopay-fast-logo.png";
+import diamondsChestImg from "@/assets/diamonds-chest.png";
 
 const diamondPackages = [
   { diamonds: 5, idrPrice: 1000 },
