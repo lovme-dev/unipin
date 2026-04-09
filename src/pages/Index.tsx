@@ -62,6 +62,7 @@ const Index = () => {
   const [lang, setLang] = useState<"local" | "en">("local");
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [manualCountry, setManualCountry] = useState<{ code: string; name: string } | null>(null);
+  const [authOpen, setAuthOpen] = useState(false);
   const geo = useGeo();
 
   const activeCountryCode = manualCountry?.code || geo.countryCode;
