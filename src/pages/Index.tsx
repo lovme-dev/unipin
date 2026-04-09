@@ -20,6 +20,11 @@ import codmImg from "@/assets/codm.jpg";
 import ffmaxImg from "@/assets/ffmax.jpg";
 import speedDriftersImg from "@/assets/speed-drifters.jpg";
 import undawnImg from "@/assets/undawn.jpg";
+import visaMastercardImg from "@/assets/visa-mastercard.png";
+import easypaisaLogo from "@/assets/easypaisa-logo.png";
+import jazzcashLogo from "@/assets/jazzcash-logo.png";
+import gopayFastLogo from "@/assets/gopay-fast-logo.png";
+import diamondsChestImg from "@/assets/diamonds-chest.png";
 
 const diamondPackages = [
   { diamonds: 5, idrPrice: 1000 },
@@ -39,18 +44,22 @@ const diamondPackages = [
 
 const getPaymentMethods = (countryCode: string) => {
   const isPK = countryCode === "PK";
-  const methods: { category: string; methods: string[] }[] = [];
+  const methods: { category: string; methods: { name: string; logo?: string }[] }[] = [];
   
   if (isPK) {
     methods.push({
       category: "E-wallet",
-      methods: ["EasyPaisa", "JazzCash", "GoPay Fast - All in One"],
+      methods: [
+        { name: "EasyPaisa", logo: easypaisaLogo },
+        { name: "JazzCash", logo: jazzcashLogo },
+        { name: "GoPay Fast - All in One", logo: gopayFastLogo },
+      ],
     });
   }
   
   methods.push({
     category: "Debit / Credit Card",
-    methods: ["Debit / Credit Card"],
+    methods: [{ name: "Debit / Credit Card", logo: visaMastercardImg }],
   });
   
   return methods;
@@ -427,6 +436,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                     <Check className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={3} />
                   </div>
                 )}
+                <img src={diamondsChestImg} alt="Diamonds" className="w-10 h-10 object-contain mb-1" />
                 <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} {t.freeFireDiamonds}</p>
                 <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.idrPrice).formatted}</p>
               </button>
@@ -451,13 +461,16 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
               </h3>
               {group.methods.map((method) => (
                 <button
-                  key={method}
-                  onClick={() => setSelectedPayment(method)}
+                  key={method.name}
+                  onClick={() => setSelectedPayment(method.name)}
                   className={`w-full bg-secondary rounded-lg p-3 mb-2 flex items-center gap-3 text-left border transition-colors ${
-                    selectedPayment === method ? "border-primary" : "border-transparent"
+                    selectedPayment === method.name ? "border-primary" : "border-transparent"
                   }`}
                 >
-                  <span className="text-sm text-foreground">{method}</span>
+                  {method.logo && (
+                    <img src={method.logo} alt={method.name} className="h-6 w-auto object-contain" />
+                  )}
+                  <span className="text-sm text-foreground">{method.name}</span>
                 </button>
               ))}
             </div>
