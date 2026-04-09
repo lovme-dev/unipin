@@ -528,6 +528,7 @@ const Index = () => {
         onSelectLang={setLang}
         localLangCode={localLangCode}
       />
+      <AuthDialog open={authOpen} onOpenChange={setAuthOpen} />
     </div>
   );
 };
