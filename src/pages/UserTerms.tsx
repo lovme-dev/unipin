@@ -26,6 +26,12 @@ const UserTerms = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.title = "User Terms & Conditions | UniPin - Product Usage Policy";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", "UniPin user terms and conditions for product usage, payments, refund policy, account termination, intellectual property, and UniPin credits and rewards program.");
+  }, []);
+
   const domainUrl = "garenapk.lovable.app";
 
   return (
