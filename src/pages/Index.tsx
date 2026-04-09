@@ -58,6 +58,7 @@ const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const [regionOpen, setRegionOpen] = useState(false);
   const [lang, setLang] = useState<"local" | "en">("local");
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [manualCountry, setManualCountry] = useState<{ code: string; name: string } | null>(null);
   const geo = useGeo();
 
