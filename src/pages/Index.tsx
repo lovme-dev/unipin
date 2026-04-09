@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Check } from "lucide-react";
 import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare, User } from "lucide-react";
+import whereToFindImg from "@/assets/where-to-find-id.jpeg";
 import MobileMenu from "@/components/MobileMenu";
 import { useGeo } from "@/hooks/use-geo";
 import { useCurrency } from "@/hooks/use-currency";
@@ -87,6 +88,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
   const [userId, setUserId] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [whereToFindOpen, setWhereToFindOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [regionOpen, setRegionOpen] = useState(false);
   const [lang, setLang] = useState<"local" | "en">("local");
@@ -326,11 +328,27 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                 <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal flex-shrink-0" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>1</span>
                 <h2 className="text-lg font-bold text-foreground truncate">{t.enterUserId}</h2>
               </div>
-              <button className="game-meta-badge flex items-center gap-1 text-[11px] flex-shrink-0 whitespace-nowrap ml-2">
+              <button
+                onClick={() => setWhereToFindOpen(!whereToFindOpen)}
+                className="game-meta-badge flex items-center gap-1 text-[11px] flex-shrink-0 whitespace-nowrap ml-2"
+              >
                 <Info className="w-3.5 h-3.5" />
                 <span>{t.whereToFind}</span>
               </button>
             </div>
+
+          {/* Where to Find guide image */}
+          {whereToFindOpen && (
+            <div className="mb-3 flex flex-col items-center">
+              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-primary self-end mr-8" />
+              <div className="rounded-xl overflow-hidden border border-primary/30 shadow-lg shadow-primary/10 w-full max-w-[320px]">
+                <img src={whereToFindImg} alt="Where to find your ID" className="w-full h-auto" />
+              </div>
+              <p className="text-xs text-muted-foreground mt-2 text-center px-4">
+                Please hit on the refresh button after you're done with the purchase!
+              </p>
+            </div>
+          )}
 
           <div className="rounded-lg p-3 mb-3 border border-white/[0.06]" style={{ background: 'hsl(220 20% 11% / 0.92)' }}>
             <div className="flex items-center justify-between">
