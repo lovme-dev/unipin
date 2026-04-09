@@ -21,17 +21,17 @@ const LANGUAGE_MAP: Record<string, string> = {
 
 export function useGeo(): GeoData {
   const [geo, setGeo] = useState<GeoData>({
-    countryCode: "ID",
-    countryName: "Indonesia",
-    languageCode: "ID",
-    flagUrl: "",
+    countryCode: "PK",
+    countryName: "Pakistan",
+    languageCode: "UR",
+    flagUrl: "https://flagcdn.com/w40/pk.png",
   });
 
   useEffect(() => {
     fetch("https://ipapi.co/json/")
       .then((res) => res.json())
       .then((data) => {
-        const cc = data.country_code || "ID";
+        const cc = data.country_code || "PK";
         setGeo({
           countryCode: cc,
           countryName: data.country_name || "Indonesia",
@@ -42,7 +42,7 @@ export function useGeo(): GeoData {
       .catch(() => {
         setGeo((prev) => ({
           ...prev,
-          flagUrl: `https://flagcdn.com/w40/id.png`,
+          flagUrl: `https://flagcdn.com/w40/pk.png`,
         }));
       });
   }, []);
