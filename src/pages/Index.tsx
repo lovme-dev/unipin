@@ -5,6 +5,7 @@ import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import { getTranslations } from "@/i18n/translations";
 import unipinLogo from "@/assets/unipin-logo.svg";
+import AuthDialog from "@/components/AuthDialog";
 import freefireIcon from "@/assets/freefire-icon.jpg";
 import aovImg from "@/assets/aov.jpg";
 import codmImg from "@/assets/codm.jpg";
