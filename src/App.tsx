@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions.tsx";
 import UserTerms from "./pages/UserTerms.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
+import LoginPage from "./pages/LoginPage.tsx";
 
 const queryClient = new QueryClient();
 
