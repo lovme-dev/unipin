@@ -57,17 +57,17 @@ const LoginPage = () => {
           </p>
 
           {/* Horizontal scrollable feature cards */}
-          <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide" style={{ scrollSnapType: "x mandatory" }}>
+          <div className="flex gap-3 overflow-x-auto pb-2 pl-1 pr-8 scrollbar-hide" style={{ scrollSnapType: "x mandatory" }}>
             {features.map((f) => (
               <div
                 key={f.title}
-                className="flex items-center gap-3 p-3 rounded-xl bg-background/60 backdrop-blur-sm min-w-[300px] shrink-0"
+                className="flex items-center gap-3 p-3 rounded-xl bg-background/60 backdrop-blur-sm min-w-[270px] max-w-[270px] shrink-0"
                 style={{ scrollSnapAlign: "start" }}
               >
                 <img src={f.icon} alt="" className="w-12 h-12 object-contain shrink-0" />
                 <div>
-                  <h3 className="text-white font-bold text-sm">{f.title}</h3>
-                  <p className="text-white/70 text-xs leading-relaxed">{f.desc}</p>
+                  <h3 className="text-white font-bold text-sm leading-tight">{f.title}</h3>
+                  <p className="text-white/70 text-xs leading-relaxed line-clamp-2">{f.desc}</p>
                 </div>
               </div>
             ))}
