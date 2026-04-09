@@ -100,7 +100,7 @@ const Index = () => {
             <button onClick={() => setRegionOpen(true)}>
               <img src={activeFlagUrl} alt={activeCountryName} className="w-5 h-5 rounded-full object-cover border border-white/20" />
             </button>
-            <div className="relative">
+            <div className="relative z-[60]">
               <button
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
                 className="flex items-center gap-1 px-3 py-1 rounded-md bg-[hsl(220,20%,22%)] text-foreground text-[11px] font-semibold border border-white/10"
@@ -109,16 +109,16 @@ const Index = () => {
                 <ChevronDown className="w-3 h-3 text-muted-foreground" />
               </button>
               {langDropdownOpen && (
-                <div className="absolute right-0 top-full mt-1 bg-[hsl(220,20%,18%)] border border-white/10 rounded-md overflow-hidden z-50 min-w-[52px]">
+                <div className="absolute right-0 top-full mt-1 rounded-lg overflow-hidden z-[60] min-w-[60px] shadow-xl" style={{ background: 'hsl(220,20%,18%)' }}>
                   <button
                     onClick={() => { setLang("local"); setLangDropdownOpen(false); }}
-                    className={`w-full px-3 py-1.5 text-[11px] font-semibold text-left ${lang === "local" ? "bg-primary/20 text-primary" : "text-foreground hover:bg-white/5"}`}
+                    className={`w-full px-4 py-2 text-[13px] font-bold text-center transition-colors ${lang === "local" ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-white/5"}`}
                   >
                     {localLangCode}
                   </button>
                   <button
                     onClick={() => { setLang("en"); setLangDropdownOpen(false); }}
-                    className={`w-full px-3 py-1.5 text-[11px] font-semibold text-left ${lang === "en" ? "bg-primary/20 text-primary" : "text-foreground hover:bg-white/5"}`}
+                    className={`w-full px-4 py-2 text-[13px] font-bold text-center transition-colors ${lang === "en" ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-white/5"}`}
                   >
                     EN
                   </button>
@@ -464,28 +464,28 @@ const Index = () => {
       </div>
 
       {/* Sticky Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-topbar border-t border-border z-40">
-        <div className="flex text-xs border-b border-border">
+      <div className="fixed bottom-0 left-0 right-0 z-40">
+        <div className="flex text-xs" style={{ background: 'hsl(220,25%,16%)', borderTop: '1px solid hsl(31,92%,53%,0.3)' }}>
           <div className="flex-1 p-2">
-            <span className="text-muted-foreground">User ID</span>
-            <p className="text-primary">-</p>
+            <span className="text-muted-foreground text-[11px]">User ID</span>
+            <p className="text-primary text-[11px]">-</p>
           </div>
-          <div className="flex-1 p-2 border-l border-border">
-            <span className="text-muted-foreground">Item</span>
-            <p className="text-primary">{selectedDiamond ? `${selectedDiamond.diamonds} Diamonds` : "-"}</p>
+          <div className="flex-1 p-2 border-l border-[hsl(31,92%,53%,0.2)]">
+            <span className="text-muted-foreground text-[11px]">Item</span>
+            <p className="text-primary text-[11px]">{selectedDiamond ? `${selectedDiamond.diamonds} Diamonds` : "-"}</p>
           </div>
-          <div className="flex-1 p-2 border-l border-border">
-            <span className="text-muted-foreground">Payment</span>
-            <p className="text-primary">{selectedPayment || "-"}</p>
+          <div className="flex-1 p-2 border-l border-[hsl(31,92%,53%,0.2)]">
+            <span className="text-muted-foreground text-[11px]">Payment</span>
+            <p className="text-primary text-[11px]">{selectedPayment || "-"}</p>
           </div>
         </div>
-        <div className="flex items-center justify-between px-4 py-3">
-          <p className="text-foreground font-bold">
+        <div className="flex items-center justify-between px-4 py-3" style={{ background: 'hsl(0,0%,0%)' }}>
+          <p className="font-bold">
             <span className="text-sm text-price">IDR</span>{" "}
-            <span className="text-lg text-price">{selectedDiamond ? selectedDiamond.price : "0"}</span>
+            <span className="text-xl text-price">{selectedDiamond ? selectedDiamond.price : "0"}</span>
           </p>
-          <button className="bg-primary text-primary-foreground px-6 py-2 rounded font-bold text-sm">
-            Buy Now
+          <button className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg font-bold text-sm">
+            Purchase Now
           </button>
         </div>
       </div>
