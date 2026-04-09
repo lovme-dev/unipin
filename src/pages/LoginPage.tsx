@@ -33,13 +33,8 @@ const LoginPage = () => {
       {/* Hero Section - Why Join UniPin */}
       <div
         className="relative w-full overflow-hidden"
-        style={{
-          background: "linear-gradient(180deg, hsl(260, 60%, 55%) 0%, hsl(30, 90%, 55%) 100%)",
-        }}
       >
-        <div className="absolute inset-0 opacity-30" style={{
-          background: "radial-gradient(circle at 80% 20%, hsl(45, 100%, 70%) 0%, transparent 50%), radial-gradient(circle at 20% 80%, hsl(330, 80%, 60%) 0%, transparent 50%)",
-        }} />
+        <img src={loginHeroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
 
         <div className="relative z-10 px-4 pt-4 pb-6">
           {/* Back button + Logo */}
