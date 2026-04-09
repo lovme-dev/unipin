@@ -215,7 +215,7 @@ const Index = () => {
                   </svg>
                   Instant Top-Up
                 </span>
-                <span className="game-meta-badge">
+                <span className="game-meta-badge hidden sm:inline-flex">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="game-meta-badge-icon" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 2.75 18 5.25v5.35c0 4.08-2.46 7.33-6 8.9-3.54-1.57-6-4.82-6-8.9V5.25l6-2.5Z" />
                     <rect x="9.2" y="10.6" width="5.6" height="4.6" rx="1" />
@@ -266,8 +266,8 @@ const Index = () => {
               <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>1</span>
               <h2 className="text-lg font-bold text-foreground">Enter User ID</h2>
             </div>
-            <button className="flex items-center gap-1 text-primary text-sm">
-              <Info className="w-4 h-4" />
+            <button className="game-meta-badge flex items-center gap-1 text-[11px]">
+              <Info className="w-3.5 h-3.5" />
               <span>Where To Find?</span>
             </button>
           </div>
