@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
+import GeoRedirect from "./components/GeoRedirect";
+import CountryPage from "./pages/CountryPage";
 import NotFound from "./pages/NotFound.tsx";
 import TermsAndConditions from "./pages/TermsAndConditions.tsx";
 import UserTerms from "./pages/UserTerms.tsx";
@@ -22,7 +23,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<GeoRedirect />} />
+          <Route path="/unipin/:countryCode" element={<CountryPage />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/user-terms" element={<UserTerms />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

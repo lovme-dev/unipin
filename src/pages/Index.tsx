@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare, User } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
+import { useCurrency } from "@/hooks/use-currency";
+import { getCountryData } from "@/data/countries";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import { getTranslations } from "@/i18n/translations";
 import unipinLogo from "@/assets/unipin-logo.svg";
@@ -19,19 +21,19 @@ import speedDriftersImg from "@/assets/speed-drifters.jpg";
 import undawnImg from "@/assets/undawn.jpg";
 
 const diamondPackages = [
-  { diamonds: 5, price: "1.000" },
-  { diamonds: 12, price: "2.000" },
-  { diamonds: 50, price: "8.000" },
-  { diamonds: 70, price: "10.000" },
-  { diamonds: 140, price: "20.000" },
-  { diamonds: 355, price: "50.000" },
-  { diamonds: 720, price: "100.000" },
-  { diamonds: 1450, price: "200.000" },
-  { diamonds: 2180, price: "300.000" },
-  { diamonds: 3640, price: "500.000" },
-  { diamonds: 7290, price: "1.000.000" },
-  { diamonds: 36500, price: "5.000.000" },
-  { diamonds: 73100, price: "10.000.000" },
+  { diamonds: 5, idrPrice: 1000 },
+  { diamonds: 12, idrPrice: 2000 },
+  { diamonds: 50, idrPrice: 8000 },
+  { diamonds: 70, idrPrice: 10000 },
+  { diamonds: 140, idrPrice: 20000 },
+  { diamonds: 355, idrPrice: 50000 },
+  { diamonds: 720, idrPrice: 100000 },
+  { diamonds: 1450, idrPrice: 200000 },
+  { diamonds: 2180, idrPrice: 300000 },
+  { diamonds: 3640, idrPrice: 500000 },
+  { diamonds: 7290, idrPrice: 1000000 },
+  { diamonds: 36500, idrPrice: 5000000 },
+  { diamonds: 73100, idrPrice: 10000000 },
 ];
 
 const paymentMethods = [
@@ -57,7 +59,11 @@ const moreGames = [
   { name: "Undawn", publisher: "Garena", price: "1,000", img: undawnImg },
 ];
 
-const Index = () => {
+interface IndexProps {
+  countryOverride?: { code: string; name: string; currency: string; currencySymbol: string };
+}
+
+const Index = ({ countryOverride }: IndexProps = {}) => {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [descExpanded, setDescExpanded] = useState(false);
@@ -84,12 +90,16 @@ const Index = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const activeCountryCode = manualCountry?.code || geo.countryCode;
-  const activeCountryName = manualCountry?.name || geo.countryName;
+  const activeCountryCode = countryOverride?.code || manualCountry?.code || geo.countryCode;
+  const activeCountryName = countryOverride?.name || manualCountry?.name || geo.countryName;
+  const countryData = getCountryData(activeCountryCode);
+  const activeCurrency = countryOverride?.currency || countryData.currency;
+  const activeCurrencySymbol = countryOverride?.currencySymbol || countryData.currencySymbol;
   const localLangCode = getLanguageCode(activeCountryCode);
   const activeLangCode = lang === "en" ? "EN" : localLangCode;
   const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
   const t = getTranslations(activeLangCode);
+  const { convert } = useCurrency(activeCurrency);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -366,7 +376,7 @@ const Index = () => {
                 }`}
               >
                 <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} {t.freeFireDiamonds}</p>
-                <p className="text-sm font-bold text-price mt-1">IDR {pkg.price}</p>
+                <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.idrPrice).formatted}</p>
               </button>
             ))}
           </div>
@@ -422,7 +432,7 @@ const Index = () => {
                 <p className="text-xs font-semibold text-foreground mt-1">{game.name}</p>
                 <p className="text-[10px] text-muted-foreground">{game.publisher}</p>
                 <p className="text-xs text-muted-foreground">
-                  <span className="text-[10px]">IDR</span> <span className="font-bold text-foreground">{game.price}</span>
+                  <span className="text-[10px]">{activeCurrencySymbol}</span> <span className="font-bold text-foreground">{convert(1000).formatted}</span>
                 </p>
               </div>
             ))}
@@ -436,19 +446,32 @@ const Index = () => {
         <p className="text-sm text-muted-foreground mb-4">{t.contactUs}</p>
         <div className="flex gap-2 flex-wrap">
           {[
-            { icon: <MessageCircle className="w-6 h-6" />, label: t.messenger },
-            { icon: <span className="text-2xl">💬</span>, label: t.whatsapp },
-            { icon: <Mail className="w-6 h-6" />, label: t.emailLabel },
-            { icon: <HelpCircle className="w-6 h-6" />, label: t.faq },
-            { icon: <MessageSquare className="w-6 h-6" />, label: t.provideFeedback },
+            { icon: <MessageCircle className="w-6 h-6" />, label: t.messenger, href: undefined as string | undefined },
+            { icon: <span className="text-2xl">💬</span>, label: t.whatsapp, href: "https://wa.me/447476966269" },
+            { icon: <Mail className="w-6 h-6" />, label: t.emailLabel, href: undefined as string | undefined },
+            { icon: <HelpCircle className="w-6 h-6" />, label: t.faq, href: undefined as string | undefined },
+            { icon: <MessageSquare className="w-6 h-6" />, label: t.provideFeedback, href: undefined as string | undefined },
           ].map((item) => (
-            <div
-              key={item.label}
-              className="border border-primary rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1"
-            >
-              <span className="text-primary mb-1">{item.icon}</span>
-              <span className="text-xs text-foreground text-center">{item.label}</span>
-            </div>
+            item.href ? (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-primary rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1"
+              >
+                <span className="text-primary mb-1">{item.icon}</span>
+                <span className="text-xs text-foreground text-center">{item.label}</span>
+              </a>
+            ) : (
+              <div
+                key={item.label}
+                className="border border-primary rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1"
+              >
+                <span className="text-primary mb-1">{item.icon}</span>
+                <span className="text-xs text-foreground text-center">{item.label}</span>
+              </div>
+            )
           ))}
         </div>
       </div>
@@ -507,10 +530,10 @@ const Index = () => {
             Ministry of Trade of the Republic of Indonesia
           </p>
           <p className="text-center text-xs text-muted-foreground mb-2">
-            WhatsApp: <span className="text-primary">0853-1111-1010</span>
+            WhatsApp: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a>
           </p>
           <p className="text-center text-xs text-muted-foreground mb-4">
-            To submit suggestions, complaints or grievances, consumers can contact: <span className="text-primary">+62 859-5959-3535</span>
+            To submit suggestions, complaints or grievances, consumers can contact: <a href="https://wa.me/447476966269" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+44 747-6966269</a>
           </p>
           <p className="text-center text-xs text-muted-foreground mb-2">© 2026 UniPin. All Rights Reserved</p>
           <div className="flex justify-center gap-4 text-xs text-primary flex-wrap">
@@ -542,8 +565,8 @@ const Index = () => {
         </div>
         <div className="flex items-center justify-between px-3 py-2" style={{ background: 'hsl(0,0%,0%)' }}>
           <p className="font-bold">
-            <span className="text-xs text-price">IDR</span>{" "}
-            <span className="text-base text-price">{selectedDiamond ? selectedDiamond.price : "0"}</span>
+            <span className="text-xs text-price">{activeCurrencySymbol}</span>{" "}
+            <span className="text-base text-price">{selectedDiamond ? convert(selectedDiamond.idrPrice).formatted : "0"}</span>
           </p>
           <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded-md font-bold text-xs">
             {t.purchaseNow}
@@ -556,7 +579,7 @@ const Index = () => {
         onOpenChange={setRegionOpen}
         selectedCountry={activeCountryCode}
         selectedLang={lang}
-        onSelectCountry={(code, name) => setManualCountry({ code, name })}
+        onSelectCountry={(code, name) => { setManualCountry({ code, name }); navigate(`/unipin/${code.toLowerCase()}`); }}
         onSelectLang={setLang}
         localLangCode={localLangCode}
       />
