@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { lovable } from "@/integrations/lovable/index";
+import { toast } from "sonner";
 
 const GoogleIcon = () => (
   <svg viewBox="0 0 48 48" className="w-5 h-5">
