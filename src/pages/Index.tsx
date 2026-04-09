@@ -88,6 +88,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
   const [userId, setUserId] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [whereToFindOpen, setWhereToFindOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [regionOpen, setRegionOpen] = useState(false);
   const [lang, setLang] = useState<"local" | "en">("local");
