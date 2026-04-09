@@ -36,7 +36,7 @@ const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
 }
 
 // Configuration
-const SITE_NAME = "garenapk"
+const SITE_NAME = "UniPin"
 const SENDER_DOMAIN = "info.unipin.pk"
 const ROOT_DOMAIN = "unipin.pk"
 const FROM_DOMAIN = "unipin.pk" // Domain shown in From address (may be root or sender subdomain)
