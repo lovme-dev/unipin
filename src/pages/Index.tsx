@@ -216,8 +216,8 @@ const Index = () => {
                 <span className="game-meta-badge">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="game-meta-badge-icon" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 2.75 18 5.25v5.35c0 4.08-2.46 7.33-6 8.9-3.54-1.57-6-4.82-6-8.9V5.25l6-2.5Z" />
-                    <rect x="8.6" y="10.2" width="6.8" height="5.8" rx="1.15" />
-                    <path d="M10.15 10.2V8.9a1.85 1.85 0 0 1 3.7 0v1.3" />
+                    <rect x="9.2" y="10.6" width="5.6" height="4.6" rx="1" />
+                    <path d="M10.5 10.6V9.4a1.5 1.5 0 0 1 3 0v1.2" />
                   </svg>
                   Secure Payment
                 </span>

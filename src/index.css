@@ -69,30 +69,28 @@
 @layer components {
   .game-meta-badges {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
     margin-bottom: 0.5rem;
   }
 
   .game-meta-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.425rem;
-    min-height: 2.125rem;
-    padding: 0.5rem 0.875rem;
-    border-radius: 0.55rem;
-    background: hsl(var(--primary) / 0.28);
-    color: hsl(var(--primary) / 0.98);
-    font-size: 0.75rem;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.4rem;
+    background: hsl(35 40% 38% / 0.55);
+    color: hsl(var(--primary) / 0.95);
+    font-size: 0.6rem;
     font-weight: 600;
     line-height: 1;
-    letter-spacing: -0.01em;
     white-space: nowrap;
   }
 
   .game-meta-badge-icon {
-    width: 0.95rem;
-    height: 0.95rem;
+    width: 0.7rem;
+    height: 0.7rem;
     flex-shrink: 0;
   }
 
@@ -110,13 +108,14 @@
 
   @media (min-width: 640px) {
     .game-meta-badge {
-      padding: 0.55rem 0.95rem;
-      font-size: 0.83rem;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.7rem;
+      gap: 0.3rem;
     }
 
     .game-meta-badge-icon {
-      width: 1.02rem;
-      height: 1.02rem;
+      width: 0.8rem;
+      height: 0.8rem;
     }
   }
 }
