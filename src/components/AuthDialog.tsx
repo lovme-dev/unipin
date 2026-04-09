@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 import unipinLogo from "@/assets/unipin-logo.svg";
+import loginHeroBg from "@/assets/login-hero-bg.png";
 import iconInstant from "@/assets/icon-instant-signup.png";
 import iconOffers from "@/assets/icon-exclusive-offers.png";
 import iconPoints from "@/assets/icon-earn-points.png";
@@ -39,13 +40,8 @@ const AuthDialog = ({ open, onOpenChange }: AuthDialogProps) => {
           {/* Left Panel - Why Join UniPin */}
           <div
             className="relative w-[420px] shrink-0 overflow-hidden rounded-l-2xl"
-            style={{
-              background: "linear-gradient(180deg, hsl(260, 60%, 55%) 0%, hsl(30, 90%, 55%) 100%)",
-            }}
           >
-            <div className="absolute inset-0 opacity-30" style={{
-              background: "radial-gradient(circle at 80% 20%, hsl(45, 100%, 70%) 0%, transparent 50%), radial-gradient(circle at 20% 80%, hsl(330, 80%, 60%) 0%, transparent 50%)",
-            }} />
+            <img src={loginHeroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
 
             <div className="relative z-10 p-8">
               <img src={unipinLogo} alt="UniPin" className="h-7 mb-6" />
