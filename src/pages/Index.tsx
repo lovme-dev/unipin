@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
+import { getTranslations } from "@/i18n/translations";
 import unipinLogo from "@/assets/unipin-logo.svg";
 import freefireIcon from "@/assets/freefire-icon.jpg";
 import aovImg from "@/assets/aov.jpg";
