@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { lovable } from "@/integrations/lovable/index";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const GoogleIcon = () => (
   <svg viewBox="0 0 48 48" className="w-5 h-5">
@@ -15,13 +17,22 @@ const GoogleIcon = () => (
 interface AuthFormProps {
   onSwitchToSignIn?: () => void;
   onSwitchToRegister?: () => void;
+  onSuccess?: () => void;
 }
 
-const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
+const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister, onSuccess }: AuthFormProps) => {
   const [tab, setTab] = useState<"signin" | "register">("signin");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Form fields
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleTabSwitch = (newTab: "signin" | "register") => {
     setTab(newTab);
@@ -42,6 +53,63 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
       if (result.redirected) return;
     } catch {
       toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSignIn = async () => {
+    if (!email || !password) {
+      toast.error("Please enter email and password.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("Signed in successfully!");
+        onSuccess?.();
+        navigate("/");
+      }
+    } catch {
+      toast.error("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRegister = async () => {
+    if (!email || !password || !confirmPassword) {
+      toast.error("Please fill all fields.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { display_name: username || undefined },
+          emailRedirectTo: window.location.origin,
+        },
+      });
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("Registration successful! Please check your email to verify your account.");
+      }
+    } catch {
+      toast.error("Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -95,14 +163,14 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
           <div className="mb-3">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Email</span>
-              <input type="email" placeholder="Email" className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
+              <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
             </div>
           </div>
           <div className="mb-2">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Password</span>
               <div className="flex items-center gap-2">
-                <input type={showPassword ? "text" : "password"} placeholder="Password" className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
+                <input type={showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
                 <button onClick={() => setShowPassword(!showPassword)} className="text-muted-foreground hover:text-foreground">
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -112,8 +180,12 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
           <div className="text-right mb-6">
             <button className="text-primary text-sm hover:underline">Forgot password?</button>
           </div>
-          <button className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors">
-            Sign in
+          <button
+            onClick={handleSignIn}
+            disabled={loading}
+            className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
+          >
+            {loading ? "Signing in..." : "Sign in"}
           </button>
           <p className="text-center text-sm text-muted-foreground mt-4">
             Don't have an account?{" "}
@@ -125,20 +197,20 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
           <div className="mb-3">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Username</span>
-              <input type="text" placeholder="Username" className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
+              <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
             </div>
           </div>
           <div className="mb-3">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Email</span>
-              <input type="email" placeholder="Email" className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
+              <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
             </div>
           </div>
           <div className="mb-3">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Password</span>
               <div className="flex items-center gap-2">
-                <input type={showPassword ? "text" : "password"} placeholder="Password" className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
+                <input type={showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
                 <button onClick={() => setShowPassword(!showPassword)} className="text-muted-foreground hover:text-foreground">
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -149,15 +221,19 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister }: AuthFormProps) => {
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Confirm Password</span>
               <div className="flex items-center gap-2">
-                <input type={showConfirmPassword ? "text" : "password"} placeholder="Confirm" className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
+                <input type={showConfirmPassword ? "text" : "password"} placeholder="Confirm" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
                 <button onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="text-muted-foreground hover:text-foreground">
                   {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
             </div>
           </div>
-          <button className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors">
-            Register
+          <button
+            onClick={handleRegister}
+            disabled={loading}
+            className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
+          >
+            {loading ? "Registering..." : "Register"}
           </button>
           <p className="text-center text-sm text-muted-foreground mt-4">
             Already have an account?{" "}

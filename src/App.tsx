@@ -11,6 +11,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import SettingsPage from "./pages/SettingsPage.tsx";
 import TransactionHistoryPage from "./pages/TransactionHistoryPage.tsx";
+import ReloadPage from "./pages/ReloadPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/login" element={<LoginPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/transaction-history" element={<TransactionHistoryPage />} />
+          <Route path="/reload" element={<ReloadPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
