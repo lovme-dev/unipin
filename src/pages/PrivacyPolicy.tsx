@@ -4,6 +4,7 @@ import { Menu, Search, ChevronDown } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import unipinLogo from "@/assets/unipin-logo.svg";
+import LegalPageSections from "@/components/LegalPageSections";
 
 const PrivacyPolicy = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -192,13 +193,15 @@ const PrivacyPolicy = () => {
           <p>On our website, you may encounter links to other websites. Be aware that we are not responsible for the content or privacy practices of these other sites. We encourage all users to read the privacy policies of any other sites that collect your personal data. We are not responsible for the content, use, or privacy practices of these websites.</p>
 
           <h2 className="text-lg sm:text-xl font-bold text-foreground pt-4">Contact Information</h2>
-          <p>For any questions, concerns, or requests to exercise your rights outlined in this privacy policy, please contact us via email at <a href="mailto:privacy@unipin.com" className="text-muted-foreground underline hover:text-foreground">privacy@unipin.com</a> or visit us at: <a href={`https://${domainUrl}/support`} className="text-muted-foreground underline hover:text-foreground" target="_blank" rel="noopener noreferrer">{domainUrl}/support</a></p>
+          <p>For any questions, concerns, or requests to exercise your rights outlined in this privacy policy, please contact us via email at <a href="mailto:privacy@unipin.pk" className="text-primary underline hover:text-primary/80">privacy@unipin.pk</a> or visit us at: <a href={`https://${domainUrl}/support`} className="text-primary underline hover:text-primary/80" target="_blank" rel="noopener noreferrer">{domainUrl}/support</a></p>
 
           <h2 className="text-lg sm:text-xl font-bold text-foreground pt-4">Changes to This Privacy Policy</h2>
           <p>This privacy policy was last updated on January 1st, 2026.</p>
           <p>We may change our Product and policies, and we may need to make changes to this Privacy Policy so that they accurately reflect our Product and policies. Unless otherwise required by law, we will notify you (for example, through our Product) before we make changes to this Privacy Policy and give you an opportunity to review them before they go into effect. Then, if you continue to use the Product, you will be bound by the updated Privacy Policy. If you do not want to agree to this or any updated Privacy Policy, you can delete your account.</p>
         </div>
       </div>
+
+      <LegalPageSections />
 
       {/* Footer */}
       <footer className="bg-topbar">

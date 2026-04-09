@@ -4,6 +4,7 @@ import { Menu, Search, ChevronDown } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import unipinLogo from "@/assets/unipin-logo.svg";
+import LegalPageSections from "@/components/LegalPageSections";
 
 const UserTerms = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -218,7 +219,7 @@ const UserTerms = () => {
           </p>
 
           <p>
-            If you have any complaints about our website and/or Product, you should direct them to us via e-mail at cs@unipin.com.
+            If you have any complaints about our website and/or Product, you should direct them to us via e-mail at cs@unipin.pk.
           </p>
 
           {/* UniPin Products */}
@@ -239,10 +240,10 @@ const UserTerms = () => {
           <ul className="list-disc list-inside space-y-2 pl-2">
             <li>UniPin membership only applies to individuals, not to companies, organizations or any other body.</li>
             <li>To register in the Program, you must (i) register or sign up to acquire a UniPin account ("Account"), (ii) inform us of your mailing address and a valid email address, and (iii) be at least 18 (eighteen) years old and if you are under the age of 18 (or equivalent minimum age in the relevant jurisdiction), we require you to obtain permission from your legal guardian to register for an account and that the legal guardian must agree to these Terms and Conditions. If you are the legal guardian of a minor who is registering for an Account, you must accept these Terms and Conditions on the minor's behalf and you will be responsible for all use of the Account, including any transactions made by the minor, whether the minor's account is now open or created later and whether or not the minor is supervised by you during his or her use of our Product.</li>
-            <li>If we accept your registration application, we will sign you up in the Program as a UniPin Reward Program member ("Member"), you must provide any change to your personal data to us, such as name, mailing address, email address, and phone number by contacting our Customer Support at cs@unipin.com or you may renew your personal data through {domainUrl} ("Member Web Portal").</li>
+            <li>If we accept your registration application, we will sign you up in the Program as a UniPin Reward Program member ("Member"), you must provide any change to your personal data to us, such as name, mailing address, email address, and phone number by contacting our Customer Support at cs@unipin.pk or you may renew your personal data through {domainUrl} ("Member Web Portal").</li>
             <li>In the event your account is lost and you forgot your email and access code, you will lose all of your Coin.</li>
             <li>UniPin reserves the right to terminate your membership at any time for whatsoever reason UniPin deems fit.</li>
-            <li>Email is required to access the Member Account and to redeem your Coin, or when contacting Customer Support at cs@unipin.com.</li>
+            <li>Email is required to access the Member Account and to redeem your Coin, or when contacting Customer Support at cs@unipin.pk.</li>
             <li>You are responsible for ensuring that you keep your email confidential at all times and to notify us over any illegal use of your email or when your email is compromised.</li>
             <li>We are not responsible or accountable in any way over losses arising from your failure to fulfil these conditions.</li>
           </ul>
@@ -290,7 +291,7 @@ const UserTerms = () => {
           </p>
 
           <p>
-            We have the absolute discretion to alter the Terms & Conditions, in any way in respect of the Program, including terms of ordering, Coin usage procedures for Reward, or Reward in any form, without prior notice, and even if the changes can affect the value of the accumulated Coin. You must check our present Terms & Conditions and details and other information for the Program through the Member Web Portal or by calling our Customer Support at cs@unipin.com.
+            We have the absolute discretion to alter the Terms & Conditions, in any way in respect of the Program, including terms of ordering, Coin usage procedures for Reward, or Reward in any form, without prior notice, and even if the changes can affect the value of the accumulated Coin. You must check our present Terms & Conditions and details and other information for the Program through the Member Web Portal or by calling our Customer Support at cs@unipin.pk.
           </p>
 
           <p>
@@ -365,6 +366,8 @@ const UserTerms = () => {
           </p>
         </div>
       </div>
+
+      <LegalPageSections />
 
       {/* Footer */}
       <footer className="bg-topbar">
