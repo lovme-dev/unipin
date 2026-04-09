@@ -21,6 +21,8 @@ const PrivacyPolicy = () => {
   const localLangCode = getLanguageCode(activeCountryCode);
   const activeLangCode = lang === "en" ? "EN" : localLangCode;
   const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
+  const activeLangCode = lang === "en" ? "EN" : localLangCode;
+  const t = getTranslations(activeLangCode);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -42,7 +44,7 @@ const PrivacyPolicy = () => {
       <div className="sticky top-0 z-40">
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ backdropFilter: scrolled ? "blur(24px) saturate(140%) brightness(1.08)" : "none", WebkitBackdropFilter: scrolled ? "blur(24px) saturate(140%) brightness(1.08)" : "none", background: scrolled ? "linear-gradient(180deg, hsl(var(--header-glow) / 0.28) 0%, hsl(var(--header-glow) / 0.12) 50%, transparent 100%)" : "linear-gradient(180deg, hsl(var(--header-glow) / 0.67) 0%, hsl(var(--header-glow) / 0.32) 45%, transparent 100%)", transition: "all 0.3s ease" }} />
         <div className="relative z-20 py-1.5 px-3 flex items-center justify-between text-[10px]">
-          <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
+          <span className="font-bold tracking-wide">{t.instantTopUp}</span>
           <div className="flex items-center gap-2">
             <button onClick={() => setRegionOpen(true)}><img src={activeFlagUrl} alt={activeCountryName} className="w-5 h-5 rounded-full object-cover border border-white/20" /></button>
             <div className="hidden sm:flex rounded-lg overflow-hidden border border-white/15">
@@ -65,7 +67,7 @@ const PrivacyPolicy = () => {
           </div>
           <div className="flex items-center gap-2.5">
             <Search className="w-4.5 h-4.5 text-foreground" />
-            <button className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">SIGN IN</button>
+            <button className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">{t.signIn}</button>
           </div>
         </div>
       </div>
@@ -74,8 +76,8 @@ const PrivacyPolicy = () => {
 
       {/* Privacy Policy Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
-        <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-1">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground mb-6">Updated at 2026-01-01</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-1">{t.privacyPolicyTitle}</h1>
+        <p className="text-sm text-muted-foreground mb-6">{t.updatedAt} 2026-01-01</p>
         <div className="border-t border-border mb-8" />
 
         <div className="space-y-6 text-sm sm:text-base text-muted-foreground leading-relaxed">
