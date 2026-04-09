@@ -299,17 +299,17 @@ const Index = () => {
 
           <div className="bg-secondary rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-foreground font-medium">User ID</span>
-              <span className="text-sm text-muted-foreground">User ID</span>
+              <span className="text-sm text-foreground font-medium">{t.userId}</span>
+              <span className="text-sm text-muted-foreground">{t.userId}</span>
             </div>
           </div>
 
           <div className="bg-secondary rounded-lg p-3 mb-3">
-            <span className="text-sm text-foreground font-medium">Email</span>
+            <span className="text-sm text-foreground font-medium">{t.email}</span>
           </div>
 
           <p className="text-xs text-muted-foreground">
-            To find your Player ID, tap your avatar in the top left corner of your screen. Your Player ID will be displayed below your username.
+            {t.playerIdHint}
           </p>
         </div>
       </div>
@@ -319,7 +319,7 @@ const Index = () => {
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-4">
             <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>2</span>
-            <h2 className="text-lg font-bold text-foreground">Select Amount</h2>
+            <h2 className="text-lg font-bold text-foreground">{t.selectAmount}</h2>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -331,7 +331,7 @@ const Index = () => {
                   selectedPackage === i ? "border-primary" : "border-transparent"
                 }`}
               >
-                <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} Free Fire Diamonds</p>
+                <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} {t.freeFireDiamonds}</p>
                 <p className="text-sm font-bold text-price mt-1">IDR {pkg.price}</p>
               </button>
             ))}
@@ -344,9 +344,9 @@ const Index = () => {
         <div className="bg-card rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
             <span className="bg-primary text-primary-foreground w-7 h-7 rounded-full flex items-center justify-center text-[16px] leading-none font-normal" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>3</span>
-            <h2 className="text-lg font-bold text-foreground">Select Payment Channel</h2>
+            <h2 className="text-lg font-bold text-foreground">{t.selectPaymentChannel}</h2>
           </div>
-          <p className="text-sm text-primary mb-4 cursor-pointer">All Payment Channels</p>
+          <p className="text-sm text-primary mb-4 cursor-pointer">{t.allPaymentChannels}</p>
 
           {paymentMethods.map((group) => (
             <div key={group.category} className="mb-4">
@@ -373,7 +373,7 @@ const Index = () => {
       {/* More Garena Games */}
       <div className="mx-3 mt-4">
         <div className="bg-card rounded-lg p-4">
-          <h2 className="text-xl font-bold text-foreground mb-4">More Garena games.</h2>
+          <h2 className="text-xl font-bold text-foreground mb-4">{t.moreGarenaGames}</h2>
           <div className="grid grid-cols-3 gap-3">
             {moreGames.map((game) => (
               <div key={game.name}>
@@ -396,15 +396,15 @@ const Index = () => {
 
       {/* Customer Support */}
       <div className="mx-3 mt-6">
-        <h2 className="text-xl font-bold text-foreground mb-1">Customer Support</h2>
-        <p className="text-sm text-muted-foreground mb-4">contact us</p>
+        <h2 className="text-xl font-bold text-foreground mb-1">{t.customerSupport}</h2>
+        <p className="text-sm text-muted-foreground mb-4">{t.contactUs}</p>
         <div className="flex gap-2 flex-wrap">
           {[
-            { icon: <MessageCircle className="w-6 h-6" />, label: "Messenger" },
-            { icon: <span className="text-2xl">💬</span>, label: "Whatsapp" },
-            { icon: <Mail className="w-6 h-6" />, label: "E-mail" },
-            { icon: <HelpCircle className="w-6 h-6" />, label: "FAQ" },
-            { icon: <MessageSquare className="w-6 h-6" />, label: "Provide feedback" },
+            { icon: <MessageCircle className="w-6 h-6" />, label: t.messenger },
+            { icon: <span className="text-2xl">💬</span>, label: t.whatsapp },
+            { icon: <Mail className="w-6 h-6" />, label: t.emailLabel },
+            { icon: <HelpCircle className="w-6 h-6" />, label: t.faq },
+            { icon: <MessageSquare className="w-6 h-6" />, label: t.provideFeedback },
           ].map((item) => (
             <div
               key={item.label}
@@ -492,7 +492,7 @@ const Index = () => {
       <div className="fixed bottom-0 left-0 right-0 z-40">
         <div className="flex text-[9px]" style={{ background: 'hsl(220,25%,16%)', borderTop: '1px solid hsl(31,92%,53%,0.3)' }}>
           <div className="flex-1 px-2 py-1">
-            <span className="text-muted-foreground">User ID</span>
+            <span className="text-muted-foreground">{t.userId}</span>
             <p className="text-primary">-</p>
           </div>
           <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
@@ -510,7 +510,7 @@ const Index = () => {
             <span className="text-base text-price">{selectedDiamond ? selectedDiamond.price : "0"}</span>
           </p>
           <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded-md font-bold text-xs">
-            Purchase Now
+            {t.purchaseNow}
           </button>
         </div>
       </div>
