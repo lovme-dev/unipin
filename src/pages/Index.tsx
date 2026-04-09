@@ -496,11 +496,11 @@ const Index = () => {
             <p className="text-primary">-</p>
           </div>
           <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
-            <span className="text-muted-foreground">Item</span>
+            <span className="text-muted-foreground">{t.item}</span>
             <p className="text-primary">{selectedDiamond ? `${selectedDiamond.diamonds} Diamonds` : "-"}</p>
           </div>
           <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
-            <span className="text-muted-foreground">Payment</span>
+            <span className="text-muted-foreground">{t.payment}</span>
             <p className="text-primary">{selectedPayment || "-"}</p>
           </div>
         </div>
