@@ -418,10 +418,15 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
               <button
                 key={i}
                 onClick={() => setSelectedPackage(i)}
-                className={`bg-secondary rounded-lg p-3 text-left border transition-colors ${
+                className={`relative bg-secondary rounded-lg p-3 text-left border-2 transition-colors ${
                   selectedPackage === i ? "border-primary" : "border-transparent"
                 }`}
               >
+                {selectedPackage === i && (
+                  <div className="absolute top-0 right-0 w-6 h-6 bg-primary rounded-bl-lg rounded-tr-md flex items-center justify-center">
+                    <Check className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={3} />
+                  </div>
+                )}
                 <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} {t.freeFireDiamonds}</p>
                 <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.idrPrice).formatted}</p>
               </button>
@@ -442,7 +447,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
           {paymentMethods.map((group) => (
             <div key={group.category} className="mb-4">
               <h3 className="text-sm font-semibold text-foreground mb-2">
-                {group.category === "Physical Voucher" ? t.physicalVoucher : group.category === "E-wallet" ? t.eWallet : t.debitCreditCard}
+                {group.category === "E-wallet" ? t.eWallet : t.debitCreditCard}
               </h3>
               {group.methods.map((method) => (
                 <button
@@ -452,9 +457,6 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                     selectedPayment === method ? "border-primary" : "border-transparent"
                   }`}
                 >
-                  <div className="w-12 h-8 bg-muted rounded flex items-center justify-center">
-                    <img src={unipinLogo} alt={method} className="h-4" />
-                  </div>
                   <span className="text-sm text-foreground">{method}</span>
                 </button>
               ))}
@@ -599,7 +601,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
         <div className="flex text-[9px]" style={{ background: 'hsl(35, 12%, 22%)', borderTop: '1px solid hsl(31,92%,53%,0.3)' }}>
           <div className="flex-1 px-2 py-1">
             <span className="text-muted-foreground">{t.userId}</span>
-            <p className="text-primary">-</p>
+            <p className="text-primary">{userId.trim() || "-"}</p>
           </div>
           <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
             <span className="text-muted-foreground">{t.item}</span>
@@ -615,7 +617,15 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
             <span className="text-xs text-price">{activeCurrencySymbol}</span>{" "}
             <span className="text-base text-price">{selectedDiamond ? convert(selectedDiamond.idrPrice).formatted : "0"}</span>
           </p>
-          <button className="bg-primary text-primary-foreground px-4 py-1.5 rounded-md font-bold text-xs">
+          <button
+            ref={purchaseBtnRef}
+            disabled={!isFormComplete}
+            className={`px-4 py-1.5 rounded-md font-bold text-xs transition-all ${
+              isFormComplete
+                ? "bg-primary text-primary-foreground"
+                : "bg-primary/40 text-primary-foreground/50 cursor-not-allowed"
+            }`}
+          >
             {t.purchaseNow}
           </button>
         </div>
