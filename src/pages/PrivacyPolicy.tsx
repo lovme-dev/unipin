@@ -4,6 +4,7 @@ import { Menu, Search, ChevronDown } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import unipinLogo from "@/assets/unipin-logo.svg";
+import LegalPageSections from "@/components/LegalPageSections";
 
 const PrivacyPolicy = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -80,7 +81,7 @@ const PrivacyPolicy = () => {
           <h2 className="text-lg sm:text-xl font-bold text-foreground pt-4">Introduction</h2>
           <p>At UniPin, we are committed to protecting your Personal Information when you use our website, products and services. We recognize that when you choose to provide us with information about yourself, you trust us to treat it in a responsible manner.</p>
           <p>The purpose of this Website Privacy Policy is to inform you about how we may use your Personal Information and how our privacy practices conform to global data privacy laws and best practice such as the General Data Protection Regulation (GDPR) and other data privacy regulations.</p>
-          <p>We aim to help you understand what personal data we collect, how we use that information, and what control you have over your personal data. This policy applies only to the data collected by <a href={`https://${domainUrl}`} className="text-muted-foreground underline hover:text-foreground" target="_blank" rel="noopener noreferrer">{domainUrl}</a>.</p>
+          <p>We aim to help you understand what personal data we collect, how we use that information, and what control you have over your personal data. This policy applies only to the data collected by <a href={`https://${domainUrl}`} className="text-primary underline hover:text-primary/80" target="_blank" rel="noopener noreferrer">{domainUrl}</a>.</p>
           <p>This website Privacy Policy explains the following:</p>
           <ul className="list-disc list-inside space-y-2 pl-2">
             <li>What information we may collect about you.</li>
@@ -140,7 +141,7 @@ const PrivacyPolicy = () => {
           <p>We may also disclose personal and non-personal information about you to government or law enforcement officials or private parties as we, in our sole discretion, believe necessary or appropriate in order to respond to claims, legal process (including subpoenas), to protect our rights and interests or those of a third party, the safety of the public or any person, to prevent or stop any illegal, unethical, or legally actionable activity, or to otherwise comply with applicable court orders, laws, rules and regulations.</p>
 
           <h2 className="text-lg sm:text-xl font-bold text-foreground pt-4">Where We Process Your Data</h2>
-          <p>If you are visiting <a href={`https://${domainUrl}`} className="text-muted-foreground underline hover:text-foreground" target="_blank" rel="noopener noreferrer">{domainUrl}</a> from every country supported by UniPin, please be aware you are sending personal information to our servers located in Taiwan.</p>
+          <p>If you are visiting <a href={`https://${domainUrl}`} className="text-primary underline hover:text-primary/80" target="_blank" rel="noopener noreferrer">{domainUrl}</a> from every country supported by UniPin, please be aware you are sending personal information to our servers located in Taiwan.</p>
           <p>Under certain circumstances, your personal data that we collect may be transferred to other countries for various purposes outlined below.</p>
 
           <div className="overflow-x-auto">
@@ -169,7 +170,7 @@ const PrivacyPolicy = () => {
 
           <h2 className="text-lg sm:text-xl font-bold text-foreground pt-4">Use of Cookies</h2>
           <p>"Cookies" are a feature on your Internet browser which store small amounts of data on your computer when you visit a website. They allow us to recognize a particular device or browser so that we can personalize and curate content to your preferences and make our services and Platform more useful to you. "Cookies" do not tell us who you are unless you specifically give us personally identifiable information. You may be able to manage and delete "cookies" by selecting certain options on your browser.</p>
-          <p>Cookies on <a href={`https://${domainUrl}`} className="text-muted-foreground underline hover:text-foreground" target="_blank" rel="noopener noreferrer">{domainUrl}</a> are used for various purposes. These "cookies" are data elements stored on your hard drive that allow us to improve your usage of our website. By using a cookie to identify you, you do not necessarily need to log in with a password more than once from the same browser, saving you time when accessing our site. In addition, we use cookies for advertising products based on your usage history, storing and managing your preferences on the website, enabling content, and generally analyzing your usage. Usage of cookies may be linked to your personal data on the website.</p>
+          <p>Cookies on <a href={`https://${domainUrl}`} className="text-primary underline hover:text-primary/80" target="_blank" rel="noopener noreferrer">{domainUrl}</a> are used for various purposes. These "cookies" are data elements stored on your hard drive that allow us to improve your usage of our website. By using a cookie to identify you, you do not necessarily need to log in with a password more than once from the same browser, saving you time when accessing our site. In addition, we use cookies for advertising products based on your usage history, storing and managing your preferences on the website, enabling content, and generally analyzing your usage. Usage of cookies may be linked to your personal data on the website.</p>
           <p>We collect, and also allow third parties to collect statistical information relating to your website use and online activities as you interact with our Platform, using "cookies" and similar technologies. Such statistical information is anonymous in nature and does not identify who you are. They include page visits, access times and dates, and browser type. This information is collected for analysis and evaluation to help us improve our Platform and the UniPin Services.</p>
           <p>Your statistical data may be shared with our third-party partners: (i) with whom we advertise; (ii) who help us deliver or optimize our services; (iii) who wish to market their goods or services, which may be of interest to you; or (iv) who wish to improve their goods or services to be provided to you.</p>
 
@@ -192,13 +193,15 @@ const PrivacyPolicy = () => {
           <p>On our website, you may encounter links to other websites. Be aware that we are not responsible for the content or privacy practices of these other sites. We encourage all users to read the privacy policies of any other sites that collect your personal data. We are not responsible for the content, use, or privacy practices of these websites.</p>
 
           <h2 className="text-lg sm:text-xl font-bold text-foreground pt-4">Contact Information</h2>
-          <p>For any questions, concerns, or requests to exercise your rights outlined in this privacy policy, please contact us via email at <a href="mailto:privacy@unipin.com" className="text-muted-foreground underline hover:text-foreground">privacy@unipin.com</a> or visit us at: <a href={`https://${domainUrl}/support`} className="text-muted-foreground underline hover:text-foreground" target="_blank" rel="noopener noreferrer">{domainUrl}/support</a></p>
+          <p>For any questions, concerns, or requests to exercise your rights outlined in this privacy policy, please contact us via email at <a href="mailto:privacy@unipin.pk" className="text-primary underline hover:text-primary/80">privacy@unipin.pk</a> or visit us at: <a href={`https://${domainUrl}/support`} className="text-primary underline hover:text-primary/80" target="_blank" rel="noopener noreferrer">{domainUrl}/support</a></p>
 
           <h2 className="text-lg sm:text-xl font-bold text-foreground pt-4">Changes to This Privacy Policy</h2>
           <p>This privacy policy was last updated on January 1st, 2026.</p>
           <p>We may change our Product and policies, and we may need to make changes to this Privacy Policy so that they accurately reflect our Product and policies. Unless otherwise required by law, we will notify you (for example, through our Product) before we make changes to this Privacy Policy and give you an opportunity to review them before they go into effect. Then, if you continue to use the Product, you will be bound by the updated Privacy Policy. If you do not want to agree to this or any updated Privacy Policy, you can delete your account.</p>
         </div>
       </div>
+
+      <LegalPageSections />
 
       {/* Footer */}
       <footer className="bg-topbar">

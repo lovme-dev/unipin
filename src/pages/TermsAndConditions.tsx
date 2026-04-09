@@ -4,6 +4,7 @@ import { Menu, Search, ChevronDown } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import unipinLogo from "@/assets/unipin-logo.svg";
+import LegalPageSections from "@/components/LegalPageSections";
 
 const TermsAndConditions = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -179,7 +180,7 @@ const TermsAndConditions = () => {
           </p>
 
           <p>
-            When you register for an account or update the information, you agree to provide us with accurate information and that you will keep it up-to-date at all times. You may never allow anyone else to use your account (except your parents or legal guardian). If you have reason to believe that your account is no longer secure, then you must immediately notify us at cs@unipin.com. You are responsible for all activities that occur in your Account, whether or not you know about them.
+            When you register for an account or update the information, you agree to provide us with accurate information and that you will keep it up-to-date at all times. You may never allow anyone else to use your account (except your parents or legal guardian). If you have reason to believe that your account is no longer secure, then you must immediately notify us at cs@unipin.pk. You are responsible for all activities that occur in your Account, whether or not you know about them.
           </p>
 
           <p>
@@ -274,6 +275,8 @@ const TermsAndConditions = () => {
           </p>
         </div>
       </div>
+
+      <LegalPageSections />
 
       {/* Footer */}
       <footer className="bg-topbar">
