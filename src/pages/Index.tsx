@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search, ChevronDown, ChevronDown as ChevronDownIcon, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
+import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare, ShieldCheck, Clock, BadgeCheck } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import unipinLogo from "@/assets/unipin-logo.svg";
@@ -191,23 +191,47 @@ const Index = () => {
 
       {/* Game Info Section */}
       <div className="mx-3 mt-4">
-        <div className="rounded-lg p-4" style={{ background: 'hsl(220, 30%, 8%)' }}>
+        <div className="rounded-lg p-4" style={{ background: 'hsl(0, 0%, 0%)' }}>
           <div className="flex gap-3 mb-3">
             <img src={freefireIcon} alt="Free Fire" className="w-16 h-16 rounded-lg" />
             <div>
               <div className="flex flex-wrap gap-2 mb-1">
-                <span className="bg-badge-orange text-foreground text-[10px] px-2 py-0.5 rounded font-medium">✅ Distributor Resmi</span>
-                <span className="bg-badge-orange text-foreground text-[10px] px-2 py-0.5 rounded font-medium">⏰ Isi Ulang Instan</span>
+                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded-full font-medium border border-primary/40 bg-primary/10">
+                  <BadgeCheck className="w-3.5 h-3.5" /> Official Distributor
+                </span>
+                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded-full font-medium border border-primary/40 bg-primary/10">
+                  <Clock className="w-3.5 h-3.5" /> Instant Top-Up
+                </span>
+                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded-full font-medium border border-primary/40 bg-primary/10">
+                  <ShieldCheck className="w-3.5 h-3.5" /> Secure Payment
+                </span>
               </div>
               <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
               <p className="text-sm text-muted-foreground">Garena</p>
             </div>
           </div>
-          <p className={`text-sm text-muted-foreground ${!descExpanded ? "line-clamp-3" : ""}`}>
-            Don't let your game be interrupted by a lack of diamonds! Now you can <strong className="text-foreground">top up FF diamonds</strong> easily and quickly through UniPin. How? Just enter your ID and choose the desired amount. UniPin provides options from 5 to 73,100 Free Fire Diamonds. You can use them to buy characters, <em>skins</em>, and even get exclusive items to enhance your gameplay.
-          </p>
-          <button onClick={() => setDescExpanded(!descExpanded)} className="w-full flex justify-center mt-2">
-            <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${descExpanded ? "rotate-180" : ""}`} />
+
+          {descExpanded && (
+            <div className="text-sm text-muted-foreground space-y-4 mt-2">
+              <p>
+                Jangan biarkan permainan kamu terganggu karena kekurangan diamond! Sekarang kamu bisa <strong className="text-foreground">top up diamond FF</strong> dengan mudah dan cepat melalui UniPin. Bagaimana caranya? Kamu tinggal masukkan ID kamu lalu pilih nominal yang diinginkan. UniPin menyediakan pilihan mulai 5 sampai 73.100 Free Fire Diamonds. Kamu bisa menggunakannya untuk membeli karakter, <em>skin</em> hingga mendapatkan item eksklusif untuk mendukung permainanmu.
+              </p>
+              <p>
+                UniPin menyediakan pilihan opsi pembayaran yang beragam melalui DANA, Go-Pay, SAKUKU, DOKU Wallet, Telkomsel, True Money, AkuLaku, Yap!, BNI, BCA, CIMB Clicks, Permata, Mandiri, Danamon, Maybank BII, Indomaret, Alfamart, pembayaran via kartu kredit sampai pulsa. Tidak mau ribet? <strong className="text-foreground">Top up diamond FF</strong> bisa kamu lakukan tanpa harus registrasi, login dan tanpa kartu kredit. Di UniPin, semuanya transaksi bisa dilakukan tanpa ribet.
+              </p>
+              <h3 className="text-primary font-semibold text-sm">Tentang Free Fire</h3>
+              <p>
+                Dikembangkan oleh Garena, Free Fire adalah game <em>battle royale</em> yang bisa dimainkan via Android dan iOS. Popularitasnya sebagai game yang paling banyak diunduh menempatkan Free Fire sebagai "Best Popular Vote Game" dari Google Playstore tahun 2019 lalu.
+              </p>
+            </div>
+          )}
+
+          <button onClick={() => setDescExpanded(!descExpanded)} className="w-full flex justify-center mt-3">
+            {descExpanded ? (
+              <ChevronUp className="w-5 h-5 text-primary" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-primary" />
+            )}
           </button>
         </div>
       </div>
