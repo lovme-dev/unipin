@@ -350,7 +350,9 @@ const Index = () => {
 
           {paymentMethods.map((group) => (
             <div key={group.category} className="mb-4">
-              <h3 className="text-sm font-semibold text-foreground mb-2">{group.category}</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-2">
+                {group.category === "Physical Voucher" ? t.physicalVoucher : group.category === "E-wallet" ? t.eWallet : t.debitCreditCard}
+              </h3>
               {group.methods.map((method) => (
                 <button
                   key={method}
