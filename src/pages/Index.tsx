@@ -460,13 +460,16 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
               </h3>
               {group.methods.map((method) => (
                 <button
-                  key={method}
-                  onClick={() => setSelectedPayment(method)}
+                  key={method.name}
+                  onClick={() => setSelectedPayment(method.name)}
                   className={`w-full bg-secondary rounded-lg p-3 mb-2 flex items-center gap-3 text-left border transition-colors ${
-                    selectedPayment === method ? "border-primary" : "border-transparent"
+                    selectedPayment === method.name ? "border-primary" : "border-transparent"
                   }`}
                 >
-                  <span className="text-sm text-foreground">{method}</span>
+                  {method.logo && (
+                    <img src={method.logo} alt={method.name} className="h-6 w-auto object-contain" />
+                  )}
+                  <span className="text-sm text-foreground">{method.name}</span>
                 </button>
               ))}
             </div>
