@@ -436,6 +436,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                     <Check className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={3} />
                   </div>
                 )}
+                <img src={diamondsChestImg} alt="Diamonds" className="w-10 h-10 object-contain mb-1" />
                 <p className="text-sm font-semibold text-foreground">{pkg.diamonds.toLocaleString()} {t.freeFireDiamonds}</p>
                 <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.idrPrice).formatted}</p>
               </button>
