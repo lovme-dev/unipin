@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search, ChevronDown, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
+import { Menu, Search, ChevronDown, ChevronDown as ChevronDownIcon, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
+import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import unipinLogo from "@/assets/unipin-logo.svg";
 import freefireIcon from "@/assets/freefire-icon.jpg";
 import aovImg from "@/assets/aov.jpg";
@@ -55,7 +56,16 @@ const Index = () => {
   const [descExpanded, setDescExpanded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [regionOpen, setRegionOpen] = useState(false);
+  const [lang, setLang] = useState<"local" | "en">("local");
+  const [manualCountry, setManualCountry] = useState<{ code: string; name: string } | null>(null);
   const geo = useGeo();
+
+  const activeCountryCode = manualCountry?.code || geo.countryCode;
+  const activeCountryName = manualCountry?.name || geo.countryName;
+  const localLangCode = getLanguageCode(activeCountryCode);
+  const activeLangCode = lang === "en" ? "EN" : localLangCode;
+  const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -86,14 +96,33 @@ const Index = () => {
         <div className="relative z-10 py-2 px-4 flex items-center justify-between text-xs">
           <span className="font-bold tracking-wide">INSTANT TOP UP! INSTANT PLAY!</span>
           <div className="flex items-center gap-2">
-            {geo.flagUrl ? (
-              <img src={geo.flagUrl} alt={geo.countryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
-            ) : (
-              <div className="w-7 h-7 rounded-full bg-muted border border-white/20" />
-            )}
-            <button className="bg-[hsl(220,20%,22%)] text-foreground rounded-lg px-3 py-1 text-xs font-semibold border border-white/10">
-              {geo.languageCode}
+            <button onClick={() => setRegionOpen(true)} className="flex items-center gap-1.5">
+              <img src={activeFlagUrl} alt={activeCountryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
+              <span className="text-foreground text-sm font-medium hidden sm:inline">{activeCountryName}</span>
+              <ChevronDown className="w-3.5 h-3.5 text-muted-foreground hidden sm:block" />
             </button>
+            <div className="flex rounded-lg overflow-hidden border border-white/15">
+              <button
+                onClick={() => setLang("local")}
+                className={`px-2.5 py-1 text-xs font-semibold transition-colors ${
+                  lang === "local"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-[hsl(220,20%,22%)] text-foreground"
+                }`}
+              >
+                {localLangCode}
+              </button>
+              <button
+                onClick={() => setLang("en")}
+                className={`px-2.5 py-1 text-xs font-semibold transition-colors ${
+                  lang === "en"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-[hsl(220,20%,22%)] text-foreground"
+                }`}
+              >
+                EN
+              </button>
+            </div>
           </div>
         </div>
 
@@ -383,11 +412,7 @@ const Index = () => {
             <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
           </div>
           <div className="flex justify-center mt-3">
-            {geo.flagUrl ? (
-              <img src={geo.flagUrl} alt={geo.countryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
-            ) : (
-              <div className="w-7 h-7 rounded-full bg-muted" />
-            )}
+            <img src={activeFlagUrl} alt={activeCountryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
           </div>
         </div>
       </div>
@@ -418,6 +443,16 @@ const Index = () => {
           </button>
         </div>
       </div>
+
+      <RegionSelector
+        open={regionOpen}
+        onOpenChange={setRegionOpen}
+        selectedCountry={activeCountryCode}
+        selectedLang={lang}
+        onSelectCountry={(code, name) => setManualCountry({ code, name })}
+        onSelectLang={setLang}
+        localLangCode={localLangCode}
+      />
     </div>
   );
 };
