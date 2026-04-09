@@ -125,8 +125,8 @@ const TermsAndConditions = () => {
 
       {/* Terms Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
-        <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-1">Website Terms And Conditions</h1>
-        <p className="text-sm text-muted-foreground mb-6">Updated at 2026-01-01</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-1">{t.termsTitle}</h1>
+        <p className="text-sm text-muted-foreground mb-6">{t.updatedAt} 2026-01-01</p>
         <div className="border-t border-border mb-8" />
 
         <div className="space-y-6 text-sm sm:text-base text-muted-foreground leading-relaxed">
