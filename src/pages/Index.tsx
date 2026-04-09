@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Check } from "lucide-react";
 import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare, User } from "lucide-react";
+import MobileMenu from "@/components/MobileMenu";
 import { useGeo } from "@/hooks/use-geo";
 import { useCurrency } from "@/hooks/use-currency";
 import { getCountryData } from "@/data/countries";
@@ -254,50 +255,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-50 flex">
-          <div className="w-72 bg-topbar h-full overflow-y-auto p-4">
-            <div className="flex items-center justify-between mb-8">
-              <img src={unipinLogo} alt="UniPin" className="h-8" />
-              <button onClick={() => setMenuOpen(false)} className="text-foreground text-2xl font-bold">✕</button>
-            </div>
-            {[
-              { icon: "🎮", label: "Game" },
-              { icon: "🎉", label: "Promotions and Events" },
-              { icon: "🏪", label: "Points Exchange" },
-              { icon: "👑", label: "Membership" },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center gap-3 py-3 text-foreground">
-                <span>{item.icon}</span>
-                <span>{item.label}</span>
-              </div>
-            ))}
-            <div className="border-t border-border my-4" />
-            {[
-              { icon: "❓", label: "FAQ" },
-              { icon: "🎧", label: "Customer Support" },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center gap-3 py-3 text-foreground">
-                <span>{item.icon}</span>
-                <span>{item.label}</span>
-              </div>
-            ))}
-            <div className="border-t border-border my-4" />
-            {[
-              { icon: "🤝", label: "Partnership Program" },
-              { icon: "👥", label: "Reseller Program" },
-              { icon: "🏆", label: "SEACA eSports & Community" },
-              { icon: "🏷️", label: "#ProudToPlayLocal" },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center gap-3 py-3 text-foreground">
-                <span>{item.icon}</span>
-                <span>{item.label}</span>
-              </div>
-            ))}
-          </div>
-          <div className="flex-1 bg-background/50" onClick={() => setMenuOpen(false)} />
-        </div>
-      )}
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} t={t} />
 
       {/* Game Info Section */}
       <div className="mx-3 mt-4">
