@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
@@ -63,6 +63,7 @@ const Index = () => {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [manualCountry, setManualCountry] = useState<{ code: string; name: string } | null>(null);
   const [authOpen, setAuthOpen] = useState(false);
+  const navigate = useNavigate();
   const geo = useGeo();
 
   const activeCountryCode = manualCountry?.code || geo.countryCode;
@@ -171,7 +172,7 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-2.5">
             <Search className="w-4.5 h-4.5 text-foreground" />
-            <button onClick={() => setAuthOpen(true)} className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
+            <button onClick={() => { if (window.innerWidth < 640) navigate("/login"); else setAuthOpen(true); }} className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
               {t.signIn}
             </button>
           </div>
