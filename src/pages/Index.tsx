@@ -13,7 +13,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
-import freefireIcon from "@/assets/freefire-icon.jpg";
+import freefireIcon from "@/assets/garena-logo.jpeg";
 import aovImg from "@/assets/aov.jpg";
 import codmImg from "@/assets/codm.jpg";
 import ffmaxImg from "@/assets/ffmax.jpg";

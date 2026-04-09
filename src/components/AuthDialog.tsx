@@ -46,10 +46,10 @@ const AuthDialog = ({ open, onOpenChange }: AuthDialogProps) => {
             <div className="relative z-10 p-8">
               <img src={unipinLogo} alt="UniPin" className="h-7 mb-6" />
 
-              <h2 className="text-2xl font-bold text-white mb-2">
+              <h2 className="text-2xl font-bold text-white mb-2" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
                 Why Join UniPin?
               </h2>
-              <p className="text-white/90 text-sm mb-6">
+              <p className="text-white/90 text-sm mb-6" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
                 Sign up now and unlock insane rewards, epic deals, and non-stop gaming perks!
               </p>
 
