@@ -85,9 +85,11 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setCurrentUser(session?.user ?? null);
+      if (session?.user?.email) setEmailInput(session.user.email);
     });
     supabase.auth.getSession().then(({ data: { session } }) => {
       setCurrentUser(session?.user ?? null);
+      if (session?.user?.email) setEmailInput(session.user.email);
     });
     return () => subscription.unsubscribe();
   }, []);
