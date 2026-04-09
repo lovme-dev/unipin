@@ -19,7 +19,6 @@ const PrivacyPolicy = () => {
   const activeCountryCode = manualCountry?.code || geo.countryCode;
   const activeCountryName = manualCountry?.name || geo.countryName;
   const localLangCode = getLanguageCode(activeCountryCode);
-  const activeLangCode = lang === "en" ? "EN" : localLangCode;
   const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
   const activeLangCode = lang === "en" ? "EN" : localLangCode;
   const t = getTranslations(activeLangCode);
