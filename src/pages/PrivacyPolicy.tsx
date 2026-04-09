@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, Search, ChevronDown } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
+import { getTranslations } from "@/i18n/translations";
 import unipinLogo from "@/assets/unipin-logo.svg";
 import LegalPageSections from "@/components/LegalPageSections";
 
