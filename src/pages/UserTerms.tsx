@@ -32,7 +32,7 @@ const UserTerms = () => {
     if (meta) meta.setAttribute("content", "UniPin user terms and conditions for product usage, payments, refund policy, account termination, intellectual property, and UniPin credits and rewards program.");
   }, []);
 
-  const domainUrl = "garenapk.lovable.app";
+  const domainUrl = "www.unipin.pk";
 
   return (
     <div className="min-h-screen bg-background text-foreground">

@@ -32,7 +32,7 @@ const TermsAndConditions = () => {
     if (meta) meta.setAttribute("content", "Read UniPin website terms and conditions covering usage rules, intellectual property, third-party links, disclaimers, indemnification, and governing law.");
   }, []);
 
-  const domainUrl = "garenapk.lovable.app";
+  const domainUrl = "www.unipin.pk";
 
   return (
     <div className="min-h-screen bg-background text-foreground">
