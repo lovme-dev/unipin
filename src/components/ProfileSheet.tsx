@@ -1,5 +1,6 @@
 import { User, LogOut, ClipboardList, UserPen } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { useNavigate } from "react-router-dom";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 interface ProfileSheetProps {
@@ -10,11 +11,22 @@ interface ProfileSheetProps {
 }
 
 const ProfileSheet = ({ open, onClose, user, onLogout }: ProfileSheetProps) => {
+  const navigate = useNavigate();
   const avatarUrl = user.user_metadata?.avatar_url || user.user_metadata?.picture;
   const email = user.email || "";
   const displayName = user.user_metadata?.full_name || user.user_metadata?.name || email;
 
   if (!open) return null;
+
+  const handleEditProfile = () => {
+    onClose();
+    navigate("/settings");
+  };
+
+  const handleTransactionHistory = () => {
+    onClose();
+    navigate("/transaction-history");
+  };
 
   return (
     <>
@@ -73,13 +85,13 @@ const ProfileSheet = ({ open, onClose, user, onLogout }: ProfileSheetProps) => {
           <div className="px-5 mt-8">
             <h3 className="text-lg font-bold text-foreground mb-4">Features</h3>
             <div className="flex gap-8">
-              <button className="flex flex-col items-center gap-2">
+              <button onClick={handleEditProfile} className="flex flex-col items-center gap-2">
                 <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: 'hsl(220, 40%, 18%)', border: '1px solid hsl(220, 30%, 25%)' }}>
                   <UserPen className="w-6 h-6 text-primary" />
                 </div>
                 <span className="text-xs text-foreground">Edit Profile</span>
               </button>
-              <button className="flex flex-col items-center gap-2">
+              <button onClick={handleTransactionHistory} className="flex flex-col items-center gap-2">
                 <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: 'hsl(220, 40%, 18%)', border: '1px solid hsl(220, 30%, 25%)' }}>
                   <ClipboardList className="w-6 h-6 text-primary" />
                 </div>

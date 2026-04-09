@@ -9,6 +9,8 @@ import TermsAndConditions from "./pages/TermsAndConditions.tsx";
 import UserTerms from "./pages/UserTerms.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
+import SettingsPage from "./pages/SettingsPage.tsx";
+import TransactionHistoryPage from "./pages/TransactionHistoryPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,8 @@ const App = () => (
           <Route path="/user-terms" element={<UserTerms />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/transaction-history" element={<TransactionHistoryPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
