@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare, Shield, Clock, CheckCircle } from "lucide-react";
+import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import unipinLogo from "@/assets/unipin-logo.svg";
@@ -195,15 +195,31 @@ const Index = () => {
           <div className="flex gap-3 mb-3">
             <img src={freefireIcon} alt="Free Fire" className="w-16 h-16 rounded-lg" />
             <div>
-              <div className="flex flex-wrap gap-2 mb-1">
-                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded font-medium bg-primary/15">
-                  <CheckCircle className="w-3.5 h-3.5" /> Official Distributor
+              <div className="game-meta-badges">
+                <span className="game-meta-badge">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" className="game-meta-badge-icon" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2.75 14.35 5l3.22-.2.98 3.08 2.8 1.6-1.3 2.95 1.3 2.97-2.8 1.58-.98 3.1-3.22-.22L12 21.25l-2.35-2.24-3.22.22-.98-3.1-2.8-1.58 1.3-2.97-1.3-2.95 2.8-1.6.98-3.08 3.22.2L12 2.75Z" />
+                    <path d="m8.7 12.2 2.1 2.08 4.55-4.88" />
+                  </svg>
+                  Official Distributor
                 </span>
-                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded font-medium bg-primary/15">
-                  <Clock className="w-3.5 h-3.5" /> Instant Top-Up
+                <span className="game-meta-badge">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" className="game-meta-badge-icon" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2.75 6.25h4.5" />
+                    <path d="M2.75 12h3.35" />
+                    <path d="M2.75 17.75h4.5" />
+                    <circle cx="14.25" cy="12" r="6.25" />
+                    <path d="M14.25 8.6V12l2.45 2.45" />
+                  </svg>
+                  Instant Top-Up
                 </span>
-                <span className="inline-flex items-center gap-1 text-primary text-[11px] px-2.5 py-1 rounded font-medium bg-primary/15">
-                  <Shield className="w-3.5 h-3.5" /> Secure Payment
+                <span className="game-meta-badge">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" className="game-meta-badge-icon" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2.75 18 5.25v5.35c0 4.08-2.46 7.33-6 8.9-3.54-1.57-6-4.82-6-8.9V5.25l6-2.5Z" />
+                    <rect x="8.6" y="10.2" width="6.8" height="5.8" rx="1.15" />
+                    <path d="M10.15 10.2V8.9a1.85 1.85 0 0 1 3.7 0v1.3" />
+                  </svg>
+                  Secure Payment
                 </span>
               </div>
               <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
@@ -211,7 +227,7 @@ const Index = () => {
             </div>
           </div>
 
-          <p className={`text-sm text-muted-foreground mt-2 ${!descExpanded ? "line-clamp-2" : "hidden"}`}>
+          <p className={`game-summary-preview ${descExpanded ? "hidden" : ""}`}>
             Jangan biarkan permainan kamu terganggu karena kekurangan diamond! Sekarang kamu bisa <strong className="text-foreground">top up diamond FF</strong> dengan mudah dan cepat melalui UniPin. Bagaimana caranya? Kamu tinggal masukkan ID kamu lalu pilih nominal yang diinginkan. UniPin menyediakan pilihan mulai 5 sampai 73.100 Free Fire Diamonds. Kamu bisa menggunakannya untuk membeli karakter, <em>skin</em> hingga mendapatkan item eksklusif untuk mendukung permainanmu.
           </p>
 
