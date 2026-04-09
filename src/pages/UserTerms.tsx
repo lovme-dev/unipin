@@ -431,9 +431,9 @@ const UserTerms = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <p className="text-xs text-muted-foreground text-center sm:text-left">© 2026 UniPin. All Rights Reserved</p>
               <div className="flex justify-center sm:justify-start gap-4 text-xs text-primary flex-wrap">
-                <Link to="/terms-and-conditions" className="hover:underline">Website Terms and Conditions</Link>
-                <Link to="/user-terms" className="hover:underline">User Terms & Conditions</Link>
-                <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+                <Link to="/terms-and-conditions" className="hover:underline">{t.websiteTerms}</Link>
+                <Link to="/user-terms" className="hover:underline">{t.userTermsConditions}</Link>
+                <Link to="/privacy-policy" className="hover:underline">{t.privacyPolicyLink}</Link>
               </div>
               <div className="flex justify-center sm:justify-end">
                 <img src={activeFlagUrl} alt={activeCountryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
