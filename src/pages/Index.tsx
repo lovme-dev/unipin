@@ -190,9 +190,22 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-2.5">
             <Search className="w-4.5 h-4.5 text-foreground" />
-            <button onClick={() => { if (window.innerWidth < 640) navigate("/login"); else setAuthOpen(true); }} className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
-              {t.signIn}
-            </button>
+            {currentUser ? (
+              <button onClick={() => setProfileOpen(true)}>
+                <Avatar className="w-8 h-8 border border-white/20">
+                  {currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture ? (
+                    <AvatarImage src={currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture} alt="Profile" />
+                  ) : null}
+                  <AvatarFallback className="bg-muted text-muted-foreground">
+                    <User className="w-4 h-4" />
+                  </AvatarFallback>
+                </Avatar>
+              </button>
+            ) : (
+              <button onClick={() => { if (window.innerWidth < 640) navigate("/login"); else setAuthOpen(true); }} className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
+                {t.signIn}
+              </button>
+            )}
           </div>
         </div>
       </div>
