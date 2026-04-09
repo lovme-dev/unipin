@@ -56,7 +56,16 @@ const Index = () => {
   const [descExpanded, setDescExpanded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [regionOpen, setRegionOpen] = useState(false);
+  const [lang, setLang] = useState<"local" | "en">("local");
+  const [manualCountry, setManualCountry] = useState<{ code: string; name: string } | null>(null);
   const geo = useGeo();
+
+  const activeCountryCode = manualCountry?.code || geo.countryCode;
+  const activeCountryName = manualCountry?.name || geo.countryName;
+  const localLangCode = getLanguageCode(activeCountryCode);
+  const activeLangCode = lang === "en" ? "EN" : localLangCode;
+  const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
