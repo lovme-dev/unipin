@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare } from "lucide-react";
+import { Menu, Search, ChevronDown, ChevronUp, Info, MessageCircle, Mail, HelpCircle, MessageSquare, User } from "lucide-react";
 import { useGeo } from "@/hooks/use-geo";
 import RegionSelector, { getLanguageCode } from "@/components/RegionSelector";
 import { getTranslations } from "@/i18n/translations";
 import unipinLogo from "@/assets/unipin-logo.svg";
 import AuthDialog from "@/components/AuthDialog";
+import ProfileSheet from "@/components/ProfileSheet";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
 import freefireIcon from "@/assets/freefire-icon.jpg";
 import aovImg from "@/assets/aov.jpg";
 import codmImg from "@/assets/codm.jpg";
@@ -63,8 +68,21 @@ const Index = () => {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [manualCountry, setManualCountry] = useState<{ code: string; name: string } | null>(null);
   const [authOpen, setAuthOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<SupabaseUser | null>(null);
   const navigate = useNavigate();
   const geo = useGeo();
+
+  // Listen to auth state
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setCurrentUser(session?.user ?? null);
+    });
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setCurrentUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   const activeCountryCode = manualCountry?.code || geo.countryCode;
   const activeCountryName = manualCountry?.name || geo.countryName;
@@ -172,9 +190,22 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-2.5">
             <Search className="w-4.5 h-4.5 text-foreground" />
-            <button onClick={() => { if (window.innerWidth < 640) navigate("/login"); else setAuthOpen(true); }} className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
-              {t.signIn}
-            </button>
+            {currentUser ? (
+              <button onClick={() => setProfileOpen(true)}>
+                <Avatar className="w-8 h-8 border border-white/20">
+                  {currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture ? (
+                    <AvatarImage src={currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture} alt="Profile" />
+                  ) : null}
+                  <AvatarFallback className="bg-muted text-muted-foreground">
+                    <User className="w-4 h-4" />
+                  </AvatarFallback>
+                </Avatar>
+              </button>
+            ) : (
+              <button onClick={() => { if (window.innerWidth < 640) navigate("/login"); else setAuthOpen(true); }} className="bg-primary text-primary-foreground px-4 py-1 rounded-md text-xs font-bold tracking-wide">
+                {t.signIn}
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -530,6 +561,18 @@ const Index = () => {
         localLangCode={localLangCode}
       />
       <AuthDialog open={authOpen} onOpenChange={setAuthOpen} />
+      {currentUser && (
+        <ProfileSheet
+          open={profileOpen}
+          onClose={() => setProfileOpen(false)}
+          user={currentUser}
+          onLogout={async () => {
+            await supabase.auth.signOut();
+            setProfileOpen(false);
+            toast.success("Logged out successfully");
+          }}
+        />
+      )}
     </div>
   );
 };
