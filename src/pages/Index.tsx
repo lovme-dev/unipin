@@ -576,7 +576,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
 
       {/* Sticky Bottom Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-40">
-        <div className="flex text-[9px]" style={{ background: 'hsl(220,25%,16%)', borderTop: '1px solid hsl(31,92%,53%,0.3)' }}>
+        <div className="flex text-[9px]" style={{ background: 'hsl(35, 12%, 22%)', borderTop: '1px solid hsl(31,92%,53%,0.3)' }}>
           <div className="flex-1 px-2 py-1">
             <span className="text-muted-foreground">{t.userId}</span>
             <p className="text-primary">-</p>
