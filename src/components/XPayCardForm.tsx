@@ -32,7 +32,8 @@ const getFriendlyErrorMessage = (errorMessage: string): string => {
   if (lower.includes('invalid card') || lower.includes('card number')) return 'Invalid card number. Please check and re-enter.';
   if (lower.includes('cvc') || lower.includes('cvv')) return 'Invalid security code (CVV).';
   if (lower.includes('network') || lower.includes('timeout')) return 'Network error. Please check your connection.';
-  if (lower.includes('non-json')) return 'Payment gateway configuration error. Please contact support.';
+  if (lower.includes('non-json')) return 'Payment gateway error. Please try again.';
+  if (lower.includes('not configured')) return 'Payment system not fully configured. Please contact support.';
   if (errorMessage.length > 0) return `Payment failed: ${errorMessage}`;
   return 'An unexpected error occurred. Please try again.';
 };
@@ -106,36 +107,35 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
           orderId,
           customerEmail,
           customerName: 'Customer',
-          customerPhone: customerPhone || '+920000000000',
+          customerPhone: customerPhone || '03001234567',
           productName,
           productType,
           productAmount,
           playerId,
           packageId,
-          successUrl: `${window.location.origin}/?paymentSuccess=true&orderId=${orderId}`,
-          cancelUrl: `${window.location.origin}/?paymentFailed=true&orderId=${orderId}`,
         },
       });
 
       if (intentError) throw new Error(intentError.message || 'Failed to create payment');
       if (!data?.success) throw new Error(data?.error || 'Payment initialization failed');
 
-      // Step 2: If fwdUrl is returned, redirect for 3DS / hosted checkout
-      if (data.fwdUrl) {
-        window.location.href = data.fwdUrl;
-        return;
-      }
+      const { clientSecret, encryptionKey } = data;
 
-      // Step 3: If clientSecret available, confirm with SDK
-      if (data.clientSecret) {
-        const confirmResult = await xpay.confirmPayment(
-          "card",
-          data.clientSecret,
-          { name: 'Customer', email: customerEmail, phone: customerPhone || '+920000000000' },
-          data.encryptionKey || ''
-        );
+      if (!clientSecret) throw new Error('No client secret received');
 
-        if (confirmResult?.error) throw new Error(confirmResult.message || 'Payment failed');
+      // Step 2: Confirm payment with XPay SDK
+      console.log('[XPayCardForm] Confirming payment...');
+      const confirmResult = await xpay.confirmPayment(
+        "card",
+        clientSecret,
+        { name: 'Customer', email: customerEmail, phone: customerPhone || '03001234567' },
+        encryptionKey || ''
+      );
+
+      console.log('[XPayCardForm] Payment result:', confirmResult);
+
+      if (confirmResult?.error) {
+        throw new Error(confirmResult.message || confirmResult.error || 'Payment failed');
       }
 
       onSuccess({
@@ -162,6 +162,7 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
         <input
           type="text"
           inputMode="numeric"
+          autoComplete="cc-number"
           placeholder="1234 1234 1234 1234"
           value={cardNumber}
           onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
@@ -174,6 +175,7 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
           <input
             type="text"
             inputMode="numeric"
+            autoComplete="cc-exp"
             placeholder="MM/YY"
             value={expiry}
             onChange={(e) => setExpiry(formatExpiry(e.target.value))}
@@ -185,6 +187,7 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
           <input
             type="text"
             inputMode="numeric"
+            autoComplete="cc-csc"
             placeholder="CVC"
             value={cvc}
             onChange={(e) => setCvc(e.target.value.replace(/\D/g, '').slice(0, 4))}
