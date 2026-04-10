@@ -419,7 +419,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                 )}
                 <img src={diamondsChestImg} alt="Diamonds" className="w-10 h-10 object-contain mb-1" />
                 <p className="text-sm font-semibold text-foreground">
-                  {pkg.diamonds.toLocaleString()} <span className="text-green-400">+{pkg.bonus.toLocaleString()}</span> {t.freeFireDiamonds}
+                  {pkg.diamonds.toLocaleString()} <span className="text-xs" style={{ color: '#ED9B26' }}>+{pkg.bonus.toLocaleString()}</span> {t.freeFireDiamonds}
                 </p>
                 <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.pkrPrice).formatted}</p>
               </button>
