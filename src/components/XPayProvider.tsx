@@ -26,55 +26,66 @@ export const XPayProvider = ({ children, email, customerName }: XPayProviderProp
   const [config, setConfig] = useState<XPayConfig | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [xpayInstance, setXpayInstance] = useState<any>(null);
+  const [sdkReady, setSdkReady] = useState(false);
 
-  // Fetch config and initialize SDK
+  // Wait for CDN script to load
   useEffect(() => {
-    const init = async () => {
+    const checkSdk = () => {
+      if (typeof window !== 'undefined' && (window as any).Xpay) {
+        setSdkReady(true);
+        return true;
+      }
+      return false;
+    };
+
+    if (checkSdk()) return;
+
+    const interval = setInterval(() => {
+      if (checkSdk()) clearInterval(interval);
+    }, 200);
+
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+      if (!(window as any).Xpay) {
+        setError('Payment SDK failed to load. Please refresh the page.');
+        setLoading(false);
+      }
+    }, 15000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  // Fetch config once SDK is ready
+  useEffect(() => {
+    if (!sdkReady) return;
+
+    const fetchConfig = async () => {
       try {
-        // Fetch config
         const { data, error: fetchErr } = await supabase.functions.invoke('xpay-config');
         
         if (fetchErr || !data?.publishableKey) {
           throw new Error('Could not load payment configuration');
         }
         
-        console.log('[XPayProvider] Config loaded successfully');
+        console.log('[XPayProvider] Config loaded, initializing SDK...');
         setConfig({
           publishableKey: data.publishableKey,
           accountId: data.accountId,
           hmacSecret: data.hmacSecret,
         });
-
-        // Import and initialize XPay SDK
-        const xpayModule = await import('@xstak/xpay-element-live-v4');
-        const XPaySDK = xpayModule.XPay || xpayModule.default || xpayModule;
-        
-        if (XPaySDK && typeof XPaySDK === 'function') {
-          const instance = new XPaySDK({
-            publishableKey: data.publishableKey,
-            accountId: data.accountId,
-            hmacSecret: data.hmacSecret,
-            email,
-            customerName,
-          });
-          setXpayInstance(instance);
-        } else if (typeof window !== 'undefined' && (window as any).Xpay) {
-          setXpayInstance((window as any).Xpay);
-        } else {
-          // SDK loaded as module, store reference
-          setXpayInstance(XPaySDK);
-        }
       } catch (err: any) {
-        console.error('[XPayProvider] Init error:', err);
+        console.error('[XPayProvider] Config error:', err);
         setError(err.message || 'Payment system unavailable');
       } finally {
         setLoading(false);
       }
     };
 
-    init();
-  }, [email, customerName]);
+    fetchConfig();
+  }, [sdkReady]);
 
   if (loading) {
     return (
@@ -92,15 +103,11 @@ export const XPayProvider = ({ children, email, customerName }: XPayProviderProp
     );
   }
 
+  const xpayInstance = (window as any).Xpay;
+
   const confirmPayment = async (type: string, clientSecret: string, customer: any, encryptionKey: string) => {
-    if (xpayInstance?.confirmPayment) {
-      return xpayInstance.confirmPayment(type, clientSecret, customer, encryptionKey);
-    }
-    // Fallback: check window.Xpay
-    if (typeof window !== 'undefined' && (window as any).Xpay?.confirmPayment) {
-      return (window as any).Xpay.confirmPayment(type, clientSecret, customer, encryptionKey);
-    }
-    throw new Error('XPay SDK not available');
+    if (!xpayInstance) throw new Error('XPay SDK not available');
+    return xpayInstance.confirmPayment(type, clientSecret, customer, encryptionKey);
   };
 
   return (
