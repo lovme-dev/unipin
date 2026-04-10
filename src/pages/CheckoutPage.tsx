@@ -111,8 +111,9 @@ const CheckoutPage = () => {
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground text-sm">Item</span>
               <span className="text-foreground text-sm font-semibold flex items-center gap-1.5">
-                {state.diamonds.toLocaleString()} + {state.bonus.toLocaleString()}
-                <img src={diamondIcon} alt="Diamond" className="w-5 h-5 object-contain inline-block" />
+                {state.diamonds.toLocaleString()}
+                <span className="text-xs" style={{ color: '#ED9B26' }}>+ {state.bonus.toLocaleString()}</span>
+                <img src={diamondIcon} alt="Diamond" className="w-4 h-4 object-contain inline-block" />
               </span>
             </div>
             <div className="flex justify-between items-center">
