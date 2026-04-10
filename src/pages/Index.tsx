@@ -491,11 +491,11 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
         <p className="text-sm text-muted-foreground mb-4">{t.contactUs}</p>
         <div className="flex gap-2 flex-wrap">
           {[
-            { icon: <MessageCircle className="w-6 h-6" />, label: t.messenger, href: undefined as string | undefined },
-            { icon: <span className="text-2xl">💬</span>, label: t.whatsapp, href: "https://wa.me/447476966269" },
-            { icon: <Mail className="w-6 h-6" />, label: t.emailLabel, href: undefined as string | undefined },
-            { icon: <HelpCircle className="w-6 h-6" />, label: t.faq, href: undefined as string | undefined },
-            { icon: <MessageSquare className="w-6 h-6" />, label: t.provideFeedback, href: undefined as string | undefined },
+            { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="0"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.908 1.434 5.503 3.678 7.2V22l3.378-1.852c.9.25 1.855.384 2.944.384 5.523 0 10-4.145 10-9.243S17.523 2 12 2zm1.065 12.439-2.55-2.722L5.5 14.439l5.5-5.878 2.613 2.722L18.5 8.561l-5.435 5.878z"/></svg>, label: t.messenger, href: undefined as string | undefined },
+            { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="hsl(var(--primary))" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.016a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.999-3.648-.235-.374a9.86 9.86 0 0 1-1.511-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884z"/></svg>, label: t.whatsapp, href: "https://wa.me/447476966269" },
+            { icon: <Mail className="w-6 h-6" fill="hsl(var(--primary))" />, label: t.emailLabel, href: undefined as string | undefined },
+            { icon: <HelpCircle className="w-6 h-6" fill="hsl(var(--primary))" />, label: t.faq, href: undefined as string | undefined },
+            { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke="hsl(var(--primary-foreground))" strokeWidth="2" strokeLinecap="round"/></svg>, label: t.provideFeedback, href: undefined as string | undefined },
           ].map((item) => (
             item.href ? (
               <a
@@ -503,7 +503,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-primary rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1"
+                className="border border-primary/40 rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1 bg-primary/[0.07]"
               >
                 <span className="text-primary mb-1">{item.icon}</span>
                 <span className="text-xs text-foreground text-center">{item.label}</span>
@@ -511,7 +511,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
             ) : (
               <div
                 key={item.label}
-                className="border border-primary rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1"
+                className="border border-primary/40 rounded-lg p-3 flex flex-col items-center justify-center min-w-[100px] flex-1 bg-primary/[0.07]"
               >
                 <span className="text-primary mb-1">{item.icon}</span>
                 <span className="text-xs text-foreground text-center">{item.label}</span>
