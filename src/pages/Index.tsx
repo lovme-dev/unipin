@@ -625,6 +625,8 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                     currency: activeCurrency,
                     currencySymbol: activeCurrencySymbol,
                     paymentMethod: selectedPayment,
+                    rawPkrPrice: selectedDiamond.pkrPrice,
+                    email: emailInput,
                   },
                 });
               }
