@@ -615,6 +615,20 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
           <button
             ref={purchaseBtnRef}
             disabled={!isFormComplete}
+            onClick={() => {
+              if (isFormComplete && selectedDiamond) {
+                navigate("/checkout", {
+                  state: {
+                    diamonds: selectedDiamond.diamonds,
+                    bonus: selectedDiamond.bonus,
+                    price: convert(selectedDiamond.pkrPrice).formatted,
+                    currency: activeCurrency,
+                    currencySymbol: activeCurrencySymbol,
+                    paymentMethod: selectedPayment,
+                  },
+                });
+              }
+            }}
             className={`px-4 py-1.5 rounded-md font-bold text-xs transition-all ${
               isFormComplete
                 ? "bg-primary text-primary-foreground"
