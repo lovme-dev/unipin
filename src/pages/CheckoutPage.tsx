@@ -1,12 +1,15 @@
-import { useState } from "react";
-import { ChevronLeft, ShieldCheck } from "lucide-react";
+import { useState, useRef } from "react";
+import { ChevronLeft, ShieldCheck, Check } from "lucide-react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import unipinLogo from "@/assets/unipin-logo.svg";
 import visaMastercardLogo from "@/assets/visa-mastercard-logo.png";
 import rewardMerchandise from "@/assets/reward-merchandise.svg";
 import rewardFasterReload from "@/assets/reward-faster-reload.svg";
 import rewardEventVip from "@/assets/reward-event-vip.svg";
+import diamondIcon from "@/assets/diamond-icon.png";
 import { toast } from "sonner";
+import { XPayProvider } from "@/components/XPayProvider";
+import XPayCardForm, { type XPayCardFormRef } from "@/components/XPayCardForm";
 
 interface CheckoutState {
   diamonds: number;
@@ -15,6 +18,8 @@ interface CheckoutState {
   currency: string;
   currencySymbol: string;
   paymentMethod: string;
+  rawPkrPrice?: number;
+  email?: string;
 }
 
 const CheckoutPage = () => {
@@ -22,15 +27,28 @@ const CheckoutPage = () => {
   const location = useLocation();
   const state = location.state as CheckoutState | null;
   const [rememberMe, setRememberMe] = useState(false);
+  const cardFormRef = useRef<XPayCardFormRef>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   if (!state) {
     navigate("/");
     return null;
   }
 
-  const handleConfirm = () => {
-    toast.success(`Top-up of ${state.diamonds.toLocaleString()} + ${state.bonus.toLocaleString()} Diamonds initiated!`);
-    navigate("/");
+  const handlePurchase = async () => {
+    if (cardFormRef.current) {
+      setIsProcessing(true);
+      try {
+        await cardFormRef.current.submit();
+      } catch {
+        // error handled by XPayCardForm
+      } finally {
+        setIsProcessing(false);
+      }
+    } else {
+      toast.success(`Top-up of ${state.diamonds.toLocaleString()} + ${state.bonus.toLocaleString()} Diamonds initiated!`);
+      navigate("/");
+    }
   };
 
   return (
@@ -92,13 +110,14 @@ const CheckoutPage = () => {
           <div className="space-y-2 mb-6">
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground text-sm">Item</span>
-              <span className="text-foreground text-sm font-medium">
-                {state.diamonds.toLocaleString()} + {state.bonus.toLocaleString()} 💎
+              <span className="text-foreground text-sm font-semibold flex items-center gap-1.5">
+                {state.diamonds.toLocaleString()} + {state.bonus.toLocaleString()}
+                <img src={diamondIcon} alt="Diamond" className="w-5 h-5 object-contain inline-block" />
               </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-muted-foreground text-sm">Price</span>
-              <span className="text-foreground text-sm font-medium">
+              <span className="text-foreground text-sm font-semibold">
                 {state.currencySymbol} {state.price}
               </span>
             </div>
@@ -106,6 +125,29 @@ const CheckoutPage = () => {
 
           {/* Divider */}
           <div className="h-px bg-border/30 mb-5" />
+
+          {/* XPay Card Form */}
+          <div className="mb-5">
+            <XPayProvider email={state.email} customerName="Customer">
+              <XPayCardForm
+                ref={cardFormRef}
+                amount={state.rawPkrPrice || 0}
+                currency="PKR"
+                customerEmail={state.email || ""}
+                customerPhone=""
+                productName={`${state.diamonds} + ${state.bonus} Free Fire Diamonds`}
+                productType="freefire_diamonds"
+                productAmount={`${state.diamonds}+${state.bonus}`}
+                onSuccess={(details) => {
+                  toast.success("Payment successful!");
+                  navigate("/", { state: { paymentSuccess: true } });
+                }}
+                onError={(error) => {
+                  toast.error(error);
+                }}
+              />
+            </XPayProvider>
+          </div>
 
           {/* Remember Me */}
           <label className="flex items-center gap-2.5 mb-8 cursor-pointer">
@@ -142,17 +184,18 @@ const CheckoutPage = () => {
             </div>
           </div>
 
-          {/* Confirm Button */}
+          {/* Purchase Button */}
           <button
-            onClick={handleConfirm}
-            className="w-full py-3.5 rounded-full bg-primary text-primary-foreground font-bold text-base hover:bg-primary/90 transition-colors mb-4"
+            onClick={handlePurchase}
+            disabled={isProcessing}
+            className="w-full py-3.5 rounded-full bg-primary text-primary-foreground font-bold text-base hover:bg-primary/90 transition-colors mb-4 disabled:opacity-50"
           >
-            CONFIRM
+            {isProcessing ? "PROCESSING..." : "PURCHASE"}
           </button>
 
           {/* Terms */}
           <p className="text-center text-xs text-muted-foreground mb-6">
-            By clicking "Confirm", you agree to{" "}
+            By clicking "Purchase", you agree to{" "}
             <Link to="/user-terms" className="text-primary hover:underline">
               User's Terms and Conditions
             </Link>
@@ -169,7 +212,10 @@ const CheckoutPage = () => {
 
           {/* Payment Secured */}
           <div className="flex items-center justify-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-green-500" fill="hsl(142, 71%, 45%)" />
+            <div className="relative">
+              <ShieldCheck className="w-6 h-6 text-green-500" fill="hsl(142, 71%, 45%)" strokeWidth={2} />
+              <Check className="absolute inset-0 m-auto w-3 h-3 text-black" strokeWidth={3} />
+            </div>
             <div className="text-xs font-bold text-foreground leading-tight">
               <p>PAYMENT</p>
               <p>SECURED</p>
