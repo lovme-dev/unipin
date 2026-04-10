@@ -11,14 +11,12 @@ serve(async (req) => {
   }
 
   try {
+    const XPAY_PUBLISHABLE_KEY = Deno.env.get("XPAY_PUBLISHABLE_KEY");
     const XPAY_SECRET_KEY = Deno.env.get("XPAY_SECRET_KEY");
     const XPAY_ACCOUNT_ID = Deno.env.get("XPAY_ACCOUNT_ID");
 
-    if (!XPAY_SECRET_KEY) {
-      throw new Error("XPAY_SECRET_KEY is not configured");
-    }
-    if (!XPAY_ACCOUNT_ID) {
-      throw new Error("XPAY_ACCOUNT_ID is not configured");
+    if (!XPAY_PUBLISHABLE_KEY || !XPAY_SECRET_KEY) {
+      throw new Error("XPay API keys not configured");
     }
 
     const body = await req.json();
@@ -45,48 +43,65 @@ serve(async (req) => {
       );
     }
 
-    // Create payment intent with XPay API
-    const response = await fetch("https://api.xstak.com/api/v1/payment-intent", {
+    // Basic auth: base64(publishableKey:secretKey)
+    const basicAuth = btoa(`${XPAY_PUBLISHABLE_KEY}:${XPAY_SECRET_KEY}`);
+
+    // XPay API: https://api.xpaycheckout.com/payments/create-intent
+    const response = await fetch("https://api.xpaycheckout.com/payments/create-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${XPAY_SECRET_KEY}`,
-        "x-account-id": XPAY_ACCOUNT_ID,
+        "Authorization": `Basic ${basicAuth}`,
       },
       body: JSON.stringify({
-        amount: Math.round(amount * 100), // Convert to smallest unit
+        amount: Math.round(amount * 100), // lowest currency unit (paisa)
         currency,
-        order_id: orderId,
-        customer: {
-          email: customerEmail,
+        customerDetails: {
           name: customerName || "Customer",
-          phone: customerPhone,
+          email: customerEmail,
+          contactNumber: customerPhone || "+920000000000",
         },
+        callbackUrl: successUrl,
+        cancelUrl: cancelUrl,
+        receiptId: orderId,
+        description: productName || "Free Fire Diamonds",
+        paymentMethods: ["CARD"],
         metadata: {
-          productName,
           productType,
           productAmount,
           playerId,
           packageId,
+          orderId,
         },
-        success_url: successUrl,
-        cancel_url: cancelUrl,
       }),
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
+    console.log("[XPay] API response status:", response.status);
+    console.log("[XPay] API response:", responseText);
 
-    if (!response.ok) {
-      console.error("[XPay] Create payment intent failed:", data);
-      throw new Error(data.message || `XPay API error [${response.status}]`);
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch {
+      console.error("[XPay] Non-JSON response:", responseText.substring(0, 500));
+      throw new Error(`XPay API returned non-JSON response [${response.status}]`);
     }
 
+    if (!response.ok) {
+      console.error("[XPay] Create intent failed:", JSON.stringify(data));
+      throw new Error(data.message || data.error || JSON.stringify(data));
+    }
+
+    // Response has xIntentId and fwdUrl
     return new Response(
       JSON.stringify({
         success: true,
-        clientSecret: data.client_secret,
-        encryptionKey: data.encryption_key,
-        paymentIntentId: data.id,
+        xIntentId: data.xIntentId,
+        fwdUrl: data.fwdUrl,
+        clientSecret: data.xIntentId, // SDK uses xIntentId as client secret
+        encryptionKey: data.encryptionKey || "",
+        paymentIntentId: data.xIntentId,
         orderId,
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -95,7 +110,7 @@ serve(async (req) => {
     console.error("[XPay] Error:", error);
     return new Response(
       JSON.stringify({ success: false, error: error.message }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
 });

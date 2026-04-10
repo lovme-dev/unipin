@@ -32,6 +32,7 @@ const getFriendlyErrorMessage = (errorMessage: string): string => {
   if (lower.includes('invalid card') || lower.includes('card number')) return 'Invalid card number. Please check and re-enter.';
   if (lower.includes('cvc') || lower.includes('cvv')) return 'Invalid security code (CVV).';
   if (lower.includes('network') || lower.includes('timeout')) return 'Network error. Please check your connection.';
+  if (lower.includes('non-json')) return 'Payment gateway configuration error. Please contact support.';
   if (errorMessage.length > 0) return `Payment failed: ${errorMessage}`;
   return 'An unexpected error occurred. Please try again.';
 };
@@ -97,6 +98,7 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
     try {
       const orderId = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
+      // Step 1: Create payment intent via edge function
       const { data, error: intentError } = await supabase.functions.invoke('xpay-create-payment', {
         body: {
           amount,
@@ -104,7 +106,7 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
           orderId,
           customerEmail,
           customerName: 'Customer',
-          customerPhone: customerPhone || '03001234567',
+          customerPhone: customerPhone || '+920000000000',
           productName,
           productType,
           productAmount,
@@ -116,18 +118,25 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
       });
 
       if (intentError) throw new Error(intentError.message || 'Failed to create payment');
-      if (!data?.clientSecret || !data?.encryptionKey) throw new Error(data?.error || 'Payment initialization failed');
+      if (!data?.success) throw new Error(data?.error || 'Payment initialization failed');
 
-      const { clientSecret, encryptionKey } = data;
+      // Step 2: If fwdUrl is returned, redirect for 3DS / hosted checkout
+      if (data.fwdUrl) {
+        window.location.href = data.fwdUrl;
+        return;
+      }
 
-      const confirmResult = await xpay.confirmPayment(
-        "card",
-        clientSecret,
-        { name: 'Customer', email: customerEmail, phone: customerPhone || '03001234567' },
-        encryptionKey
-      );
+      // Step 3: If clientSecret available, confirm with SDK
+      if (data.clientSecret) {
+        const confirmResult = await xpay.confirmPayment(
+          "card",
+          data.clientSecret,
+          { name: 'Customer', email: customerEmail, phone: customerPhone || '+920000000000' },
+          data.encryptionKey || ''
+        );
 
-      if (confirmResult.error) throw new Error(confirmResult.message || 'Payment failed');
+        if (confirmResult?.error) throw new Error(confirmResult.message || 'Payment failed');
+      }
 
       onSuccess({
         orderId: data.orderId || orderId,
