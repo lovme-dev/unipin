@@ -89,8 +89,8 @@ serve(async (req) => {
     }
 
     if (!response.ok) {
-      console.error("[XPay] Create intent failed:", data);
-      throw new Error(data.message || data.error || `XPay API error [${response.status}]`);
+      console.error("[XPay] Create intent failed:", JSON.stringify(data));
+      throw new Error(data.message || data.error || JSON.stringify(data));
     }
 
     // Response has xIntentId and fwdUrl
