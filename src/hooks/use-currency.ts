@@ -19,7 +19,7 @@ export function useCurrency(targetCurrency: string) {
       return;
     }
 
-    fetch("https://api.exchangerate-api.com/v4/latest/IDR")
+    fetch("https://api.exchangerate-api.com/v4/latest/PKR")
       .then((res) => res.json())
       .then((data) => {
         cachedRates = data.rates;
@@ -33,11 +33,11 @@ export function useCurrency(targetCurrency: string) {
       .finally(() => setLoading(false));
   }, []);
 
-  const convert = (idrAmount: number): { amount: number; formatted: string } => {
-    if (!rates || !rates[targetCurrency] || targetCurrency === "IDR") {
-      return { amount: idrAmount, formatted: formatNumber(idrAmount) };
+  const convert = (pkrAmount: number): { amount: number; formatted: string } => {
+    if (!rates || !rates[targetCurrency] || targetCurrency === "PKR") {
+      return { amount: pkrAmount, formatted: formatNumber(pkrAmount) };
     }
-    const converted = idrAmount * rates[targetCurrency];
+    const converted = pkrAmount * rates[targetCurrency];
     return { amount: converted, formatted: formatCurrency(converted, targetCurrency) };
   };
 
