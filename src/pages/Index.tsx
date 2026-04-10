@@ -29,19 +29,24 @@ import gopayFastLogo from "@/assets/gopay-fast-logo.png";
 import diamondsChestImg from "@/assets/diamonds-chest.png";
 
 const diamondPackages = [
-  { diamonds: 5, idrPrice: 1000 },
-  { diamonds: 12, idrPrice: 2000 },
-  { diamonds: 50, idrPrice: 8000 },
-  { diamonds: 70, idrPrice: 10000 },
-  { diamonds: 140, idrPrice: 20000 },
-  { diamonds: 355, idrPrice: 50000 },
-  { diamonds: 720, idrPrice: 100000 },
-  { diamonds: 1450, idrPrice: 200000 },
-  { diamonds: 2180, idrPrice: 300000 },
-  { diamonds: 3640, idrPrice: 500000 },
-  { diamonds: 7290, idrPrice: 1000000 },
-  { diamonds: 36500, idrPrice: 5000000 },
-  { diamonds: 73100, idrPrice: 10000000 },
+  { diamonds: 3000, bonus: 1500, pkrPrice: 3800 },
+  { diamonds: 6000, bonus: 2300, pkrPrice: 8400 },
+  { diamonds: 10000, bonus: 3200, pkrPrice: 12600 },
+  { diamonds: 16000, bonus: 5500, pkrPrice: 21000 },
+  { diamonds: 25000, bonus: 3500, pkrPrice: 42000 },
+  { diamonds: 30000, bonus: 6000, pkrPrice: 46785 },
+  { diamonds: 32000, bonus: 6500, pkrPrice: 49750 },
+  { diamonds: 34000, bonus: 7000, pkrPrice: 53150 },
+  { diamonds: 36000, bonus: 7500, pkrPrice: 56650 },
+  { diamonds: 38000, bonus: 8000, pkrPrice: 60050 },
+  { diamonds: 40000, bonus: 8500, pkrPrice: 63550 },
+  { diamonds: 42000, bonus: 9000, pkrPrice: 67050 },
+  { diamonds: 44000, bonus: 9500, pkrPrice: 70550 },
+  { diamonds: 46000, bonus: 10000, pkrPrice: 74050 },
+  { diamonds: 48000, bonus: 10500, pkrPrice: 77550 },
+  { diamonds: 65000, bonus: 20000, pkrPrice: 95000 },
+  { diamonds: 100000, bonus: 30000, pkrPrice: 140000 },
+  { diamonds: 160000, bonus: 50000, pkrPrice: 230000 },
 ];
 
 const getPaymentMethods = (countryCode: string) => {
