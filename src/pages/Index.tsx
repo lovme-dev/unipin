@@ -90,8 +90,8 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
   const purchaseBtnRef = useRef<HTMLButtonElement>(null);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
   const [descExpanded, setDescExpanded] = useState(false);
-  const [userId, setUserId] = useState("");
-  const [emailInput, setEmailInput] = useState("");
+  const [userId, setUserId] = useState(() => localStorage.getItem("unipin_player_id") || "");
+  const [emailInput, setEmailInput] = useState(() => localStorage.getItem("unipin_email") || "");
   const [menuOpen, setMenuOpen] = useState(false);
   const [whereToFindOpen, setWhereToFindOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
