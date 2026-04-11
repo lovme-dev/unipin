@@ -118,6 +118,10 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
     return () => subscription.unsubscribe();
   }, []);
 
+  // Persist player ID and email to localStorage
+  useEffect(() => { localStorage.setItem("unipin_player_id", userId); }, [userId]);
+  useEffect(() => { localStorage.setItem("unipin_email", emailInput); }, [emailInput]);
+
   const activeCountryCode = countryOverride?.code || manualCountry?.code || geo.countryCode;
   const activeCountryName = countryOverride?.name || manualCountry?.name || geo.countryName;
   const countryData = getCountryData(activeCountryCode);
