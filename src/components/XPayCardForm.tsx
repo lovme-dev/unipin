@@ -1,6 +1,7 @@
 import { useState, useImperativeHandle, forwardRef } from 'react';
-import { useXpay } from '@/components/XPayProvider';
 import { AlertCircle } from "lucide-react";
+import { PaymentElement, type OptionsProps } from '@xstak/xpay-element-live-v4';
+import { useXpay } from '@/components/XPayProvider';
 import { supabase } from "@/integrations/supabase/client";
 
 export interface XPayCardFormRef {
@@ -26,6 +27,7 @@ interface XPayCardFormProps {
 
 const getFriendlyErrorMessage = (errorMessage: string): string => {
   const lower = errorMessage.toLowerCase();
+  if (lower.includes('sdk') || lower.includes('loading')) return 'Payment form abhi load ho raha hai, 2 second baad dobara try karein.';
   if (lower.includes('declined') || lower.includes('do not honor')) return 'Your card was declined. Please try a different card or contact your bank.';
   if (lower.includes('insufficient') || lower.includes('balance')) return 'Insufficient funds. Please check your balance.';
   if (lower.includes('expired')) return 'Your card has expired. Please use a different card.';
@@ -53,43 +55,89 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
 }, ref) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiry, setExpiry] = useState('');
-  const [cvc, setCvc] = useState('');
+  const [isReady, setIsReady] = useState(false);
+  const [isCardComplete, setIsCardComplete] = useState(false);
 
   const xpay = useXpay();
 
-  const isCardComplete = cardNumber.replace(/\s/g, '').length >= 15 && expiry.length === 5 && cvc.length >= 3;
+  const paymentOptions: OptionsProps = {
+    paymentMethods: ['card'],
+    override: true,
+    fields: {
+      creditCard: {
+        placeholder: '1234 1234 1234 1234',
+        label: 'Card Number',
+      },
+      exp: {
+        placeholder: 'MM/YY',
+        label: 'Expiry Date',
+      },
+      cvc: {
+        placeholder: 'CVC',
+        label: 'CVV',
+      },
+    },
+    style: {
+      '.input': {
+        fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
+        fontSize: '16px',
+        padding: '14px 16px',
+        border: '1px solid hsl(var(--border))',
+        borderRadius: '16px',
+        background: 'hsl(var(--background))',
+        color: 'hsl(var(--foreground))',
+        transition: 'all 0.2s ease',
+      },
+      '.input:focus': {
+        borderColor: 'hsl(var(--primary))',
+        boxShadow: '0 0 0 1px hsl(var(--primary) / 0.35)',
+        outline: 'none',
+      },
+      '.input:hover': {
+        borderColor: 'hsl(var(--primary) / 0.7)',
+      },
+      '.invalid': {
+        borderColor: 'hsl(var(--destructive))',
+      },
+      '.label': {
+        fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
+        fontSize: '14px',
+        fontWeight: '500',
+        color: 'hsl(var(--foreground))',
+        marginBottom: '8px',
+      },
+      '::placeholder': {
+        color: 'hsl(var(--muted-foreground))',
+      },
+    },
+  };
 
   useImperativeHandle(ref, () => ({
     submit: handlePayment,
-    isReady: !!xpay?.isReady,
+    isReady,
     isProcessing: loading,
     isCardComplete,
-  }), [xpay?.isReady, loading, isCardComplete]);
-
-  const formatCardNumber = (value: string) => {
-    const digits = value.replace(/\D/g, '').slice(0, 16);
-    return digits.replace(/(.{4})/g, '$1 ').trim();
-  };
-
-  const formatExpiry = (value: string) => {
-    const digits = value.replace(/\D/g, '').slice(0, 4);
-    if (digits.length >= 3) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
-    return digits;
-  };
+  }), [handlePayment, isReady, loading, isCardComplete]);
 
   const handlePayment = async () => {
-    if (!xpay) {
-      setError('Payment system not initialized. Please refresh.');
+    if (!xpay || typeof xpay.confirmPayment !== 'function') {
+      const message = 'Payment form abhi ready nahi hai. Thora wait karke dobara try karein.';
+      setError(message);
+      onError(message);
       return;
     }
+
     if (!customerEmail || !customerEmail.includes('@')) {
-      setError('Valid email is required');
+      const message = 'Valid email is required';
+      setError(message);
+      onError(message);
       return;
     }
-    if (!isCardComplete) {
-      setError('Please fill in all card details');
+
+    if (!isReady) {
+      const message = 'Payment form abhi load ho raha hai, please ek moment baad dobara try karein.';
+      setError(message);
+      onError(message);
       return;
     }
 
@@ -97,9 +145,9 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
     setError('');
 
     try {
-      const orderId = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      const orderId = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+      const phoneNumber = customerPhone?.trim() || '03001234567';
 
-      // Step 1: Create payment intent via edge function
       const { data, error: intentError } = await supabase.functions.invoke('xpay-create-payment', {
         body: {
           amount,
@@ -107,7 +155,7 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
           orderId,
           customerEmail,
           customerName: 'Customer',
-          customerPhone: customerPhone || '03001234567',
+          customerPhone: phoneNumber,
           productName,
           productType,
           productAmount,
@@ -121,15 +169,14 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
 
       const { clientSecret, encryptionKey } = data;
 
-      if (!clientSecret) throw new Error('No client secret received');
+      if (!clientSecret || !encryptionKey) throw new Error('Payment initialization failed');
 
-      // Step 2: Confirm payment with XPay SDK
       console.log('[XPayCardForm] Confirming payment...');
       const confirmResult = await xpay.confirmPayment(
         "card",
         clientSecret,
-        { name: 'Customer', email: customerEmail, phone: customerPhone || '03001234567' },
-        encryptionKey || ''
+        { name: 'Customer', email: customerEmail, phone: phoneNumber },
+        encryptionKey
       );
 
       console.log('[XPayCardForm] Payment result:', confirmResult);
@@ -157,43 +204,25 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
 
   return (
     <div className="space-y-3">
-      <div>
-        <label className="text-sm text-foreground font-medium mb-1.5 block">Card Number</label>
-        <input
-          type="text"
-          inputMode="numeric"
-          autoComplete="cc-number"
-          placeholder="1234 1234 1234 1234"
-          value={cardNumber}
-          onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
-          className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-base placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors"
+      <div className="xpay-element-container">
+        <PaymentElement
+          options={paymentOptions}
+          onIframeLoaded={() => setIsReady(true)}
+          onReady={(event: any) => {
+            console.log('[XPayCardForm] PaymentElement event:', event);
+
+            if (event?.field === 'all' || event?.complete === true) {
+              const complete = event?.ready === true || event?.complete === true;
+              setIsReady(true);
+              setIsCardComplete(complete);
+              return;
+            }
+
+            if (event?.ready === false) {
+              setIsCardComplete(false);
+            }
+          }}
         />
-      </div>
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label className="text-sm text-foreground font-medium mb-1.5 block">Expiry Date</label>
-          <input
-            type="text"
-            inputMode="numeric"
-            autoComplete="cc-exp"
-            placeholder="MM/YY"
-            value={expiry}
-            onChange={(e) => setExpiry(formatExpiry(e.target.value))}
-            className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-base placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors"
-          />
-        </div>
-        <div>
-          <label className="text-sm text-foreground font-medium mb-1.5 block">CVV</label>
-          <input
-            type="text"
-            inputMode="numeric"
-            autoComplete="cc-csc"
-            placeholder="CVC"
-            value={cvc}
-            onChange={(e) => setCvc(e.target.value.replace(/\D/g, '').slice(0, 4))}
-            className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-base placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30 transition-colors"
-          />
-        </div>
       </div>
 
       {error && (
@@ -202,6 +231,14 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
           <span className="text-sm">{error}</span>
         </div>
       )}
+
+      <style>{`
+        .xpay-element-container iframe {
+          width: 100% !important;
+          border: 0 !important;
+          display: block !important;
+        }
+      `}</style>
     </div>
   );
 });
