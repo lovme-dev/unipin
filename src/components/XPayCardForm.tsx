@@ -112,13 +112,6 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
     },
   };
 
-  useImperativeHandle(ref, () => ({
-    submit: handlePayment,
-    isReady,
-    isProcessing: loading,
-    isCardComplete,
-  }), [handlePayment, isReady, loading, isCardComplete]);
-
   const handlePayment = async () => {
     if (!xpay || typeof xpay.confirmPayment !== 'function') {
       const message = 'Payment form abhi ready nahi hai. Thora wait karke dobara try karein.';
@@ -136,6 +129,13 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
 
     if (!isReady) {
       const message = 'Payment form abhi load ho raha hai, please ek moment baad dobara try karein.';
+      setError(message);
+      onError(message);
+      return;
+    }
+
+    if (!isCardComplete) {
+      const message = 'Please fill in all card details';
       setError(message);
       onError(message);
       return;
@@ -201,6 +201,13 @@ const XPayCardForm = forwardRef<XPayCardFormRef, XPayCardFormProps>(({
       setLoading(false);
     }
   };
+
+  useImperativeHandle(ref, () => ({
+    submit: handlePayment,
+    isReady,
+    isProcessing: loading,
+    isCardComplete,
+  }), [handlePayment, isReady, loading, isCardComplete]);
 
   return (
     <div className="space-y-3">
