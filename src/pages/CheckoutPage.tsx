@@ -30,6 +30,8 @@ const CheckoutPage = () => {
   const cardFormRef = useRef<XPayCardFormRef>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const isValidEmail = state?.email ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email) : false;
+
   if (!state) {
     navigate("/");
     return null;
@@ -188,8 +190,8 @@ const CheckoutPage = () => {
           {/* Purchase Button */}
           <button
             onClick={handlePurchase}
-            disabled={isProcessing}
-            className="w-full py-3.5 rounded-full bg-primary text-primary-foreground font-bold text-base hover:bg-primary/90 transition-colors mb-4 disabled:opacity-50"
+            disabled={isProcessing || !isValidEmail}
+            className="w-full py-3.5 rounded-full bg-primary text-primary-foreground font-bold text-base hover:bg-primary/90 transition-colors mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isProcessing ? "PROCESSING..." : "PURCHASE"}
           </button>
