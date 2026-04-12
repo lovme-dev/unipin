@@ -13,9 +13,9 @@ serve(async (req) => {
   try {
     const publishableKey = Deno.env.get("XPAY_PUBLISHABLE_KEY");
     const accountId = Deno.env.get("XPAY_ACCOUNT_ID");
-    const hmacSecret = Deno.env.get("XPAY_HMAC_SECRET");
+    const apiSignatureSecret = Deno.env.get("XPAY_API_SIGNATURE_SECRET");
 
-    if (!publishableKey || !accountId) {
+    if (!publishableKey || !accountId || !apiSignatureSecret) {
       throw new Error("XPay configuration not found");
     }
 
@@ -23,7 +23,7 @@ serve(async (req) => {
       JSON.stringify({
         publishableKey,
         accountId,
-        hmacSecret: hmacSecret || "",
+        hmacSecret: apiSignatureSecret,
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
