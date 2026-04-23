@@ -82,9 +82,17 @@ const moreGames = [
 
 interface IndexProps {
   countryOverride?: { code: string; name: string; currency: string; currencySymbol: string };
+  gameConfig?: {
+    name: string;
+    publisher: string;
+    icon: string;
+    currencyLabel: string; // e.g. "Diamonds" or "UC"
+    packageImage: string;
+    itemLabel: string; // bottom bar label e.g. "Diamonds" / "UC"
+  };
 }
 
-const Index = ({ countryOverride }: IndexProps = {}) => {
+const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
   const [prevButtonEnabled, setPrevButtonEnabled] = useState(false);
   const purchaseBtnRef = useRef<HTMLButtonElement>(null);
