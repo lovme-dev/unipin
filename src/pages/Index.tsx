@@ -88,7 +88,13 @@ interface IndexProps {
     icon: string;
     currencyLabel: string; // e.g. "Diamonds" or "UC"
     packageImage: string;
+    packageImages?: string[]; // tiered icons; index by quartile
     itemLabel: string; // bottom bar label e.g. "Diamonds" / "UC"
+    aboutTitle?: string;
+    description1?: string;
+    description2?: string;
+    aboutText?: string;
+    moreGamesTitle?: string;
   };
 }
 
