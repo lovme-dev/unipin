@@ -196,7 +196,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
             {/* Desktop: side-by-side toggle */}
             <div className="hidden sm:flex rounded-lg overflow-hidden border border-white/15">
               <button
-                onClick={() => setLang("local")}
+                onClick={() => setLangManual("local")}
                 className={`px-2.5 py-1 text-xs font-semibold transition-colors ${
                   lang === "local"
                     ? "bg-primary text-primary-foreground"
@@ -206,7 +206,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                 {localLangCode}
               </button>
               <button
-                onClick={() => setLang("en")}
+                onClick={() => setLangManual("en")}
                 className={`px-2.5 py-1 text-xs font-semibold transition-colors ${
                   lang === "en"
                     ? "bg-primary text-primary-foreground"
@@ -231,13 +231,13 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                   <div className="fixed inset-0 z-[59]" onClick={() => setLangDropdownOpen(false)} />
                   <div className="absolute right-0 top-full mt-1 rounded-lg overflow-hidden z-[60] min-w-[52px] shadow-xl" style={{ background: 'hsl(220,20%,18%)' }}>
                     <button
-                      onClick={() => { setLang("local"); setLangDropdownOpen(false); }}
+                      onClick={() => { setLangManual("local"); setLangDropdownOpen(false); }}
                       className={`w-full px-3 py-1.5 text-[11px] font-bold text-center transition-colors ${lang === "local" ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-white/5"}`}
                     >
                       {localLangCode}
                     </button>
                     <button
-                      onClick={() => { setLang("en"); setLangDropdownOpen(false); }}
+                      onClick={() => { setLangManual("en"); setLangDropdownOpen(false); }}
                       className={`w-full px-3 py-1.5 text-[11px] font-bold text-center transition-colors ${lang === "en" ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-white/5"}`}
                     >
                       EN
