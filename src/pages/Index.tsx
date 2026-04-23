@@ -96,7 +96,8 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
   const [whereToFindOpen, setWhereToFindOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [regionOpen, setRegionOpen] = useState(false);
-  const [lang, setLang] = useState<"local" | "en">("local");
+  const [lang, setLang] = useState<"local" | "en">("en");
+  const [langManuallySet, setLangManuallySet] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [manualCountry, setManualCountry] = useState<{ code: string; name: string } | null>(null);
   const [authOpen, setAuthOpen] = useState(false);
