@@ -666,7 +666,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
         selectedCountry={activeCountryCode}
         selectedLang={lang}
         onSelectCountry={(code, name) => { setManualCountry({ code, name }); navigate(`/unipin/${code.toLowerCase()}`); }}
-        onSelectLang={setLang}
+        onSelectLang={setLangManual}
         localLangCode={localLangCode}
       />
       <AuthDialog open={authOpen} onOpenChange={setAuthOpen} />
