@@ -82,9 +82,17 @@ const moreGames = [
 
 interface IndexProps {
   countryOverride?: { code: string; name: string; currency: string; currencySymbol: string };
+  gameConfig?: {
+    name: string;
+    publisher: string;
+    icon: string;
+    currencyLabel: string; // e.g. "Diamonds" or "UC"
+    packageImage: string;
+    itemLabel: string; // bottom bar label e.g. "Diamonds" / "UC"
+  };
 }
 
-const Index = ({ countryOverride }: IndexProps = {}) => {
+const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
   const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
   const [prevButtonEnabled, setPrevButtonEnabled] = useState(false);
   const purchaseBtnRef = useRef<HTMLButtonElement>(null);
@@ -96,7 +104,8 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
   const [whereToFindOpen, setWhereToFindOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [regionOpen, setRegionOpen] = useState(false);
-  const [lang, setLang] = useState<"local" | "en">("local");
+  const [lang, setLang] = useState<"local" | "en">("en");
+  const [langManuallySet, setLangManuallySet] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [manualCountry, setManualCountry] = useState<{ code: string; name: string } | null>(null);
   const [authOpen, setAuthOpen] = useState(false);
@@ -132,6 +141,19 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
   const activeFlagUrl = `https://flagcdn.com/w40/${activeCountryCode.toLowerCase()}.png`;
   const t = getTranslations(activeLangCode);
   const { convert } = useCurrency(activeCurrency);
+
+  // Auto-pick default language per country: English-friendly → EN, others → local
+  const ENGLISH_DEFAULT_COUNTRIES = new Set([
+    "PK","US","GB","AU","CA","IN","NG","PH","SG","HK","ZA","IE","MT","CY",
+    "BD","LK","MM","BN","KH","LA","MN","NZ"
+  ]);
+  useEffect(() => {
+    if (langManuallySet) return;
+    const shouldUseEnglish = ENGLISH_DEFAULT_COUNTRIES.has(activeCountryCode) || localLangCode === "EN";
+    setLang(shouldUseEnglish ? "en" : "local");
+  }, [activeCountryCode, localLangCode, langManuallySet]);
+
+  const setLangManual = (l: "local" | "en") => { setLangManuallySet(true); setLang(l); };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -182,7 +204,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
             {/* Desktop: side-by-side toggle */}
             <div className="hidden sm:flex rounded-lg overflow-hidden border border-white/15">
               <button
-                onClick={() => setLang("local")}
+                onClick={() => setLangManual("local")}
                 className={`px-2.5 py-1 text-xs font-semibold transition-colors ${
                   lang === "local"
                     ? "bg-primary text-primary-foreground"
@@ -192,7 +214,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                 {localLangCode}
               </button>
               <button
-                onClick={() => setLang("en")}
+                onClick={() => setLangManual("en")}
                 className={`px-2.5 py-1 text-xs font-semibold transition-colors ${
                   lang === "en"
                     ? "bg-primary text-primary-foreground"
@@ -217,13 +239,13 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                   <div className="fixed inset-0 z-[59]" onClick={() => setLangDropdownOpen(false)} />
                   <div className="absolute right-0 top-full mt-1 rounded-lg overflow-hidden z-[60] min-w-[52px] shadow-xl" style={{ background: 'hsl(220,20%,18%)' }}>
                     <button
-                      onClick={() => { setLang("local"); setLangDropdownOpen(false); }}
+                      onClick={() => { setLangManual("local"); setLangDropdownOpen(false); }}
                       className={`w-full px-3 py-1.5 text-[11px] font-bold text-center transition-colors ${lang === "local" ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-white/5"}`}
                     >
                       {localLangCode}
                     </button>
                     <button
-                      onClick={() => { setLang("en"); setLangDropdownOpen(false); }}
+                      onClick={() => { setLangManual("en"); setLangDropdownOpen(false); }}
                       className={`w-full px-3 py-1.5 text-[11px] font-bold text-center transition-colors ${lang === "en" ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-white/5"}`}
                     >
                       EN
@@ -272,7 +294,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
       <div className="mx-3 mt-4">
         <div className="rounded-lg p-4" style={{ background: 'hsl(0, 0%, 0%)' }}>
           <div className="flex gap-3 mb-3">
-            <img src={freefireIcon} alt="Free Fire" className="w-16 h-16 rounded-lg" />
+            <img src={gameConfig?.icon || freefireIcon} alt={gameConfig?.name || "Free Fire"} className="w-16 h-16 rounded-lg object-cover" />
             <div>
               <div className="game-meta-badges">
                 <span className="game-meta-badge">
@@ -301,8 +323,8 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                   {t.securePayment}
                 </span>
               </div>
-              <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
-              <p className="text-sm text-muted-foreground">Garena</p>
+              <h1 className="text-lg font-bold text-foreground">{gameConfig?.name || "Free Fire"}</h1>
+              <p className="text-sm text-muted-foreground">{gameConfig?.publisher || "Garena"}</p>
             </div>
           </div>
 
@@ -421,9 +443,9 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
                     <Check className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={3} />
                   </div>
                 )}
-                <img src={diamondsChestImg} alt="Diamonds" className="w-10 h-10 object-contain mb-1" />
+                <img src={gameConfig?.packageImage || diamondsChestImg} alt={gameConfig?.currencyLabel || "Diamonds"} className="w-10 h-10 object-contain mb-1" />
                 <p className="text-sm font-semibold text-foreground">
-                  {pkg.diamonds.toLocaleString()} <span className="text-xs" style={{ color: '#ED9B26' }}>+{pkg.bonus.toLocaleString()}</span> {t.freeFireDiamonds}
+                  {pkg.diamonds.toLocaleString()} <span className="text-xs" style={{ color: '#ED9B26' }}>+{pkg.bonus.toLocaleString()}</span> {gameConfig?.currencyLabel || t.freeFireDiamonds}
                 </p>
                 <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.pkrPrice).formatted}</p>
               </button>
@@ -604,7 +626,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
           </div>
           <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
             <span className="text-muted-foreground">{t.item}</span>
-            <p className="text-primary">{selectedDiamond ? `${selectedDiamond.diamonds} Diamonds` : "-"}</p>
+            <p className="text-primary">{selectedDiamond ? `${selectedDiamond.diamonds} ${gameConfig?.itemLabel || "Diamonds"}` : "-"}</p>
           </div>
           <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
             <span className="text-muted-foreground">{t.payment}</span>
@@ -652,7 +674,7 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
         selectedCountry={activeCountryCode}
         selectedLang={lang}
         onSelectCountry={(code, name) => { setManualCountry({ code, name }); navigate(`/unipin/${code.toLowerCase()}`); }}
-        onSelectLang={setLang}
+        onSelectLang={setLangManual}
         localLangCode={localLangCode}
       />
       <AuthDialog open={authOpen} onOpenChange={setAuthOpen} />
