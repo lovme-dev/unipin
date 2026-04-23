@@ -134,6 +134,19 @@ const Index = ({ countryOverride }: IndexProps = {}) => {
   const t = getTranslations(activeLangCode);
   const { convert } = useCurrency(activeCurrency);
 
+  // Auto-pick default language per country: English-friendly → EN, others → local
+  const ENGLISH_DEFAULT_COUNTRIES = new Set([
+    "PK","US","GB","AU","CA","IN","NG","PH","SG","HK","ZA","IE","MT","CY",
+    "BD","LK","MM","BN","KH","LA","MN","NZ"
+  ]);
+  useEffect(() => {
+    if (langManuallySet) return;
+    const shouldUseEnglish = ENGLISH_DEFAULT_COUNTRIES.has(activeCountryCode) || localLangCode === "EN";
+    setLang(shouldUseEnglish ? "en" : "local");
+  }, [activeCountryCode, localLangCode, langManuallySet]);
+
+  const setLangManual = (l: "local" | "en") => { setLangManuallySet(true); setLang(l); };
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
