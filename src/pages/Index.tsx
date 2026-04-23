@@ -335,15 +335,15 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
           </div>
 
           <p className={`game-summary-preview ${descExpanded ? "hidden" : ""}`}>
-            {t.gameDescription1}
+            {gameConfig?.description1 || t.gameDescription1}
           </p>
 
           {descExpanded && (
             <div className="text-sm text-muted-foreground space-y-4 mt-2">
-              <p>{t.gameDescription1}</p>
-              <p>{t.gameDescription2}</p>
-              <h3 className="text-primary font-semibold text-sm">{t.aboutFreeFire}</h3>
-              <p>{t.aboutFreeFireText}</p>
+              <p>{gameConfig?.description1 || t.gameDescription1}</p>
+              <p>{gameConfig?.description2 || t.gameDescription2}</p>
+              <h3 className="text-primary font-semibold text-sm">{gameConfig?.aboutTitle || t.aboutFreeFire}</h3>
+              <p>{gameConfig?.aboutText || t.aboutFreeFireText}</p>
             </div>
           )}
 
@@ -436,7 +436,15 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            {diamondPackages.map((pkg, i) => (
+            {diamondPackages.map((pkg, i) => {
+              // Tiered icon: split packages into 4 quartiles
+              const tieredImg = gameConfig?.packageImages && gameConfig.packageImages.length > 0
+                ? gameConfig.packageImages[Math.min(
+                    gameConfig.packageImages.length - 1,
+                    Math.floor((i / diamondPackages.length) * gameConfig.packageImages.length)
+                  )]
+                : (gameConfig?.packageImage || diamondsChestImg);
+              return (
               <button
                 key={i}
                 onClick={() => setSelectedPackage(i)}
@@ -449,13 +457,14 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
                     <Check className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={3} />
                   </div>
                 )}
-                <img src={gameConfig?.packageImage || diamondsChestImg} alt={gameConfig?.currencyLabel || "Diamonds"} className="w-10 h-10 object-contain mb-1" />
+                <img src={tieredImg} alt={gameConfig?.currencyLabel || "Diamonds"} className="w-10 h-10 object-contain mb-1" />
                 <p className="text-sm font-semibold text-foreground">
                   {pkg.diamonds.toLocaleString()} <span className="text-xs" style={{ color: '#ED9B26' }}>+{pkg.bonus.toLocaleString()}</span> {gameConfig?.currencyLabel || t.freeFireDiamonds}
                 </p>
                 <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.pkrPrice).formatted}</p>
               </button>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
@@ -496,7 +505,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
       {/* More Garena Games */}
       <div className="mx-3 mt-4">
         <div className="rounded-lg p-4 border border-white/[0.10]" style={{ background: 'hsl(221 30% 24% / 0.68)', backdropFilter: 'blur(26px) saturate(135%)', WebkitBackdropFilter: 'blur(26px) saturate(135%)' }}>
-          <h2 className="text-xl font-bold text-foreground mb-4">{t.moreGarenaGames}</h2>
+          <h2 className="text-xl font-bold text-foreground mb-4">{gameConfig?.moreGamesTitle || t.moreGarenaGames}</h2>
           <div className="grid grid-cols-3 gap-3">
             {moreGames.map((game) => (
               <div key={game.name}>
