@@ -67,8 +67,8 @@ const PubgPage = () => {
   return (
     <>
       <SEOHead
-        title="UniPin PUBG UC – Buy Cheap PUBG Mobile UC Online | Instant Top Up"
-        description="UniPin PUBG UC top up at cheapest prices. Buy PUBG Mobile UC instantly with secure payment. Official UC reseller for PUBG Mobile players worldwide. Cheap UC, fast delivery."
+        title="Midasbuy by UniPin – PUBG UC Cheap Top Up | Instant Delivery"
+        description="Midasbuy by UniPin – buy PUBG Mobile UC at the cheapest prices. Instant top up, secure payment, official UC reseller for PUBG Mobile players worldwide. Cheap UC, fast delivery."
         countryCode={country.code}
         countryName={country.name}
         canonicalPath="/pubg"
