@@ -88,7 +88,13 @@ interface IndexProps {
     icon: string;
     currencyLabel: string; // e.g. "Diamonds" or "UC"
     packageImage: string;
+    packageImages?: string[]; // tiered icons; index by quartile
     itemLabel: string; // bottom bar label e.g. "Diamonds" / "UC"
+    aboutTitle?: string;
+    description1?: string;
+    description2?: string;
+    aboutText?: string;
+    moreGamesTitle?: string;
   };
 }
 
@@ -329,15 +335,15 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
           </div>
 
           <p className={`game-summary-preview ${descExpanded ? "hidden" : ""}`}>
-            {t.gameDescription1}
+            {gameConfig?.description1 || t.gameDescription1}
           </p>
 
           {descExpanded && (
             <div className="text-sm text-muted-foreground space-y-4 mt-2">
-              <p>{t.gameDescription1}</p>
-              <p>{t.gameDescription2}</p>
-              <h3 className="text-primary font-semibold text-sm">{t.aboutFreeFire}</h3>
-              <p>{t.aboutFreeFireText}</p>
+              <p>{gameConfig?.description1 || t.gameDescription1}</p>
+              <p>{gameConfig?.description2 || t.gameDescription2}</p>
+              <h3 className="text-primary font-semibold text-sm">{gameConfig?.aboutTitle || t.aboutFreeFire}</h3>
+              <p>{gameConfig?.aboutText || t.aboutFreeFireText}</p>
             </div>
           )}
 
@@ -430,7 +436,15 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            {diamondPackages.map((pkg, i) => (
+            {diamondPackages.map((pkg, i) => {
+              // Tiered icon: split packages into 4 quartiles
+              const tieredImg = gameConfig?.packageImages && gameConfig.packageImages.length > 0
+                ? gameConfig.packageImages[Math.min(
+                    gameConfig.packageImages.length - 1,
+                    Math.floor((i / diamondPackages.length) * gameConfig.packageImages.length)
+                  )]
+                : (gameConfig?.packageImage || diamondsChestImg);
+              return (
               <button
                 key={i}
                 onClick={() => setSelectedPackage(i)}
@@ -443,13 +457,14 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
                     <Check className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={3} />
                   </div>
                 )}
-                <img src={gameConfig?.packageImage || diamondsChestImg} alt={gameConfig?.currencyLabel || "Diamonds"} className="w-10 h-10 object-contain mb-1" />
+                <img src={tieredImg} alt={gameConfig?.currencyLabel || "Diamonds"} className="w-10 h-10 object-contain mb-1" />
                 <p className="text-sm font-semibold text-foreground">
                   {pkg.diamonds.toLocaleString()} <span className="text-xs" style={{ color: '#ED9B26' }}>+{pkg.bonus.toLocaleString()}</span> {gameConfig?.currencyLabel || t.freeFireDiamonds}
                 </p>
                 <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.pkrPrice).formatted}</p>
               </button>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
@@ -490,7 +505,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
       {/* More Garena Games */}
       <div className="mx-3 mt-4">
         <div className="rounded-lg p-4 border border-white/[0.10]" style={{ background: 'hsl(221 30% 24% / 0.68)', backdropFilter: 'blur(26px) saturate(135%)', WebkitBackdropFilter: 'blur(26px) saturate(135%)' }}>
-          <h2 className="text-xl font-bold text-foreground mb-4">{t.moreGarenaGames}</h2>
+          <h2 className="text-xl font-bold text-foreground mb-4">{gameConfig?.moreGamesTitle || t.moreGarenaGames}</h2>
           <div className="grid grid-cols-3 gap-3">
             {moreGames.map((game) => (
               <div key={game.name}>
@@ -519,8 +534,8 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
           {[
             { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="0"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.908 1.434 5.503 3.678 7.2V22l3.378-1.852c.9.25 1.855.384 2.944.384 5.523 0 10-4.145 10-9.243S17.523 2 12 2zm1.065 12.439-2.55-2.722L5.5 14.439l5.5-5.878 2.613 2.722L18.5 8.561l-5.435 5.878z"/></svg>, label: t.messenger, href: undefined as string | undefined },
             { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="hsl(var(--primary))" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.016a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.999-3.648-.235-.374a9.86 9.86 0 0 1-1.511-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884z"/></svg>, label: t.whatsapp, href: "https://wa.me/447476966269" },
-            { icon: <Mail className="w-6 h-6" fill="hsl(var(--primary))" />, label: t.emailLabel, href: undefined as string | undefined },
-            { icon: <HelpCircle className="w-6 h-6" fill="hsl(var(--primary))" />, label: t.faq, href: undefined as string | undefined },
+            { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="hsl(var(--primary))" stroke="none"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 8.5L4.2 7.4a.5.5 0 0 0-.7.7l8 6.3a1 1 0 0 0 1.2 0l8-6.3a.5.5 0 0 0-.7-.7L12 13.5z"/><path d="M3.5 7l8.5 6.7L20.5 7" stroke="hsl(var(--primary-foreground))" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>, label: t.emailLabel, href: undefined as string | undefined },
+            { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="hsl(var(--primary))" stroke="none"><circle cx="12" cy="12" r="10"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5v.7" stroke="hsl(var(--primary-foreground))" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="17" r="1.1" fill="hsl(var(--primary-foreground))"/></svg>, label: t.faq, href: undefined as string | undefined },
             { icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="hsl(var(--primary))" stroke="hsl(var(--primary))" strokeWidth="0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/><path d="M8 10h.01M12 10h.01M16 10h.01" stroke="hsl(var(--primary-foreground))" strokeWidth="2" strokeLinecap="round"/></svg>, label: t.provideFeedback, href: undefined as string | undefined },
           ].map((item) => (
             item.href ? (
