@@ -294,7 +294,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
       <div className="mx-3 mt-4">
         <div className="rounded-lg p-4" style={{ background: 'hsl(0, 0%, 0%)' }}>
           <div className="flex gap-3 mb-3">
-            <img src={freefireIcon} alt="Free Fire" className="w-16 h-16 rounded-lg" />
+            <img src={gameConfig?.icon || freefireIcon} alt={gameConfig?.name || "Free Fire"} className="w-16 h-16 rounded-lg object-cover" />
             <div>
               <div className="game-meta-badges">
                 <span className="game-meta-badge">
@@ -323,8 +323,8 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
                   {t.securePayment}
                 </span>
               </div>
-              <h1 className="text-lg font-bold text-foreground">Free Fire</h1>
-              <p className="text-sm text-muted-foreground">Garena</p>
+              <h1 className="text-lg font-bold text-foreground">{gameConfig?.name || "Free Fire"}</h1>
+              <p className="text-sm text-muted-foreground">{gameConfig?.publisher || "Garena"}</p>
             </div>
           </div>
 
@@ -443,9 +443,9 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
                     <Check className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={3} />
                   </div>
                 )}
-                <img src={diamondsChestImg} alt="Diamonds" className="w-10 h-10 object-contain mb-1" />
+                <img src={gameConfig?.packageImage || diamondsChestImg} alt={gameConfig?.currencyLabel || "Diamonds"} className="w-10 h-10 object-contain mb-1" />
                 <p className="text-sm font-semibold text-foreground">
-                  {pkg.diamonds.toLocaleString()} <span className="text-xs" style={{ color: '#ED9B26' }}>+{pkg.bonus.toLocaleString()}</span> {t.freeFireDiamonds}
+                  {pkg.diamonds.toLocaleString()} <span className="text-xs" style={{ color: '#ED9B26' }}>+{pkg.bonus.toLocaleString()}</span> {gameConfig?.currencyLabel || t.freeFireDiamonds}
                 </p>
                 <p className="text-sm font-bold text-price mt-1">{activeCurrencySymbol} {convert(pkg.pkrPrice).formatted}</p>
               </button>
@@ -626,7 +626,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
           </div>
           <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
             <span className="text-muted-foreground">{t.item}</span>
-            <p className="text-primary">{selectedDiamond ? `${selectedDiamond.diamonds} Diamonds` : "-"}</p>
+            <p className="text-primary">{selectedDiamond ? `${selectedDiamond.diamonds} ${gameConfig?.itemLabel || "Diamonds"}` : "-"}</p>
           </div>
           <div className="flex-1 px-2 py-1 border-l border-[hsl(31,92%,53%,0.2)]">
             <span className="text-muted-foreground">{t.payment}</span>
