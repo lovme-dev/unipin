@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import SEOHead from "@/components/SEOHead";
 import Index from "./Index";
 import pubgLogo from "@/assets/pubg-logo.webp";
-import ucChest from "@/assets/uc-chest.jpeg";
+import ucPack1 from "@/assets/uc-pack-1.png";
+import ucPack2 from "@/assets/uc-pack-2.png";
+import ucPack3 from "@/assets/uc-pack-3.png";
+import ucPack4 from "@/assets/uc-pack-4.png";
 import { useGeo } from "@/hooks/use-geo";
 import { getCountryData } from "@/data/countries";
 
@@ -11,7 +14,6 @@ const PubgPage = () => {
   const country = getCountryData(geo.countryCode);
 
   useEffect(() => {
-    // JSON-LD specific to PUBG
     const existing = document.getElementById("pubg-jsonld");
     if (existing) existing.remove();
     const script = document.createElement("script");
@@ -77,8 +79,14 @@ const PubgPage = () => {
           publisher: "Tencent",
           icon: pubgLogo,
           currencyLabel: "UC",
-          packageImage: ucChest,
+          packageImage: ucPack1,
+          packageImages: [ucPack1, ucPack2, ucPack3, ucPack4],
           itemLabel: "UC",
+          aboutTitle: "About PUBG Mobile",
+          description1: "Don't let your game be interrupted by a lack of UC! Now you can top up PUBG Mobile UC easily and quickly through UniPin. How? Just enter your PUBG ID and choose the desired UC pack. UniPin offers UC packages from 60 UC up to 8100 UC and beyond. Use them to buy the Royale Pass, weapon skins, outfits, vehicle skins, and exclusive in-game items to dominate the battleground.",
+          description2: "UniPin provides a variety of secure payment options including EasyPaisa, JazzCash, GoPay Fast, debit and credit cards, and many more. No registration required, no login hassle — just instant PUBG UC top up at the cheapest prices. Trusted by millions of PUBG Mobile players worldwide for fast, safe and reliable UC delivery.",
+          aboutText: "Developed by Tencent's Lightspeed & Quantum Studios, PUBG Mobile is one of the world's most popular battle royale games on Android and iOS. With 100 players dropping onto a massive map to fight for the Chicken Dinner, PUBG Mobile combines tactical shooting, survival, and squad strategy — making it a global esports phenomenon.",
+          moreGamesTitle: "More Tencent games.",
         }}
       />
     </>
