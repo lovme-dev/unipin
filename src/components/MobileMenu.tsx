@@ -83,27 +83,7 @@ const MobileMenu = ({ open, onClose, t }: MobileMenuProps) => {
         onClick={() => setActiveItem(item.key)}
         className={className}
       >
-        {/* Active glow background */}
-        {isActive && (
-          <div
-            className="absolute inset-0 rounded-lg pointer-events-none"
-            style={{
-              background: "linear-gradient(90deg, hsl(var(--primary) / 0.15) 0%, transparent 100%)",
-            }}
-          />
-        )}
-        <Icon
-          className={`w-5 h-5 relative z-10 transition-colors ${
-            isActive ? "text-primary" : "text-muted-foreground"
-          }`}
-        />
-        <span
-          className={`text-[15px] font-medium relative z-10 transition-colors ${
-            isActive ? "text-primary" : "text-foreground"
-          }`}
-        >
-          {item.label}
-        </span>
+        {inner}
       </button>
     );
   };
