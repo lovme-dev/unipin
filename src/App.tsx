@@ -15,6 +15,10 @@ import TransactionHistoryPage from "./pages/TransactionHistoryPage.tsx";
 import ReloadPage from "./pages/ReloadPage.tsx";
 import CheckoutPage from "./pages/CheckoutPage.tsx";
 import PubgPage from "./pages/PubgPage.tsx";
+import CareersPage from "./pages/CareersPage.tsx";
+import PaymentChannelsPage from "./pages/PaymentChannelsPage.tsx";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage.tsx";
+import PaymentFailurePage from "./pages/PaymentFailurePage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +32,10 @@ const App = () => (
           <Route path="/" element={<GeoRedirect />} />
           <Route path="/unipin/:countryCode" element={<CountryPage />} />
           <Route path="/pubg" element={<PubgPage />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/payment-channels" element={<PaymentChannelsPage />} />
+          <Route path="/payment-success" element={<PaymentSuccessPage />} />
+          <Route path="/payment-failure" element={<PaymentFailurePage />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/user-terms" element={<UserTerms />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

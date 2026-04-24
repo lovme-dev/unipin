@@ -5,3 +5,5 @@ project_id = "tnrezspunvvlbvhcvqbq"
     verify_jwt = false
   [functions.process-email-queue]
     verify_jwt = true
+  [functions.payfast-create]
+    verify_jwt = false

@@ -1,7 +1,8 @@
-import { X, Gamepad2, Percent, HelpCircle, Headphones, Handshake, Users, Trophy, Hash } from "lucide-react";
+import { X, Gamepad2, Percent, HelpCircle, Headphones, Handshake, Users, Trophy, Hash, Target } from "lucide-react";
 import unipinLogo from "@/assets/unipin-logo.svg";
 import type { Translations } from "@/i18n/translations";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface MobileMenuProps {
   open: boolean;
@@ -15,8 +16,9 @@ const MobileMenu = ({ open, onClose, t }: MobileMenuProps) => {
   if (!open) return null;
 
   const section1 = [
-    { key: "game", icon: Gamepad2, label: t.game },
-    { key: "promo", icon: Percent, label: t.promotionsAndEvents },
+    { key: "game", icon: Gamepad2, label: t.game, to: undefined as string | undefined },
+    { key: "pubg", icon: Target, label: "PUBG Mobile", to: "/pubg" },
+    { key: "promo", icon: Percent, label: t.promotionsAndEvents, to: undefined },
   ];
 
   const section2 = [
@@ -30,15 +32,11 @@ const MobileMenu = ({ open, onClose, t }: MobileMenuProps) => {
     { key: "seaca", icon: Trophy, label: t.seacaEsports },
   ];
 
-  const renderItem = (item: { key: string; icon: React.ElementType; label: string }) => {
+  const renderItem = (item: { key: string; icon: React.ElementType; label: string; to?: string }) => {
     const isActive = activeItem === item.key;
     const Icon = item.icon;
-    return (
-      <button
-        key={item.key}
-        onClick={() => setActiveItem(item.key)}
-        className="flex items-center gap-4 py-3.5 px-2 w-full text-left rounded-lg transition-all duration-200 relative group"
-      >
+    const inner = (
+      <>
         {/* Active glow background */}
         {isActive && (
           <div
@@ -60,6 +58,32 @@ const MobileMenu = ({ open, onClose, t }: MobileMenuProps) => {
         >
           {item.label}
         </span>
+      </>
+    );
+    const className =
+      "flex items-center gap-4 py-3.5 px-2 w-full text-left rounded-lg transition-all duration-200 relative group";
+    if (item.to) {
+      return (
+        <Link
+          key={item.key}
+          to={item.to}
+          onClick={() => {
+            setActiveItem(item.key);
+            onClose();
+          }}
+          className={className}
+        >
+          {inner}
+        </Link>
+      );
+    }
+    return (
+      <button
+        key={item.key}
+        onClick={() => setActiveItem(item.key)}
+        className={className}
+      >
+        {inner}
       </button>
     );
   };
