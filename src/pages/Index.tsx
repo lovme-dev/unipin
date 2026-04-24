@@ -656,21 +656,57 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
           <button
             ref={purchaseBtnRef}
             disabled={!isFormComplete}
-            onClick={() => {
-              if (isFormComplete && selectedDiamond) {
-                navigate("/checkout", {
-                  state: {
-                    diamonds: selectedDiamond.diamonds,
-                    bonus: selectedDiamond.bonus,
-                    price: convert(selectedDiamond.pkrPrice).formatted,
-                    currency: activeCurrency,
-                    currencySymbol: activeCurrencySymbol,
-                    paymentMethod: selectedPayment,
-                    rawPkrPrice: selectedDiamond.pkrPrice,
-                    email: emailInput,
-                  },
-                });
+            onClick={async () => {
+              if (!isFormComplete || !selectedDiamond) return;
+              const isGoPayFast = selectedPayment === "GoPay Fast - All in One";
+              if (isGoPayFast) {
+                try {
+                  const { data, error } = await supabase.functions.invoke("payfast-create", {
+                    body: {
+                      amount: selectedDiamond.pkrPrice,
+                      currency: "PKR",
+                      customer_email: emailInput,
+                      item_name: `${selectedDiamond.diamonds} + ${selectedDiamond.bonus} Diamonds`,
+                      item_sku: `FF-${selectedDiamond.diamonds}`,
+                      success_url: `${window.location.origin}/payment-success`,
+                      failure_url: `${window.location.origin}/payment-failure`,
+                      checkout_url: `${window.location.origin}/checkout`,
+                    },
+                  });
+                  if (error || !data?.success) {
+                    toast.error("Failed to start GoPay Fast payment");
+                    return;
+                  }
+                  // Build and submit hidden form to PayFast
+                  const form = document.createElement("form");
+                  form.method = "POST";
+                  form.action = data.action_url;
+                  Object.entries(data.fields as Record<string, string>).forEach(([k, v]) => {
+                    const input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = k;
+                    input.value = v ?? "";
+                    form.appendChild(input);
+                  });
+                  document.body.appendChild(form);
+                  form.submit();
+                } catch (e) {
+                  toast.error("GoPay Fast error. Please try again.");
+                }
+                return;
               }
+              navigate("/checkout", {
+                state: {
+                  diamonds: selectedDiamond.diamonds,
+                  bonus: selectedDiamond.bonus,
+                  price: convert(selectedDiamond.pkrPrice).formatted,
+                  currency: activeCurrency,
+                  currencySymbol: activeCurrencySymbol,
+                  paymentMethod: selectedPayment,
+                  rawPkrPrice: selectedDiamond.pkrPrice,
+                  email: emailInput,
+                },
+              });
             }}
             className={`px-4 py-1.5 rounded-md font-bold text-xs transition-all ${
               isFormComplete
