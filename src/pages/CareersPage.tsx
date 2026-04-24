@@ -3,7 +3,6 @@ import { ChevronLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import MobileMenu from "@/components/MobileMenu";
-import RegionSelector from "@/components/RegionSelector";
 import { useGeo } from "@/hooks/use-geo";
 import { getCountryData } from "@/data/countries";
 import { getTranslations } from "@/i18n/translations";
@@ -46,7 +45,7 @@ const CareersPage = () => {
             <span className="font-bold tracking-wide text-[10px]">
               INSTANT TOP UP! INSTANT PLAY!
             </span>
-            <RegionSelector />
+            <span className="text-[10px] text-foreground/80">{country.name}</span>
           </div>
           <div className="relative z-10 px-3 py-2 flex items-center justify-between">
             <button onClick={() => setMenuOpen(true)} aria-label="Menu">
