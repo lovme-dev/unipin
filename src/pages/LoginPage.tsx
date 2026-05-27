@@ -39,15 +39,15 @@ const LoginPage = () => {
         <div className="relative z-10 px-4 pt-4 pb-6">
           {/* Back button + Logo */}
           <div className="flex items-center gap-3 mb-5">
-            <button onClick={() => navigate(-1)} className="text-white">
+            <button onClick={() => navigate(-1)} aria-label="Go back" className="text-white">
               <ChevronLeft className="w-6 h-6" />
             </button>
-            <img src={unipinLogo} alt="UniPin" className="h-5" />
+            <img src={unipinLogo} alt="UniPin logo" className="h-5" />
           </div>
 
-          <h2 className="text-xl font-bold text-white mb-1 text-center" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
+          <h1 className="text-xl font-bold text-white mb-1 text-center" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
             Why Join UniPin?
-          </h2>
+          </h1>
           <p className="text-white/90 text-sm text-center mb-5" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
             Sign up now and unlock insane rewards, epic deals, and non-stop gaming perks!
           </p>
