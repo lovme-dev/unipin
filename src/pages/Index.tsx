@@ -584,11 +584,12 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
           </div>
         </div>
       </div>
+      </main>
 
       {/* Footer */}
       <div className="mt-6 bg-topbar px-4 py-8">
         <div className="flex justify-center mb-4">
-          <img src={unipinLogo} alt="UniPin" className="h-10" />
+          <img src={unipinLogo} alt="UniPin logo" className="h-10" />
         </div>
         <p className="text-center text-sm text-muted-foreground mb-6">
           {t.footerDescription}
