@@ -1,415 +1,433 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://unipin.pk/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.unipin.pk/</loc>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/pubg</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://www.unipin.pk/pubg</loc>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/terms-and-conditions</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.unipin.pk/careers</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/user-terms</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.unipin.pk/payment-channels</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/privacy-policy</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.unipin.pk/login</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/bn</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.unipin.pk/terms-and-conditions</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/kh</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.unipin.pk/user-terms</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/id</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.unipin.pk/privacy-policy</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/la</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://unipin.pk/unipin/my</loc>
+    <loc>https://www.unipin.pk/unipin/bn</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/mm</loc>
+    <loc>https://www.unipin.pk/unipin/kh</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/ph</loc>
+    <loc>https://www.unipin.pk/unipin/id</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/th</loc>
+    <loc>https://www.unipin.pk/unipin/la</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/ca</loc>
+    <loc>https://www.unipin.pk/unipin/my</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/us</loc>
+    <loc>https://www.unipin.pk/unipin/mm</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/ar</loc>
+    <loc>https://www.unipin.pk/unipin/ph</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/br</loc>
+    <loc>https://www.unipin.pk/unipin/th</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/co</loc>
+    <loc>https://www.unipin.pk/unipin/ca</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/mx</loc>
+    <loc>https://www.unipin.pk/unipin/us</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/dz</loc>
+    <loc>https://www.unipin.pk/unipin/ar</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/bh</loc>
+    <loc>https://www.unipin.pk/unipin/br</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/eg</loc>
+    <loc>https://www.unipin.pk/unipin/co</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/kw</loc>
+    <loc>https://www.unipin.pk/unipin/mx</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/ma</loc>
+    <loc>https://www.unipin.pk/unipin/dz</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/ng</loc>
+    <loc>https://www.unipin.pk/unipin/bh</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/om</loc>
+    <loc>https://www.unipin.pk/unipin/eg</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/qa</loc>
+    <loc>https://www.unipin.pk/unipin/kw</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/sa</loc>
+    <loc>https://www.unipin.pk/unipin/ma</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/za</loc>
+    <loc>https://www.unipin.pk/unipin/ng</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/tr</loc>
+    <loc>https://www.unipin.pk/unipin/om</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/ae</loc>
+    <loc>https://www.unipin.pk/unipin/qa</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/bd</loc>
+    <loc>https://www.unipin.pk/unipin/sa</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/hk</loc>
+    <loc>https://www.unipin.pk/unipin/za</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/in</loc>
+    <loc>https://www.unipin.pk/unipin/tr</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/jp</loc>
+    <loc>https://www.unipin.pk/unipin/ae</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/mn</loc>
+    <loc>https://www.unipin.pk/unipin/bd</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/pk</loc>
+    <loc>https://www.unipin.pk/unipin/hk</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/kr</loc>
+    <loc>https://www.unipin.pk/unipin/in</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/lk</loc>
+    <loc>https://www.unipin.pk/unipin/jp</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/tw</loc>
+    <loc>https://www.unipin.pk/unipin/mn</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/at</loc>
+    <loc>https://www.unipin.pk/unipin/pk</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/be</loc>
+    <loc>https://www.unipin.pk/unipin/kr</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/bg</loc>
+    <loc>https://www.unipin.pk/unipin/lk</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/hr</loc>
+    <loc>https://www.unipin.pk/unipin/tw</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/cy</loc>
+    <loc>https://www.unipin.pk/unipin/at</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/cz</loc>
+    <loc>https://www.unipin.pk/unipin/be</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/dk</loc>
+    <loc>https://www.unipin.pk/unipin/bg</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/ee</loc>
+    <loc>https://www.unipin.pk/unipin/hr</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/fi</loc>
+    <loc>https://www.unipin.pk/unipin/cy</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/fr</loc>
+    <loc>https://www.unipin.pk/unipin/cz</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/de</loc>
+    <loc>https://www.unipin.pk/unipin/dk</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/gr</loc>
+    <loc>https://www.unipin.pk/unipin/ee</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/hu</loc>
+    <loc>https://www.unipin.pk/unipin/fi</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/ie</loc>
+    <loc>https://www.unipin.pk/unipin/fr</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/it</loc>
+    <loc>https://www.unipin.pk/unipin/de</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/lv</loc>
+    <loc>https://www.unipin.pk/unipin/gr</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/lt</loc>
+    <loc>https://www.unipin.pk/unipin/hu</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/lu</loc>
+    <loc>https://www.unipin.pk/unipin/ie</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/mt</loc>
+    <loc>https://www.unipin.pk/unipin/it</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/nl</loc>
+    <loc>https://www.unipin.pk/unipin/lv</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/pl</loc>
+    <loc>https://www.unipin.pk/unipin/lt</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/pt</loc>
+    <loc>https://www.unipin.pk/unipin/lu</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/ro</loc>
+    <loc>https://www.unipin.pk/unipin/mt</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/sk</loc>
+    <loc>https://www.unipin.pk/unipin/nl</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/si</loc>
+    <loc>https://www.unipin.pk/unipin/pl</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/es</loc>
+    <loc>https://www.unipin.pk/unipin/pt</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/se</loc>
+    <loc>https://www.unipin.pk/unipin/ro</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/gb</loc>
+    <loc>https://www.unipin.pk/unipin/sk</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://unipin.pk/unipin/au</loc>
+    <loc>https://www.unipin.pk/unipin/si</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.unipin.pk/unipin/es</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.unipin.pk/unipin/se</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.unipin.pk/unipin/gb</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.unipin.pk/unipin/au</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>

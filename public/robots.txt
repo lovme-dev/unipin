@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://unipin.pk/sitemap.xml
+Sitemap: https://www.unipin.pk/sitemap.xml

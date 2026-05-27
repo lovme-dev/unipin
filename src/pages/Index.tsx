@@ -184,7 +184,8 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-24">
-      {/* Sticky Header */}
+      {/* Skip-to-content for accessibility */}
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-primary text-primary-foreground px-3 py-1 rounded z-50">Skip to main content</a>
       <div className="sticky top-0 z-40">
         <div
           aria-hidden="true"
@@ -203,8 +204,8 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
         <div className="relative z-20 py-1.5 px-3 flex items-center justify-between text-[10px]">
           <span className="font-bold tracking-wide">{t.instantTopUp}</span>
           <div className="flex items-center gap-2">
-            <button onClick={() => setRegionOpen(true)}>
-              <img src={activeFlagUrl} alt={activeCountryName} className="w-5 h-5 rounded-full object-cover border border-white/20" />
+            <button onClick={() => setRegionOpen(true)} aria-label={`Change region, current ${activeCountryName}`}>
+              <img src={activeFlagUrl} alt={`${activeCountryName} flag`} className="w-5 h-5 rounded-full object-cover border border-white/20" />
             </button>
 
             {/* Desktop: side-by-side toggle */}
@@ -266,18 +267,20 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
         {/* Logo Bar */}
         <div className="relative z-10 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button onClick={() => setMenuOpen(!menuOpen)}>
+            <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Open navigation menu">
               <Menu className="w-5 h-5 text-foreground" />
             </button>
-            <img src={unipinLogo} alt="UniPin" className="h-5" />
+            <img src={unipinLogo} alt="UniPin logo" className="h-5" />
           </div>
           <div className="flex items-center gap-2.5">
-            <Search className="w-4.5 h-4.5 text-foreground" />
+            <button aria-label="Search">
+              <Search className="w-4.5 h-4.5 text-foreground" />
+            </button>
             {currentUser ? (
-              <button onClick={() => setProfileOpen(true)}>
+              <button onClick={() => setProfileOpen(true)} aria-label="Open profile">
                 <Avatar className="w-8 h-8 border border-white/20">
                   {currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture ? (
-                    <AvatarImage src={currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture} alt="Profile" />
+                    <AvatarImage src={currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture} alt="User profile picture" />
                   ) : null}
                   <AvatarFallback className="bg-muted text-muted-foreground">
                     <User className="w-4 h-4" />
@@ -296,11 +299,13 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
       {/* Mobile Menu Overlay */}
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} t={t} />
 
+      <main id="main-content">
+
       {/* Game Info Section */}
       <div className="mx-3 mt-4">
         <div className="rounded-lg p-4" style={{ background: 'hsl(0, 0%, 0%)' }}>
           <div className="flex gap-3 mb-3">
-            <img src={gameConfig?.icon || freefireIcon} alt={gameConfig?.name || "Free Fire"} className="w-16 h-16 rounded-lg object-cover" />
+            <img src={gameConfig?.icon || freefireIcon} alt={`${gameConfig?.name || "Free Fire"} game icon`} width={64} height={64} fetchPriority="high" className="w-16 h-16 rounded-lg object-cover" />
             <div>
               <div className="game-meta-badges">
                 <span className="game-meta-badge">
@@ -342,12 +347,12 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
             <div className="text-sm text-muted-foreground space-y-4 mt-2">
               <p>{gameConfig?.description1 || t.gameDescription1}</p>
               <p>{gameConfig?.description2 || t.gameDescription2}</p>
-              <h3 className="text-primary font-semibold text-sm">{gameConfig?.aboutTitle || t.aboutFreeFire}</h3>
+              <h2 className="text-primary font-semibold text-sm">{gameConfig?.aboutTitle || t.aboutFreeFire}</h2>
               <p>{gameConfig?.aboutText || t.aboutFreeFireText}</p>
             </div>
           )}
 
-          <button onClick={() => setDescExpanded(!descExpanded)} className="w-full flex justify-center mt-3">
+          <button onClick={() => setDescExpanded(!descExpanded)} aria-label={descExpanded ? "Collapse game description" : "Expand game description"} className="w-full flex justify-center mt-3">
             {descExpanded ? (
               <ChevronUp className="w-5 h-5 text-primary" />
             ) : (
@@ -457,7 +462,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
                     <Check className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={3} />
                   </div>
                 )}
-                <img src={tieredImg} alt={gameConfig?.currencyLabel || "Diamonds"} className="w-10 h-10 object-contain mb-1" />
+                <img src={tieredImg} alt={`${gameConfig?.currencyLabel || "Free Fire diamonds"} pack icon`} className="w-10 h-10 object-contain mb-1" />
                 <p className="text-sm font-semibold text-foreground">
                   {pkg.diamonds.toLocaleString()} <span className="text-xs" style={{ color: '#ED9B26' }}>+{pkg.bonus.toLocaleString()}</span> {gameConfig?.currencyLabel || t.freeFireDiamonds}
                 </p>
@@ -492,7 +497,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
                   }`}
                 >
                   {method.logo && (
-                    <img src={method.logo} alt={method.name} className="h-6 w-auto object-contain" />
+                    <img src={method.logo} alt={`${method.name} payment method`} className="h-6 w-auto object-contain" />
                   )}
                   <span className="text-sm text-foreground">{method.name}</span>
                 </button>
@@ -569,21 +574,22 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
           <p className="text-sm text-muted-foreground mb-4">{t.getBestDeals}</p>
           <div className="flex gap-4">
             {[
-              <svg key="fb" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
-              <svg key="yt" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>,
-              <svg key="ig" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>,
-              <svg key="tw" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>,
-            ].map((icon) => (
-              <span key={icon.key} className="cursor-pointer hover:opacity-80 transition-opacity">{icon}</span>
+              { key: "fb", label: "Facebook", svg: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> },
+              { key: "yt", label: "YouTube", svg: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg> },
+              { key: "ig", label: "Instagram", svg: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> },
+              { key: "tw", label: "Twitter", svg: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg> },
+            ].map((item) => (
+              <button key={item.key} type="button" aria-label={`Follow UniPin on ${item.label}`} className="cursor-pointer hover:opacity-80 transition-opacity">{item.svg}</button>
             ))}
           </div>
         </div>
       </div>
+      </main>
 
       {/* Footer */}
       <div className="mt-6 bg-topbar px-4 py-8">
         <div className="flex justify-center mb-4">
-          <img src={unipinLogo} alt="UniPin" className="h-10" />
+          <img src={unipinLogo} alt="UniPin logo" className="h-10" />
         </div>
         <p className="text-center text-sm text-muted-foreground mb-6">
           {t.footerDescription}
@@ -627,7 +633,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
             <Link to="/privacy-policy" className="hover:underline">{t.privacyPolicyLink}</Link>
           </div>
           <div className="flex justify-center mt-3">
-            <img src={activeFlagUrl} alt={activeCountryName} className="w-7 h-7 rounded-full object-cover border border-white/20" />
+            <img src={activeFlagUrl} alt={`${activeCountryName} flag`} className="w-7 h-7 rounded-full object-cover border border-white/20" />
           </div>
         </div>
       </div>

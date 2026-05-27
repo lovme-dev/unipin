@@ -1,0 +1,30 @@
+# UniPin
+
+> UniPin is an official game top-up platform. Buy Free Fire Diamonds, PUBG Mobile UC, Mobile Legends credits and more — instant delivery, secure payments, available in 50+ countries.
+
+UniPin lets gamers top up in-game currency for popular mobile games without registration. Country-specific pricing in local currency, multiple payment methods (cards, e-wallets like EasyPaisa, JazzCash, GoPay Fast, vouchers), and instant credit delivery to the player's game account.
+
+## Pages
+
+- [Home – Free Fire Diamonds Top Up](/): Top up Free Fire Diamonds with auto-detected country and local currency.
+- [PUBG Mobile UC Top Up](/pubg): Buy PUBG Mobile UC at the cheapest prices — Midasbuy-style top up by UniPin.
+- [Careers](/careers): Open job positions at UniPin worldwide.
+- [Payment Channels](/payment-channels): All supported payment methods — cards, e-wallets and vouchers.
+- [Website Terms & Conditions](/terms-and-conditions): Legal terms for using the UniPin website.
+- [User Terms & Conditions](/user-terms): Terms governing customer purchases and top-ups.
+- [Privacy Policy](/privacy-policy): How UniPin collects, uses and protects user data.
+
+## Country pages
+
+- [UniPin Pakistan](/unipin/pk): Top up game credits in PKR with EasyPaisa, JazzCash and cards.
+- [UniPin India](/unipin/in): Game top-ups in INR.
+- [UniPin United States](/unipin/us): Game top-ups in USD.
+- [UniPin United Kingdom](/unipin/gb): Game top-ups in GBP.
+- [UniPin Indonesia](/unipin/id): Game top-ups in IDR.
+- [UniPin Philippines](/unipin/ph): Game top-ups in PHP.
+- [UniPin Saudi Arabia](/unipin/sa): Game top-ups in SAR.
+- [UniPin UAE](/unipin/ae): Game top-ups in AED.
+
+## Optional
+
+- Full country list is available via the region selector on every page; 50+ countries are supported (see sitemap.xml).

@@ -163,15 +163,15 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister, onSuccess }: AuthFormP
           <div className="mb-3">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Email</span>
-              <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
+              <input type="email" aria-label="Email address" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
             </div>
           </div>
           <div className="mb-2">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Password</span>
               <div className="flex items-center gap-2">
-                <input type={showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
-                <button onClick={() => setShowPassword(!showPassword)} className="text-muted-foreground hover:text-foreground">
+                <input type={showPassword ? "text" : "password"} aria-label="Password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
+                <button onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"} className="text-muted-foreground hover:text-foreground">
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
@@ -197,21 +197,21 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister, onSuccess }: AuthFormP
           <div className="mb-3">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Username</span>
-              <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
+              <input type="text" aria-label="Username" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
             </div>
           </div>
           <div className="mb-3">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Email</span>
-              <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
+              <input type="email" aria-label="Email address" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-1/2" />
             </div>
           </div>
           <div className="mb-3">
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Password</span>
               <div className="flex items-center gap-2">
-                <input type={showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
-                <button onClick={() => setShowPassword(!showPassword)} className="text-muted-foreground hover:text-foreground">
+                <input type={showPassword ? "text" : "password"} aria-label="Password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
+                <button onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"} className="text-muted-foreground hover:text-foreground">
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
@@ -221,8 +221,8 @@ const AuthForm = ({ onSwitchToSignIn, onSwitchToRegister, onSuccess }: AuthFormP
             <div className="flex items-center justify-between bg-[hsl(220,20%,16%)] rounded-lg px-4 py-3">
               <span className="text-foreground text-sm font-semibold">Confirm Password</span>
               <div className="flex items-center gap-2">
-                <input type={showConfirmPassword ? "text" : "password"} placeholder="Confirm" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
-                <button onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="text-muted-foreground hover:text-foreground">
+                <input type={showConfirmPassword ? "text" : "password"} aria-label="Confirm password" placeholder="Confirm" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} className="bg-transparent text-right text-muted-foreground text-sm outline-none w-32" />
+                <button onClick={() => setShowConfirmPassword(!showConfirmPassword)} aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"} className="text-muted-foreground hover:text-foreground">
                   {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>

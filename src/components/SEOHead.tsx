@@ -10,7 +10,9 @@ interface SEOHeadProps {
 
 export default function SEOHead({ title, description, countryCode, countryName, canonicalPath }: SEOHeadProps) {
   useEffect(() => {
-    document.title = title;
+    // Enforce <60 char title for SEO best practice
+    const safeTitle = title.length > 60 ? title.slice(0, 57).trimEnd() + "…" : title;
+    document.title = safeTitle;
 
     const setMeta = (name: string, content: string, property?: boolean) => {
       const attr = property ? "property" : "name";
@@ -24,10 +26,10 @@ export default function SEOHead({ title, description, countryCode, countryName, 
     };
 
     setMeta("description", description);
-    setMeta("og:title", title, true);
+    setMeta("og:title", safeTitle, true);
     setMeta("og:description", description, true);
-    setMeta("og:url", `https://unipin.pk${canonicalPath}`, true);
-    setMeta("twitter:title", title);
+    setMeta("og:url", `https://www.unipin.pk${canonicalPath}`, true);
+    setMeta("twitter:title", safeTitle);
     setMeta("twitter:description", description);
 
     // Update canonical
@@ -37,7 +39,7 @@ export default function SEOHead({ title, description, countryCode, countryName, 
       canonical.rel = "canonical";
       document.head.appendChild(canonical);
     }
-    canonical.href = `https://unipin.pk${canonicalPath}`;
+    canonical.href = `https://www.unipin.pk${canonicalPath}`;
 
     // Update JSON-LD
     let jsonLd = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
@@ -48,7 +50,7 @@ export default function SEOHead({ title, description, countryCode, countryName, 
         "name": "UniPin Official",
         "alternateName": "UniPin",
         "description": description,
-        "url": `https://unipin.pk${canonicalPath}`,
+        "url": `https://www.unipin.pk${canonicalPath}`,
         "applicationCategory": "GameApplication",
         "operatingSystem": "Web",
         "areaServed": {
