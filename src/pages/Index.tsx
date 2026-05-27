@@ -305,7 +305,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
       <div className="mx-3 mt-4">
         <div className="rounded-lg p-4" style={{ background: 'hsl(0, 0%, 0%)' }}>
           <div className="flex gap-3 mb-3">
-            <img src={gameConfig?.icon || freefireIcon} alt={gameConfig?.name || "Free Fire"} className="w-16 h-16 rounded-lg object-cover" />
+            <img src={gameConfig?.icon || freefireIcon} alt={`${gameConfig?.name || "Free Fire"} game icon`} width={64} height={64} fetchPriority="high" className="w-16 h-16 rounded-lg object-cover" />
             <div>
               <div className="game-meta-badges">
                 <span className="game-meta-badge">
@@ -347,12 +347,12 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
             <div className="text-sm text-muted-foreground space-y-4 mt-2">
               <p>{gameConfig?.description1 || t.gameDescription1}</p>
               <p>{gameConfig?.description2 || t.gameDescription2}</p>
-              <h3 className="text-primary font-semibold text-sm">{gameConfig?.aboutTitle || t.aboutFreeFire}</h3>
+              <h2 className="text-primary font-semibold text-sm">{gameConfig?.aboutTitle || t.aboutFreeFire}</h2>
               <p>{gameConfig?.aboutText || t.aboutFreeFireText}</p>
             </div>
           )}
 
-          <button onClick={() => setDescExpanded(!descExpanded)} className="w-full flex justify-center mt-3">
+          <button onClick={() => setDescExpanded(!descExpanded)} aria-label={descExpanded ? "Collapse game description" : "Expand game description"} className="w-full flex justify-center mt-3">
             {descExpanded ? (
               <ChevronUp className="w-5 h-5 text-primary" />
             ) : (
@@ -462,7 +462,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
                     <Check className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={3} />
                   </div>
                 )}
-                <img src={tieredImg} alt={gameConfig?.currencyLabel || "Diamonds"} className="w-10 h-10 object-contain mb-1" />
+                <img src={tieredImg} alt={`${gameConfig?.currencyLabel || "Free Fire diamonds"} pack icon`} className="w-10 h-10 object-contain mb-1" />
                 <p className="text-sm font-semibold text-foreground">
                   {pkg.diamonds.toLocaleString()} <span className="text-xs" style={{ color: '#ED9B26' }}>+{pkg.bonus.toLocaleString()}</span> {gameConfig?.currencyLabel || t.freeFireDiamonds}
                 </p>
@@ -497,7 +497,7 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
                   }`}
                 >
                   {method.logo && (
-                    <img src={method.logo} alt={method.name} className="h-6 w-auto object-contain" />
+                    <img src={method.logo} alt={`${method.name} payment method`} className="h-6 w-auto object-contain" />
                   )}
                   <span className="text-sm text-foreground">{method.name}</span>
                 </button>
