@@ -184,7 +184,8 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
 
   return (
     <div className="min-h-screen bg-background text-foreground pb-24">
-      {/* Sticky Header */}
+      {/* Skip-to-content for accessibility */}
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-primary text-primary-foreground px-3 py-1 rounded z-50">Skip to main content</a>
       <div className="sticky top-0 z-40">
         <div
           aria-hidden="true"
