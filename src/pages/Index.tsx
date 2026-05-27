@@ -204,8 +204,8 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
         <div className="relative z-20 py-1.5 px-3 flex items-center justify-between text-[10px]">
           <span className="font-bold tracking-wide">{t.instantTopUp}</span>
           <div className="flex items-center gap-2">
-            <button onClick={() => setRegionOpen(true)}>
-              <img src={activeFlagUrl} alt={activeCountryName} className="w-5 h-5 rounded-full object-cover border border-white/20" />
+            <button onClick={() => setRegionOpen(true)} aria-label={`Change region, current ${activeCountryName}`}>
+              <img src={activeFlagUrl} alt={`${activeCountryName} flag`} className="w-5 h-5 rounded-full object-cover border border-white/20" />
             </button>
 
             {/* Desktop: side-by-side toggle */}
