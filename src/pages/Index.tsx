@@ -267,18 +267,20 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
         {/* Logo Bar */}
         <div className="relative z-10 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <button onClick={() => setMenuOpen(!menuOpen)}>
+            <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Open navigation menu">
               <Menu className="w-5 h-5 text-foreground" />
             </button>
-            <img src={unipinLogo} alt="UniPin" className="h-5" />
+            <img src={unipinLogo} alt="UniPin logo" className="h-5" />
           </div>
           <div className="flex items-center gap-2.5">
-            <Search className="w-4.5 h-4.5 text-foreground" />
+            <button aria-label="Search">
+              <Search className="w-4.5 h-4.5 text-foreground" />
+            </button>
             {currentUser ? (
-              <button onClick={() => setProfileOpen(true)}>
+              <button onClick={() => setProfileOpen(true)} aria-label="Open profile">
                 <Avatar className="w-8 h-8 border border-white/20">
                   {currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture ? (
-                    <AvatarImage src={currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture} alt="Profile" />
+                    <AvatarImage src={currentUser.user_metadata?.avatar_url || currentUser.user_metadata?.picture} alt="User profile picture" />
                   ) : null}
                   <AvatarFallback className="bg-muted text-muted-foreground">
                     <User className="w-4 h-4" />
@@ -296,6 +298,8 @@ const Index = ({ countryOverride, gameConfig }: IndexProps = {}) => {
 
       {/* Mobile Menu Overlay */}
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} t={t} />
+
+      <main id="main-content">
 
       {/* Game Info Section */}
       <div className="mx-3 mt-4">
